@@ -6,6 +6,10 @@ TagManager:
   tags:
   - BackGround
   - Bullet
+  - PlayerBullet
+  - NormalMonster
+  - Boss
+  - UnBreakable
   layers:
   - Default
   - TransparentFX

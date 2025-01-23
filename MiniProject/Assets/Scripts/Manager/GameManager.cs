@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public event System.Action onSpeedUp;
-    public event System.Action onGameOver;
+    //public event System.Action onGameOver;
 
     private void Update()
     {

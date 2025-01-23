@@ -22,11 +22,7 @@ public class Bullet : MonoBehaviour
 
     public BulletData Data { get; protected set; }
 
-
-    private void Awake()
-    {
-       
-    }
+    public AudioSource Sound { get; protected set; }
 
     public virtual void Fire(Rigidbody2D rb)
     {

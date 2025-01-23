@@ -28,13 +28,6 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnBullet()
     {
-        //var bulletdata = DataTableManager.BulletTable.Get("030001");
-        //if (bulletdata == null)
-        //{
-        //    Debug.LogError("Bullet Data not Found.");
-        //    return;
-        //}
-
         var bulletprefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
         if (bulletprefab == null)
         {
@@ -43,11 +36,5 @@ public class BulletSpawner : MonoBehaviour
         }
 
         GameObject bullet = Instantiate(bulletprefab, parent.position, parent.rotation);
-        //var bulletComponent = bullet.GetComponent<Bullet>();
-
-        //if(bulletComponent != null)
-        //{
-        //    bulletComponent.Initialize(bulletData);
-        //}
     }
 }

@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerBullet : Bullet
 {
     private Rigidbody2D rb;
+    private static readonly string dataId = "030001";
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.BulletTable.Get("030001");
+        Data = DataTableManager.BulletTable.Get(dataId);
+        Sound = GetComponent<AudioSource>();
+
         if (Data != null)
         {
             Initialize(Data);
@@ -41,13 +44,14 @@ public class PlayerBullet : Bullet
     public override void Initialize(BulletData data)
     {
         base.Initialize(data);
+    }
 
-        //DamageCoeff = data.DamageCoeff;
-        //BulletSpeed = data.BulletSpeed;
-        //BulletEffectName = data.BulletEffectName;
-        //CanDestroyed = data.CanDestroyed;
-        //CanGuided = data.CanGuided;
-        //CanPierce = data.CanPierce;
-        //PierceCount = data.PierceCount;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "NormalMonster")
+        {
+            Sound.Play();
+            Destroy(gameObject);
+        }
     }
 }

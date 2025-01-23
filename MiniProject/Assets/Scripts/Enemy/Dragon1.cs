@@ -2,14 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dragon1 : Monster
+public class Dragon1 : NomalMonster
 {
+    private static readonly string dataId = "040001";
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        MonsterSpeed = 3f;
+        Data = DataTableManager.NormalMonsterTable.Get(dataId);
+        var findGo = GameObject.FindWithTag("Player");
+        Player = findGo.GetComponent<Player>();
+        DeathSound = GetComponent<AudioSource>();
+
+        if(Data != null)
+        {
+            Initialized(Data);
+        }
+        else
+        {
+            Debug.LogError($"Bullet data with ID '{dataId}' not found.");
+        }
     }
 
     private void Update()
@@ -22,7 +35,7 @@ public class Dragon1 : Monster
         base.MonsterDown(rb);
     }
 
-    public override void Initialized(BulletData data)
+    public override void Initialized(NormalMonsterData data)
     {
         base.Initialized(data);
     }
@@ -35,5 +48,22 @@ public class Dragon1 : Monster
     public override void Die()
     {
         base.Die();
+        DeathSound.Play();
+        AddScore(OfferedScore);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            OnDamage(Player.Data.Damage);
+            Debug.Log($"Damege {Player.Data.Damage}");
+        }
+    }
+
+    public override void AddScore(float amount)
+    {
+        base.AddScore(amount);
     }
 }

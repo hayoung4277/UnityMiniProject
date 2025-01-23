@@ -18,7 +18,7 @@ public class BackGroundScrolling : MonoBehaviour
         var findGo = GameObject.FindWithTag("GameController");
         gm = findGo.GetComponent<GameManager>();
 
-        gm.onGameOver += StopScrolling;
+        //gm.onGameOver += StopScrolling;
         gm.onSpeedUp += SpeedUp;
     }
 
