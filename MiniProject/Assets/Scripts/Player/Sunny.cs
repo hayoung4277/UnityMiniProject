@@ -5,16 +5,22 @@ using UnityEngine;
 public class Sunny : Player
 {
     private Rigidbody2D rb;
-    private CircleCollider2D circle;
     private static readonly string dataId = "01001";
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        circle = GetComponent<CircleCollider2D>();
         DeathSound = GetComponent<AudioSource>();
 
+        // PlayerData 가져오기
         Data = DataTableManager.PlayerTable.Get(dataId);
+        if (Data == null)
+        {
+            Debug.LogError($"Player data with ID '{dataId}' not found.");
+            return;
+        }
+
+        // PlayerData와 BulletData로 초기화
         if (Data != null)
         {
             Initialized(Data);
@@ -22,12 +28,8 @@ public class Sunny : Player
         else
         {
             Debug.LogError($"Player data with ID '{dataId}' not found.");
+            return;
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     public override void Initialized(PlayerData data)
@@ -50,13 +52,7 @@ public class Sunny : Player
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.tag == "NormalMonster")
-        {
-            Die();
-        }
-
-        if(collision.gameObject.tag == "UnBreakable")
+        if (collision.gameObject.tag == "NormalMonster" || collision.gameObject.tag == "UnBreakable")
         {
             Die();
         }

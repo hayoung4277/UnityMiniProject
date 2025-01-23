@@ -22,6 +22,7 @@ public static class DataTableIds
     public static readonly string Player = "PlayerTable";
     public static readonly string NormalMonster = "NormalMonsterTable";
     public static readonly string UnBreakable = "UnBreakableTable";
+    public static readonly string Boss = "BossTable";
 }
 
 public static class Variables

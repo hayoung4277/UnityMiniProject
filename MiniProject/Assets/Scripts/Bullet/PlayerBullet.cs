@@ -28,14 +28,6 @@ public class PlayerBullet : Bullet
         Fire(rb);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log($"{DamageCoeff}, {BulletSpeed}");
-        }
-    }
-
     public override void Fire(Rigidbody2D rb)
     {
         base.Fire(rb);
@@ -49,6 +41,12 @@ public class PlayerBullet : Bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "NormalMonster")
+        {
+            Sound.Play();
+            Destroy(gameObject);
+        }
+
+        if(collision.gameObject.tag == "Boss")
         {
             Sound.Play();
             Destroy(gameObject);

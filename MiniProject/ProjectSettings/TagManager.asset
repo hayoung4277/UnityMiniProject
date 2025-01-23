@@ -10,6 +10,8 @@ TagManager:
   - NormalMonster
   - Boss
   - UnBreakable
+  - Warning
+  - Line
   layers:
   - Default
   - TransparentFX

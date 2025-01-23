@@ -18,10 +18,12 @@ public class UnBreakable : LivingEntity
     public float DestroySoundPlayTime { get; protected set; }
 
     public UnBreakableData Data { get; protected set; }
+    public bool IsSpawn {  get; protected set; }
 
     public virtual void MoveUnBreakable(Rigidbody2D rb)
     {
         rb.velocity = Vector3.down * MoveSpeed;
+        IsSpawn = true;
     }
 
     public override void OnDamage(float damage)

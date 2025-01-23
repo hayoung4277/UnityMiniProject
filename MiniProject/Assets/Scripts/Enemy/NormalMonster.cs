@@ -15,7 +15,7 @@ public class NomalMonster : LivingEntity
     public float OfferedScore { get; protected set; }
     public float MonsterSpeed { get; protected set; }
 
-    public Player Player { get; protected set; }
+    public PlayerBullet PlayerBullet { get; protected set; }
     public NormalMonsterData Data { get; protected set; }
     public AudioSource DeathSound { get; protected set; }
 

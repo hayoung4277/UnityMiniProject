@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dragon1 : NomalMonster
+public class Enemy1 : NomalMonster
 {
     private static readonly string dataId = "040001";
     private Rigidbody2D rb;
@@ -11,8 +11,10 @@ public class Dragon1 : NomalMonster
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.NormalMonsterTable.Get(dataId);
-        var findGo = GameObject.FindWithTag("Player");
-        Player = findGo.GetComponent<Player>();
+
+        var findGo = GameObject.FindWithTag("PlayerBullet");
+        PlayerBullet = findGo.GetComponent<PlayerBullet>();
+
         DeathSound = GetComponent<AudioSource>();
 
         if(Data != null)
@@ -21,7 +23,7 @@ public class Dragon1 : NomalMonster
         }
         else
         {
-            Debug.LogError($"Bullet data with ID '{dataId}' not found.");
+            Debug.LogError($"Enemy1 data with ID '{dataId}' not found.");
         }
     }
 
@@ -57,8 +59,8 @@ public class Dragon1 : NomalMonster
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            OnDamage(Player.Data.Damage);
-            Debug.Log($"Damege {Player.Data.Damage}");
+            OnDamage(PlayerBullet.Damage);
+            Debug.Log($"Damage {PlayerBullet.Damage}");
         }
     }
 

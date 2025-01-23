@@ -12,6 +12,7 @@ public class BulletSpawner : MonoBehaviour
     private void Awake()
     {
         currentFireTime = 0f;
+        var findGo = GameObject.FindWithTag("Player");
     }
 
     private void Update()

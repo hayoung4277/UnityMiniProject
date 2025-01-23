@@ -6,7 +6,6 @@ public class PlayerData
 {
     public string Id { get; set; }
     public string NameId { get; set; }
-    public float Damage { get; set; }
     public int HP { get; set; }
     public float CriticalChance { get; set; }
     public float CriticalMultiplier { get; set; }
@@ -17,7 +16,7 @@ public class PlayerData
 
     public override string ToString()
     {
-        return $"{Id} / {NameId} / {Damage} / {HP} / {CriticalChance} / {CriticalMultiplier} / " +
+        return $"{Id} / {NameId} / {HP} / {CriticalChance} / {CriticalMultiplier} / " +
             $"{ScoreMultiplier} / {HitAnimEffectName} / {HitSoundName} / {AnimationName}";
     }
 }

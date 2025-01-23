@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : LivingEntity
 {
     public string NameId {  get; protected set; }
-    public float Damage { get; protected set; }
     public int HP { get; protected set; }
     public float CriticalChance { get; protected set; }
     public float CriticalMultiplier { get; protected set; }
@@ -16,6 +15,7 @@ public class Player : LivingEntity
 
     public PlayerData Data { get; protected set; }
     public AudioSource DeathSound { get; protected set; }
+
     public override void OnDamage(float damage)
     {
         base.OnDamage(damage);
@@ -24,7 +24,6 @@ public class Player : LivingEntity
     public virtual void Initialized(PlayerData data)
     {
         NameId = data.NameId;
-        Damage = data.Damage;
         HP = data.HP;
         CriticalChance = data.CriticalChance;
         CriticalMultiplier = data.CriticalMultiplier;

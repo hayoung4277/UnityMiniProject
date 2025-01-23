@@ -6,15 +6,28 @@ using UnityEngine.UI;
 public class Meteor1 : UnBreakable
 {
     private static readonly string dataId = "050001";
+
     private Rigidbody2D rb;
-    public Image image;
-    private float imageToggleTime = 0.6f;
+    //private SpriteRenderer sprite;
+    //private SpriteRenderer lineSprite;
+
+    //private float imageToggleTime = 0.6f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.UnBreakableTable.Get(dataId);
-        image.enabled = false;
+
+        //var findGo = GameObject.FindWithTag("Warning");
+        //sprite = findGo.GetComponent<SpriteRenderer>();
+
+        //var findLine = GameObject.FindWithTag("Line");
+        //lineSprite = findLine.GetComponent<SpriteRenderer>();
+
+        //sprite.enabled = false;
+        //lineSprite.enabled = false;
+
+        IsSpawn = false;
 
         if (Data != null)
         {
@@ -28,8 +41,16 @@ public class Meteor1 : UnBreakable
 
     private void Start()
     {
-        StartCoroutine(WarningToggle());
+        //StartCoroutine(WarningToggle());
         StartCoroutine(MoveCoroutine());
+    }
+
+    private void Update()
+    {
+        //if(!IsSpawn)
+        //{
+        //    MoveToPlayer();
+        //}
     }
 
     public override void MoveUnBreakable(Rigidbody2D rb)
@@ -54,23 +75,39 @@ public class Meteor1 : UnBreakable
 
     private IEnumerator MoveCoroutine()
     {
+        //StartCoroutine(WarningToggle());
+
         yield return new WaitForSeconds(SpawnWarningTime);
 
-        image.enabled = false;
+        //sprite.enabled = false;
+        //lineSprite.enabled = false;
 
         MoveUnBreakable(rb);
     }
 
-    private IEnumerator WarningToggle()
-    {
-        image.enabled = true;
-        
-        yield return new WaitForSeconds(imageToggleTime);
+    //private void MoveToPlayer()
+    //{
+    //    var currentPos = transform.position;
 
-        image.enabled = false;
+    //    currentPos.x = player.position.x;
+    //    currentPos.y = transform.position.y;
+    //}
 
-        yield return new WaitForSeconds(imageToggleTime);
+    //private IEnumerator WarningToggle()
+    //{
+    //    var spritePos = transform.position;
 
-        image.enabled = true;
-    }
+    //    spritePos.y -= 2f;
+
+    //    sprite.enabled = true;
+    //    lineSprite.enabled = true;
+
+    //    yield return new WaitForSeconds(imageToggleTime);
+
+    //    sprite.enabled = false;
+
+    //    yield return new WaitForSeconds(imageToggleTime);
+
+    //    sprite.enabled = true;
+    //}
 }

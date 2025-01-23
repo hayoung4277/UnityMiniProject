@@ -25,6 +25,10 @@ public static class DataTableManager
         unBreakableTable.Load(DataTableIds.UnBreakable);
         tables.Add(DataTableIds.UnBreakable, unBreakableTable);
 
+        var bossTable = new BossTable();
+        bossTable.Load(DataTableIds.Boss);
+        tables.Add(DataTableIds.Boss, bossTable);
+
         //LoadStringTable();
     }
 
@@ -45,6 +49,8 @@ public static class DataTableManager
     public static NormalMonsterTable NormalMonsterTable => Get<NormalMonsterTable>(DataTableIds.NormalMonster);
 
     public static UnBreakableTable UnBreakableTable => Get<UnBreakableTable>(DataTableIds.UnBreakable);
+    public static BossTable BossTable => Get<BossTable>(DataTableIds.Boss);
+
     public static T Get<T>(string id) where T : DataTable
     {
         if (!tables.ContainsKey(id))
