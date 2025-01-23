@@ -9,18 +9,20 @@ public class PlayerBullet : Bullet
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        //DamageCoeff = Data;
-        //BulletSpeed = Data.BulletSpeed;
-        //BulletEffectName = Data.BulletEffectName;
-        //CanDestroyed = Data.CanDestroyed;
-        //CanGuided = Data.CanGuided;
-        //CanPierce = Data.CanPierce;
-        //PierceCount = Data.PierceCount;
+        Data = DataTableManager.BulletTable.Get("030001");
+        if (Data != null)
+        {
+            Initialize(Data);
+        }
+        else
+        {
+            Debug.LogError("Bullet data with ID '030001' not found.");
+        }
     }
 
     private void Start()
     {
-        Fire();
+        Fire(rb);
     }
 
     private void Update()
@@ -31,8 +33,21 @@ public class PlayerBullet : Bullet
         }
     }
 
-    public override void Fire()
+    public override void Fire(Rigidbody2D rb)
     {
-        rb.velocity = transform.up * BulletSpeed;
+        base.Fire(rb);
+    }
+
+    public override void Initialize(BulletData data)
+    {
+        base.Initialize(data);
+
+        //DamageCoeff = data.DamageCoeff;
+        //BulletSpeed = data.BulletSpeed;
+        //BulletEffectName = data.BulletEffectName;
+        //CanDestroyed = data.CanDestroyed;
+        //CanGuided = data.CanGuided;
+        //CanPierce = data.CanPierce;
+        //PierceCount = data.PierceCount;
     }
 }

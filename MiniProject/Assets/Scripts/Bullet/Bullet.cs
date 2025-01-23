@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Rigidbody2D rb;
     public float DamageCoeff { get; protected set; } //피해량 계수
 
     public float BulletSpeed { get; protected set; } //탄속
@@ -21,25 +20,27 @@ public class Bullet : MonoBehaviour
 
     public int PierceCount { get; protected set; } //최대 관통횟수 여부
 
-    public BulletTable Data { get; protected set; }
-    public BulletData data;
+    public BulletData Data { get; protected set; }
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        BulletSpeed = 3f;
-        Data = DataTableManager.BulletTable;
+       
     }
 
-    private void Start()
-    {
-        Fire();
-    }
-
-    public virtual void Fire()
+    public virtual void Fire(Rigidbody2D rb)
     {
         rb.velocity = transform.up * BulletSpeed;
-        //rb.AddForce(transform.up * BulletSpeed);
+    }
+
+    public virtual void Initialize(BulletData data)
+    {
+        DamageCoeff = data.DamageCoeff;
+        BulletSpeed = data.BulletSpeed;
+        BulletEffectName = data.BulletEffectName;
+        CanDestroyed = data.CanDestroyed;
+        CanGuided = data.CanGuided;
+        CanPierce = data.CanPierce;
+        PierceCount = data.PierceCount;
     }
 }

@@ -21,4 +21,19 @@ public class Dragon1 : Monster
     {
         base.MonsterDown(rb);
     }
+
+    public override void Initialized(BulletData data)
+    {
+        base.Initialized(data);
+    }
+
+    public override void OnDamage(float damage)
+    {
+        base.OnDamage(damage);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+    }
 }

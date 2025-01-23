@@ -44,18 +44,39 @@ public class BulletTable : DataTable
     {
         var path = string.Format(FormatPath, filename);
         var textAsset = Resources.Load<TextAsset>(path);
+
+        if(textAsset == null)
+        {
+            Debug.LogError($"BulletTable file not found at path: {path}");
+            return;
+        }
+
         var list = LoadCSV<BulletData>(textAsset.text);
         table.Clear();
+
         foreach (var item in list)
         {
+            if(table.ContainsKey(item.Id))
+            {
+                Debug.LogError($"Duplicate BulletData ID detected: {item.Id}. Skipping this entry");
+                continue;
+            }
+
             table.Add(item.Id, item);
         }
+
+        Debug.Log($"Loaded BulletTable with {table.Count} entries from {filename}.");
+
     }
 
     public BulletData Get(string id)
     {
         if (!table.ContainsKey(id))
+        {
+            Debug.LogWarning($"BulletData with ID '{id}' not found in BulletTable.");
             return null;
+        }
+
         return table[id];
     }
 }

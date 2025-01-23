@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : LivingEntity
 {
     public string ID {  get; set; }
     public float HP { get; set; }
@@ -17,5 +17,25 @@ public class Monster : MonoBehaviour
     public virtual void MonsterDown(Rigidbody2D rb)
     {
         rb.velocity = Vector3.down * MonsterSpeed;
+    }
+
+    public virtual void Initialized(BulletData data)
+    {
+        
+    }
+
+    public override void OnDamage(float damage)
+    {
+        HP -= damage;
+        if(HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        HP = 0;
     }
 }

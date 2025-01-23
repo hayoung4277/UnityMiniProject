@@ -13,36 +13,46 @@ public static class DataTableManager
         bulletTable.Load(DataTableIds.Bullet);
         tables.Add(DataTableIds.Bullet, bulletTable);
 
-#if UNITY_EDITOR
-        foreach (var id in DataTableIds.String)
-        {
-            var table = new StringTable();
-            table.Load(id);
-            tables.Add(id, table);
-        }
-#else
-    var table = new StringTable();
-    var stringTableId = DataTableIds.String[(int)Variables.currentLang];
-    table.Load(stringTableId);
-            tables.Add(stringTableId, table);
-#endif
+        LoadStringTable();
+    }
+//#if UNITY_EDITOR
+//        foreach (var id in DataTableIds.String)
+//        {
+//            var table = new StringTable();
+//            table.Load(id);
+//            tables.Add(id, table);
+//        }
+//#else
+//    var table = new StringTable();
+//    var stringTableId = DataTableIds.String[(int)Variables.currentLang];
+//    table.Load(stringTableId);
+//            tables.Add(stringTableId, table);
+//#endif
+//    }
+
+    private static void LoadStringTable()
+    {
+        var table = new StringTable();
+        var stringTableId = DataTableIds.String[(int)Variables.currentLang];
+        table.Load(stringTableId);
+        tables[stringTableId] = table;
     }
 
-    public static StringTable StringTable
-    {
-        get
-        {
-            return Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
-        }
-    }
+    public static StringTable StringTable => Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
+    //{
+    //    get
+    //    {
+    //        return Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
+    //    }
+    //}
 
-    public static BulletTable BulletTable
-    {
-        get
-        {
-            return Get<BulletTable>(DataTableIds.Bullet);
-        }
-    }
+    public static BulletTable BulletTable => Get<BulletTable>(DataTableIds.Bullet);
+    //{
+    //    get
+    //    {
+    //        return Get<BulletTable>(DataTableIds.Bullet);
+    //    }
+    //}
 
 
     public static T Get<T>(string id) where T : DataTable
@@ -53,5 +63,12 @@ public static class DataTableManager
             return null;
         }
         return tables[id] as T;
+    }
+
+    public static void ReloadStringTable(Languages newLanguage)
+    {
+        Variables.currentLang = newLanguage;
+        LoadStringTable();
+        Debug.Log($"String Table reloaded for language: {newLanguage}");
     }
 }

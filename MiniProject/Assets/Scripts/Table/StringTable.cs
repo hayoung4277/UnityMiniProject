@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CsvHelper;
-using System.Linq;
-using Unity.Collections;
 
 public class StringTable : DataTable
 {
@@ -19,27 +15,39 @@ public class StringTable : DataTable
     {
         var path = string.Format(FormatPath, filename);
         var textAsset = Resources.Load<TextAsset>(path);
+
+        if (textAsset == null)
+        {
+            Debug.LogError($"StringTable file not found at path: {path}");
+            return;
+        }
+
         var list = LoadCSV<Data>(textAsset.text);
         dictionary.Clear();
-        foreach (var key in list)
+
+        foreach (var entry in list)
         {
-            if (!dictionary.ContainsKey(key.Id))
+            if (!dictionary.ContainsKey(entry.Id))
             {
-                dictionary.Add(key.Id, key.String);
+                dictionary.Add(entry.Id, entry.String);
             }
             else
             {
-                Debug.LogError($"키 중복: {key.Id}");
+                Debug.LogError($"Duplicate key detected in StringTable: {entry.Id}. Skipping this entry.");
             }
         }
+
+        Debug.Log($"StringTable loaded successfully with {dictionary.Count} entries from {filename}.");
     }
 
     public string Get(string key)
     {
-        if (!dictionary.ContainsKey(key))
+        if (dictionary.TryGetValue(key, out string value))
         {
-            return "키없음.";
+            return value;
         }
-        return dictionary[key];
+
+        Debug.LogWarning($"Key '{key}' not found in StringTable. Returning default message.");
+        return $"[Missing String: {key}]";
     }
 }

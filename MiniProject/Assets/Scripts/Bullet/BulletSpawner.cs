@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public GameObject prefab;
     public Transform parent;
 
     public float fireRate = 0.8f;
@@ -23,10 +22,32 @@ public class BulletSpawner : MonoBehaviour
         {
             currentFireTime = 0f;
 
-            GameObject bullet = Instantiate(prefab, parent.position, parent.rotation);
-
-            Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.Fire();
+            SpawnBullet();
         }
+    }
+
+    private void SpawnBullet()
+    {
+        //var bulletdata = DataTableManager.BulletTable.Get("030001");
+        //if (bulletdata == null)
+        //{
+        //    Debug.LogError("Bullet Data not Found.");
+        //    return;
+        //}
+
+        var bulletprefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
+        if (bulletprefab == null)
+        {
+            Debug.LogError("Bullet Prefab not Found");
+            return;
+        }
+
+        GameObject bullet = Instantiate(bulletprefab, parent.position, parent.rotation);
+        //var bulletComponent = bullet.GetComponent<Bullet>();
+
+        //if(bulletComponent != null)
+        //{
+        //    bulletComponent.Initialize(bulletData);
+        //}
     }
 }
