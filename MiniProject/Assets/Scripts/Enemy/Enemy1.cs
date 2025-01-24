@@ -7,6 +7,8 @@ public class Enemy1 : NomalMonster
     private static readonly string dataId = "040001";
     private Rigidbody2D rb;
 
+    private GameManager gm;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -14,6 +16,9 @@ public class Enemy1 : NomalMonster
 
         var findGo = GameObject.FindWithTag("PlayerBullet");
         PlayerBullet = findGo.GetComponent<PlayerBullet>();
+
+        var findGm = GameObject.FindWithTag(GMCT.GM);
+        gm = findGm.GetComponent<GameManager>();
 
         DeathSound = GetComponent<AudioSource>();
 
@@ -51,7 +56,7 @@ public class Enemy1 : NomalMonster
     {
         base.Die();
         DeathSound.Play();
-        AddScore(OfferedScore);
+        gm.AddScore(OfferedScore);
         Destroy(gameObject);
     }
 
@@ -60,12 +65,11 @@ public class Enemy1 : NomalMonster
         if (collision.gameObject.tag == "PlayerBullet")
         {
             OnDamage(PlayerBullet.Damage);
-            Debug.Log($"Damage {PlayerBullet.Damage}");
         }
-    }
-
-    public override void AddScore(float amount)
-    {
-        base.AddScore(amount);
+        
+        if(collision.gameObject.tag == "DestroyBox")
+        {
+            Destroy(gameObject);
+        }
     }
 }

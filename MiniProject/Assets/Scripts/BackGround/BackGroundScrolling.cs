@@ -6,9 +6,6 @@ public class BackGroundScrolling : MonoBehaviour
 {
     public float Speed { get; private set; }
 
-    private float speedUpTime = 0f;
-    private float speedUpInterval = 10f;
-
     private GameManager gm;
 
     private void Awake()
@@ -18,7 +15,7 @@ public class BackGroundScrolling : MonoBehaviour
 
     private void Start()
     {
-        var findGo = GameObject.FindWithTag("GameController");
+        var findGo = GameObject.FindWithTag(GMCT.GM);
         gm = findGo.GetComponent<GameManager>();
 
         gm.onStopGame += StopScrolling;
@@ -27,14 +24,6 @@ public class BackGroundScrolling : MonoBehaviour
 
     private void Update()
     {
-        //speedUpTime += Time.deltaTime;
-
-        //if(speedUpTime >= speedUpInterval)
-        //{
-        //    SpeedUp();
-        //    speedUpTime = 0f;
-        //}
-
         transform.Translate(Vector3.down * Speed * Time.deltaTime);
     }
 
@@ -45,7 +34,7 @@ public class BackGroundScrolling : MonoBehaviour
 
     private void SpeedUp()
     {
-        Speed = Speed * 2f;
+        Speed = Speed * 1.1f;
         Debug.Log("Speed Up");
     }
 }

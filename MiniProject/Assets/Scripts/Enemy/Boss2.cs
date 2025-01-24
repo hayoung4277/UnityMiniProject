@@ -28,9 +28,6 @@ public class Boss2 : Boss
 
     private void Start()
     {
-        var findGo = GameObject.FindWithTag("PlayerBullet");
-        PlayerBullet = findGo.GetComponent<PlayerBullet>();
-
         MoveBoss(rb);
     }
 
@@ -74,6 +71,9 @@ public class Boss2 : Boss
     {
         if (collision.gameObject.tag == "PlayerBullet" && !IsInVisible)
         {
+            var findGo = GameObject.FindWithTag("PlayerBullet");
+            PlayerBullet = findGo.GetComponent<PlayerBullet>();
+
             OnDamage(PlayerBullet.Damage);
             Debug.Log($"Damege {PlayerBullet.Damage}");
         }

@@ -6,7 +6,7 @@ public class Boss1 : Boss
 {
     private static readonly string dataId = "06001";
     private Rigidbody2D rb;
-    private SpriteRenderer bossSprite;
+    //private SpriteRenderer bossSprite;
     private float spawnTime = 60f;
     private float currentSpawnTime = 0f;
 
@@ -19,7 +19,7 @@ public class Boss1 : Boss
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.BossTable.Get(dataId);
 
-        var findGm = GameObject.FindWithTag("GameController");
+        var findGm = GameObject.FindWithTag(GMCT.GM);
         gm = findGm.GetComponent<GameManager>();
 
         IsInVisible = true;

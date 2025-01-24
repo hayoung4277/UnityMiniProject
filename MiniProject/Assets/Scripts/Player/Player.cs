@@ -15,6 +15,7 @@ public class Player : LivingEntity
 
     public PlayerData Data { get; protected set; }
     public AudioSource DeathSound { get; protected set; }
+    public GameManager Gm { get; protected set; }
 
     public override void OnDamage(float damage)
     {
