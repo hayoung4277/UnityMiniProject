@@ -1453,10 +1453,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5299008590047689068, guid: 6f0d768293a22b84badf70a7e4f52561, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5816215551166895947, guid: 6f0d768293a22b84badf70a7e4f52561, type: 3}
       propertyPath: m_Name
       value: Sunny
