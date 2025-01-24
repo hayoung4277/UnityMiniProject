@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         Score = 0f;
 
-        scoreText.text = $"Score: {Score:F2}";
+        scoreText.text = $"Score: {Score.ToString("F2")}";
         timeText.text = $"Time: {currentTime}";
 
         Time.timeScale = 1f;
