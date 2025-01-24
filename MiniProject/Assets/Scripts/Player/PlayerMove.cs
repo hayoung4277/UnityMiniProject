@@ -8,15 +8,21 @@ public class PlayerMove : MonoBehaviour
     private Vector3 targetPos;
     private bool isMove = false;
 
+    private Camera mainCamera;
+    private Vector2 screenBounds;
+
     private void Start()
     {
         targetPos = transform.position;
+        mainCamera = Camera.main;
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }
 
     private void Update()
     {
         TouchInput();
         MovePlayer();
+        RestrictMovement();
     }
 
     private void TouchInput()
@@ -60,5 +66,18 @@ public class PlayerMove : MonoBehaviour
                 isMove = false;
             }
         }
+    }
+
+    private void RestrictMovement()
+    {
+        // 현재 위치를 가져옴
+        Vector3 position = transform.position;
+
+        // 화면 경계 안으로 위치를 제한
+        position.x = Mathf.Clamp(position.x, -screenBounds.x, screenBounds.x);
+        position.y = Mathf.Clamp(position.y, -screenBounds.y, screenBounds.y);
+
+        // 제한된 위치로 설정
+        transform.position = position;
     }
 }

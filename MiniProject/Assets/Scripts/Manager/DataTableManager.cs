@@ -13,22 +13,24 @@ public static class DataTableManager
         bulletTable.Load(DataTableIds.Bullet);
         tables.Add(DataTableIds.Bullet, bulletTable);
 
-        LoadStringTable();
+        var playerTable = new PlayerTable();
+        playerTable.Load(DataTableIds.Player);
+        tables.Add(DataTableIds.Player, playerTable);
+
+        var normalMonsterTable = new NormalMonsterTable();
+        normalMonsterTable.Load(DataTableIds.NormalMonster);
+        tables.Add(DataTableIds.NormalMonster, normalMonsterTable);
+
+        var unBreakableTable = new UnBreakableTable();
+        unBreakableTable.Load(DataTableIds.UnBreakable);
+        tables.Add(DataTableIds.UnBreakable, unBreakableTable);
+
+        var bossTable = new BossTable();
+        bossTable.Load(DataTableIds.Boss);
+        tables.Add(DataTableIds.Boss, bossTable);
+
+        //LoadStringTable();
     }
-//#if UNITY_EDITOR
-//        foreach (var id in DataTableIds.String)
-//        {
-//            var table = new StringTable();
-//            table.Load(id);
-//            tables.Add(id, table);
-//        }
-//#else
-//    var table = new StringTable();
-//    var stringTableId = DataTableIds.String[(int)Variables.currentLang];
-//    table.Load(stringTableId);
-//            tables.Add(stringTableId, table);
-//#endif
-//    }
 
     private static void LoadStringTable()
     {
@@ -39,21 +41,15 @@ public static class DataTableManager
     }
 
     public static StringTable StringTable => Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
-    //{
-    //    get
-    //    {
-    //        return Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
-    //    }
-    //}
 
     public static BulletTable BulletTable => Get<BulletTable>(DataTableIds.Bullet);
-    //{
-    //    get
-    //    {
-    //        return Get<BulletTable>(DataTableIds.Bullet);
-    //    }
-    //}
 
+    public static PlayerTable PlayerTable => Get<PlayerTable>(DataTableIds.Player);
+
+    public static NormalMonsterTable NormalMonsterTable => Get<NormalMonsterTable>(DataTableIds.NormalMonster);
+
+    public static UnBreakableTable UnBreakableTable => Get<UnBreakableTable>(DataTableIds.UnBreakable);
+    public static BossTable BossTable => Get<BossTable>(DataTableIds.Boss);
 
     public static T Get<T>(string id) where T : DataTable
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletData
 {
     public string Id { get; set; }
-    public float DamageCoeff { get; set; }
+    public float Damage { get; set; }
     public float BulletSpeed { get; set; }
     public string BulletEffectName { get; set; }
     public bool CanDestroyed { get; set; }
@@ -15,7 +15,7 @@ public class BulletData
 
     public override string ToString()
     {
-        return $"{Id} / {DamageCoeff} / {BulletSpeed} / {BulletEffectName} / {CanDestroyed} / " +
+        return $"{Id} / {Damage} / {BulletSpeed} / {BulletEffectName} / {CanDestroyed} / " +
             $"{CanDestroyed} / {CanGuided} / {CanPierce} / {PierceCount}";
     }
 
