@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BackGround
+  - Bullet
+  - PlayerBullet
+  - NormalMonster
+  - Boss
+  - UnBreakable
+  - Warning
+  - Line
+  - DestroyBox
   layers:
   - Default
   - TransparentFX
