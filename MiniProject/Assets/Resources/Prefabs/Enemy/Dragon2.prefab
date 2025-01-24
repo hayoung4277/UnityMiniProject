@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6684184347472167011}
   - component: {fileID: 716338786742545378}
   - component: {fileID: 101198537470431967}
-  - component: {fileID: 1430721293441669197}
   - component: {fileID: -527962189508378852}
   - component: {fileID: -7905632570880291189}
+  - component: {fileID: 607064072223924021}
   m_Layer: 0
   m_Name: Dragon2
   m_TagString: NormalMonster
@@ -115,18 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1430721293441669197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233614484521026796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3b1e1406908724db3b675b8024b9f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &-527962189508378852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -268,3 +256,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &607064072223924021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2233614484521026796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365871de49afc604dbb52e47f53bf2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataId: 040002

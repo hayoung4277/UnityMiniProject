@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : NomalMonster
+public class Enemy : NomalMonster
 {
-    private static readonly string dataId = "040001";
+    public string dataId = "040001";
     private Rigidbody2D rb;
 
     private GameManager gm;

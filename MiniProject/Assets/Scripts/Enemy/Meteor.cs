@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Meteor1 : UnBreakable
+public class Meteor : UnBreakable
 {
-    private static readonly string dataId = "050001";
+    public string dataId = "050001";
 
     private Rigidbody2D rb;
     //private SpriteRenderer sprite;
