@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBullet : Bullet
 {
     private Rigidbody2D rb;
-    private static readonly string dataId = "030001";
+    public string dataId = "030001";
 
     private void Awake()
     {
@@ -19,13 +19,14 @@ public class PlayerBullet : Bullet
         }
         else
         {
-            Debug.LogError("Bullet data with ID '030001' not found.");
+            Debug.LogError($"Bullet data with ID '{dataId}' not found.");
         }
     }
 
     private void Start()
     {
         Fire(rb);
+        Destroy(gameObject, 5f);
     }
 
     public override void Fire(Rigidbody2D rb)
@@ -40,16 +41,23 @@ public class PlayerBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "NormalMonster")
+        if (collision.gameObject.tag == "NormalMonster")
         {
             Sound.Play();
-            Destroy(gameObject);
+            if (!Sound.isPlaying)
+            {
+                Destroy(gameObject);
+            }
+
         }
 
-        if(collision.gameObject.tag == "Boss")
+        if (collision.gameObject.tag == "Boss")
         {
             Sound.Play();
-            Destroy(gameObject);
+            if (!Sound.isPlaying)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

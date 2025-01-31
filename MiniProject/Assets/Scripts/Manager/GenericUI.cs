@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GenericUI : MonoBehaviour
 {
-    public int Score {  get; protected set; }
-
     protected virtual void Awake()
     {
         Close();

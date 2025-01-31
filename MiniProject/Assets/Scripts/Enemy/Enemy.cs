@@ -7,22 +7,19 @@ public class Enemy : NomalMonster
     public string dataId = "040001";
     private Rigidbody2D rb;
 
-    private GameManager gm;
+    private UIManager ui;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.NormalMonsterTable.Get(dataId);
 
-        var findGo = GameObject.FindWithTag("PlayerBullet");
-        PlayerBullet = findGo.GetComponent<PlayerBullet>();
-
-        var findGm = GameObject.FindWithTag(GMCT.GM);
-        gm = findGm.GetComponent<GameManager>();
+        var findUI = GameObject.FindWithTag(GMCT.UI);
+        ui = findUI.GetComponent<UIManager>();
 
         DeathSound = GetComponent<AudioSource>();
 
-        if(Data != null)
+        if (Data != null)
         {
             Initialized(Data);
         }
@@ -56,7 +53,7 @@ public class Enemy : NomalMonster
     {
         base.Die();
         DeathSound.Play();
-        gm.AddScore(OfferedScore);
+        ui.AddScore(OfferedScore);
         Destroy(gameObject);
     }
 
@@ -64,10 +61,20 @@ public class Enemy : NomalMonster
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            OnDamage(PlayerBullet.Damage);
+            var playerBullet = collision.gameObject.GetComponent<PlayerBullet>();
+
+            if (playerBullet != null)
+            {
+                OnDamage(playerBullet.Damage);
+            }
+            else
+            {
+                Debug.LogError("PlayerBullet component not found on the collided object.");
+            }
+
         }
-        
-        if(collision.gameObject.tag == "DestroyBox")
+
+        if (collision.gameObject.tag == "DestroyBox")
         {
             Destroy(gameObject);
         }

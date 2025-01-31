@@ -29,6 +29,10 @@ public static class DataTableManager
         bossTable.Load(DataTableIds.Boss);
         tables.Add(DataTableIds.Boss, bossTable);
 
+        var minionTable = new MinionTable();
+        minionTable.Load(DataTableIds.Minion);
+        tables.Add(DataTableIds.Minion, minionTable);
+
         //LoadStringTable();
     }
 
@@ -50,6 +54,7 @@ public static class DataTableManager
 
     public static UnBreakableTable UnBreakableTable => Get<UnBreakableTable>(DataTableIds.UnBreakable);
     public static BossTable BossTable => Get<BossTable>(DataTableIds.Boss);
+    public static MinionTable MinionTable => Get<MinionTable>(DataTableIds.Minion);
 
     public static T Get<T>(string id) where T : DataTable
     {

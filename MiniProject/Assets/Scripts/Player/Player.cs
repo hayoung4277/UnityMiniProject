@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : LivingEntity
 {
-    public string NameId {  get; private set; }
+    public string NameId { get; private set; }
     public int HP { get; private set; }
     public float CriticalChance { get; private set; }
     public float CriticalMultiplier { get; private set; }
@@ -12,17 +12,18 @@ public class Player : LivingEntity
     public string HitAnimEffectName { get; private set; }
     public string HitSoundName { get; private set; }
     public string AnimationName { get; private set; }
+    public float SurviveTime => surviveTime;
 
     public PlayerData Data { get; private set; }
     public AudioSource DeathSound { get; private set; }
     public GameManager Gm { get; private set; }
+    public UIManager UIManager { get; private set; }
 
     private Rigidbody2D rb;
     public string dataId = "01001";
+    private float surviveTime;
 
     public bool isInvisible = false;
-
-    private GameOver gameOver;
 
     private void Awake()
     {
@@ -32,8 +33,9 @@ public class Player : LivingEntity
         var findGm = GameObject.FindWithTag(GMCT.GM);
         Gm = findGm.GetComponent<GameManager>();
 
-        var findOver = GameObject.FindWithTag("GameOver");
-        gameOver = findOver.GetComponent<GameOver>();
+        var findUI = GameObject.FindWithTag(GMCT.UI);
+        UIManager = findUI.GetComponent<UIManager>();
+        surviveTime = 0f;
 
         // PlayerData 가져오기
         Data = DataTableManager.PlayerTable.Get(dataId);
@@ -68,10 +70,7 @@ public class Player : LivingEntity
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetInvisible();
-        }
+        surviveTime += Time.deltaTime;
     }
 
     public override void Die()
@@ -80,8 +79,8 @@ public class Player : LivingEntity
         HP = 0;
         DeathSound.Play();
         Gm.StopGame();
+        UIManager.GameOver();
         Destroy(gameObject);
-        gameOver.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -93,12 +92,6 @@ public class Player : LivingEntity
                 Die();
             }
         }
-    }
-
-    private void SetInvisible()
-    {
-        isInvisible = !isInvisible;
-        Debug.Log($"SetInVisible {isInvisible}");
     }
 
     public override void OnDamage(float damage)

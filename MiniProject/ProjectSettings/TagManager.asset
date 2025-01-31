@@ -13,9 +13,7 @@ TagManager:
   - Warning
   - Line
   - DestroyBox
-  - Progress
-  - Start
-  - GameOver
+  - UI
   layers:
   - Default
   - TransparentFX

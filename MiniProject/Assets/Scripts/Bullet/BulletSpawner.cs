@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public Transform parent;
-
-    public float fireRate = 0.8f;
-    private float currentFireTime;
+    [Header("Player Bullet")]
+    public Transform playerTransform;
+    public float playerFireRate = 0.8f;
+    private float playerCurrentFireTime;
 
     private void Awake()
     {
-        currentFireTime = 0f;
-        var findGo = GameObject.FindWithTag("Player");
+        playerCurrentFireTime = 0f;
     }
 
     private void Update()
     {
-        currentFireTime += Time.deltaTime;
+        //플레이어의 탄환 생성
+        playerCurrentFireTime += Time.deltaTime;
 
-        if (currentFireTime > fireRate)
+        if (playerCurrentFireTime > playerFireRate)
         {
-            currentFireTime = 0f;
+            playerCurrentFireTime = 0f;
 
-            SpawnBullet();
+            SpawnPlayerBullet();
         }
     }
 
-    private void SpawnBullet()
+    private void SpawnPlayerBullet()
     {
         var bulletprefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
         if (bulletprefab == null)
@@ -36,6 +36,6 @@ public class BulletSpawner : MonoBehaviour
             return;
         }
 
-        GameObject bullet = Instantiate(bulletprefab, parent.position, parent.rotation);
+        GameObject bullet = Instantiate(bulletprefab, playerTransform.position, playerTransform.rotation);
     }
 }

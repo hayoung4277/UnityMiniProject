@@ -8,11 +8,21 @@ public class GameProgress : GenericUI
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
 
-    private float currentTime = 0f;
+    public Player player;
+
+    private float currentTime;
+    private static float totalScore = 0;
+    public float Score
+    {
+        get => totalScore;
+        private set => totalScore = value;
+    }
+    public float CurrentTime => currentTime;
 
     private void Start()
     {
-        Open();
+        Score = 0;
+        currentTime = 0f;
         scoreText.text = $"Score: {Score}";
     }
 
@@ -20,20 +30,16 @@ public class GameProgress : GenericUI
     {
         currentTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddScore(100);
-            scoreText.text = $"{Score}";
-        }
-
-        timeText.text = $"Time: {currentTime}";
+        timeText.text = $"Time: {CurrentTime}";
     }
 
     public override void Open()
     {
         base.Open();
+
         scoreText.text = $"Score: {Score}";
-        timeText.text = $"Time: {currentTime}";
+        //timeText.text = $"Time: {CurrentTime.ToString("F2")}";
+        timeText.text = $"Time: {player.SurviveTime.ToString("F2")}";
     }
 
     public override void Close()
@@ -41,8 +47,8 @@ public class GameProgress : GenericUI
         base.Close();
     }
 
-    public void AddScore(int add)
+    public void AddScore(float amount)
     {
-        Score += add;
+        Score += amount;
     }
 }
