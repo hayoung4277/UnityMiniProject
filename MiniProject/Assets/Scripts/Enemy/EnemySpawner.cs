@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     //보스 스폰
     [Header("Boss")]
     public GameObject[] bossPrefabs;
+    private GameObject bossInstance;
     public Transform parent;
     private int index = 0;
 
@@ -45,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
             index++;
         }
 
-        if(normalSpawnTime >= normalSpawnInterval)
+        if(normalSpawnTime >= normalSpawnInterval && bossInstance == null)
         {
             SpawnSixRandomMonsters();
 
@@ -63,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnBoss()
     {
-        Instantiate(bossPrefabs[index], parent.position, parent.rotation);
+        bossInstance = Instantiate(bossPrefabs[index], parent.position, parent.rotation);
     }
 
     private void SpawnSixRandomMonsters()

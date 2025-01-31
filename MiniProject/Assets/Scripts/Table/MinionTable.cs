@@ -8,17 +8,13 @@ public class MinionData
     public string NameId { get; set; }
     public int Rairity { get; set; }
     public float Duration { get; set; }
-    public int UseBulletId_1 { get; set; }
-    public int UseBulletId_2 { get; set; }
     public float FireRate { get; set; }
-    public int AbilityId_1 { get; set; }
-    public int AbilityId_2 { get; set; }
+    public List<int> AbilityIds { get; set; }
     public int SpriteId { get; set; }
 
     public override string ToString()
     {
-        return $"{Id} / {NameId} / {Rairity} / {Duration} / {UseBulletId_1} / " +
-            $"{UseBulletId_2} / {FireRate} / {AbilityId_1} / {AbilityId_2} / {SpriteId}";
+        return $"{Id} / {NameId} / {Rairity} / {Duration} / {FireRate} / {AbilityIds} /{SpriteId}";
     }
 }
 

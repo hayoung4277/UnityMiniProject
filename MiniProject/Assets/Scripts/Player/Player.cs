@@ -92,10 +92,28 @@ public class Player : LivingEntity
                 Die();
             }
         }
+
+        if(collision.gameObject.tag == "BossBullet")
+        {
+            if(isInvisible == false)
+            {
+                OnPlayerDamage();
+            }
+        }
     }
 
-    public override void OnDamage(float damage)
+    public void OnPlayerDamage()
     {
         HP--;
+        if(HP <= 0)
+        {
+            HP = 0;
+            Die();
+        }
+    }
+
+    public void HPAdd()
+    {
+        HP++;
     }
 }

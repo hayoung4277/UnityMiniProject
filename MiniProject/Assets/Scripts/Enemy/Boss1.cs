@@ -40,8 +40,7 @@ public class Boss1 : Boss
 
     private void Update()
     {
-        currentSpawnTime += Time.deltaTime;
-        if (currentSpawnTime >= spawnTime)
+        if (IsInVisible)
         {
             MoveBoss(rb);
         }

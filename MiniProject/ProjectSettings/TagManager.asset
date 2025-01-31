@@ -14,6 +14,7 @@ TagManager:
   - Line
   - DestroyBox
   - UI
+  - BossBullet
   layers:
   - Default
   - TransparentFX

@@ -11,17 +11,13 @@ public class GameProgress : GenericUI
     public Player player;
 
     private float currentTime;
-    private static float totalScore = 0;
-    public float Score
-    {
-        get => totalScore;
-        private set => totalScore = value;
-    }
+    private float score;
+    public float Score => score;
     public float CurrentTime => currentTime;
 
     private void Start()
     {
-        Score = 0;
+        score = 0;
         currentTime = 0f;
         scoreText.text = $"Score: {Score}";
     }
@@ -30,7 +26,7 @@ public class GameProgress : GenericUI
     {
         currentTime += Time.deltaTime;
 
-        timeText.text = $"Time: {CurrentTime}";
+        timeText.text = $"Time: {CurrentTime.ToString("F2")}";
     }
 
     public override void Open()
@@ -49,6 +45,7 @@ public class GameProgress : GenericUI
 
     public void AddScore(float amount)
     {
-        Score += amount;
+        score += amount;
+        scoreText.text = $"Score: {score}";
     }
 }

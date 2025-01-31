@@ -23,19 +23,17 @@ public class BossBulletSpawner : MonoBehaviour
     private float TSFireRate = 0.5f;
 
     [Header("HalfCircleBulletPattern")]
-    public int HCBulletCount = 10;  //탄알 개수
+    public int HCBulletCount = 10;
     public float HCBulletSpeed = 3f;
     public float HCSpreadAngle = 180f;
     public float HCFireInterval = 5f;
     private float HCFireRate = 1f;
 
-    private GameObject boss;
-
     private void Start()
     {
-        boss = GameObject.FindWithTag("Boss");
         StartBulletPatterns();
     }
+
 
     // 부채꼴 패턴을 코루틴으로 실행
     private IEnumerator SectorBulletPatternCoroutine()
@@ -66,7 +64,7 @@ public class BossBulletSpawner : MonoBehaviour
     {
         for (int i = 0; i < 3; i++) // 3번 발사
         {
-            float startPosX = 0.25f;
+            float startPosX = 0.15f;
             float startPosY = -0.5f;
 
             for (int j = 0; j < TSBulletCount; j++)
