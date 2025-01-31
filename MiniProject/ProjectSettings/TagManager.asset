@@ -13,6 +13,7 @@ TagManager:
   - Warning
   - Line
   - DestroyBox
+  - UI
   layers:
   - Default
   - TransparentFX

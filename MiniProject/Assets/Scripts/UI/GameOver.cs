@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class GameOver : MonoBehaviour
+public class GameOver : GenericUI
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timeText;
+    public GameObject gameOverText;
+    public Button reStartButton;
+
+    //private GameProgress progress;
+
+    //private void Start()
+    //{
+    //    Open();
+    //    var findProgress = GameObject.FindWithTag("Progress");
+    //    progress = findProgress.GetComponent<GameProgress>();
+    //}
+
+    public override void Open()
     {
-        
+        base.Open();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Close()
     {
-        
+        base.Close();
     }
 }

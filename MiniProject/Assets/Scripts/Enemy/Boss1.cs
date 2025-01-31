@@ -13,6 +13,7 @@ public class Boss1 : Boss
     private Vector2 stopPos = new Vector2(0f, 3.6f);
 
     private GameManager gm;
+    private UIManager ui;
 
     private void Awake()
     {
@@ -21,6 +22,9 @@ public class Boss1 : Boss
 
         var findGm = GameObject.FindWithTag(GMCT.GM);
         gm = findGm.GetComponent<GameManager>();
+
+        var findUI = GameObject.FindWithTag(GMCT.UI);
+        ui = findUI.GetComponent<UIManager>();
 
         IsInVisible = true;
 
@@ -34,16 +38,10 @@ public class Boss1 : Boss
         }
     }
 
-    private void Start()
-    {
-        //var findGo = GameObject.FindWithTag("PlayerBullet");
-        //PlayerBullet = findGo.GetComponent<PlayerBullet>();
-    }
-
     private void Update()
     {
         currentSpawnTime += Time.deltaTime;
-        if(currentSpawnTime >= spawnTime)
+        if (currentSpawnTime >= spawnTime)
         {
             MoveBoss(rb);
         }
@@ -63,9 +61,9 @@ public class Boss1 : Boss
     {
         base.Die();
         HP = 0f;
-        AddScore(2000);
+        ui.AddScore(2000);
         Destroy(gameObject);
-        gm.SendMessage("StopGame");
+        gm.StopGame();
     }
 
     public override void MoveBoss(Rigidbody2D rb)
@@ -88,16 +86,17 @@ public class Boss1 : Boss
     {
         if (collision.gameObject.tag == "PlayerBullet" && !IsInVisible)
         {
-            var findGo = GameObject.FindWithTag("PlayerBullet");
-            PlayerBullet = findGo.GetComponent<PlayerBullet>();
+            var playerBullet = collision.gameObject.GetComponent<PlayerBullet>();
 
-            OnDamage(PlayerBullet.Damage);
-            Debug.Log($"Damege {PlayerBullet.Damage}");
+            if (playerBullet != null)
+            {
+                OnDamage(playerBullet.Damage);
+                Debug.Log($"Damege {playerBullet.Damage}");
+            }
+            else
+            {
+                Debug.LogError("PlayerBullet component not found on the collided object.");
+            }
         }
-    }
-
-    public override void AddScore(float amount)
-    {
-        base.AddScore(amount);
     }
 }

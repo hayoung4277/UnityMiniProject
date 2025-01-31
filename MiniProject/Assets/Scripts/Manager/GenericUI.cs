@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-
-public class UIManager : MonoBehaviour
+public class GenericUI : MonoBehaviour
 {
     protected virtual void Awake()
     {
