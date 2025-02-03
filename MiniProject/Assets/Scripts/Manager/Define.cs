@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 public enum Languages
@@ -24,8 +23,6 @@ public static class DataTableIds
     public static readonly string NormalMonster = "NormalMonsterTable";
     public static readonly string UnBreakable = "UnBreakableTable";
     public static readonly string Boss = "BossTable";
-    public static readonly string Minion = "MinionTable";
-    public static readonly string EnemyBullet = "EnemyBulletTable";
 }
 
 public static class Variables
@@ -52,5 +49,4 @@ public static class Layers
 public static class GMCT
 {
     public static readonly string GM = "GameController";
-    public static readonly string UI = "UI";
 }

@@ -2,25 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : Boss
+public class Boss2 : Boss
 {
     private static readonly string dataId = "06001";
     private Rigidbody2D rb;
-    //private SpriteRenderer bossSprite;
-    private float spawnTime = 60f;
-    private float currentSpawnTime = 0f;
 
     private Vector2 stopPos = new Vector2(0f, 3.6f);
-
-    private GameManager gm;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.BossTable.Get(dataId);
-
-        var findGm = GameObject.FindWithTag(GMCT.GM);
-        gm = findGm.GetComponent<GameManager>();
 
         IsInVisible = true;
 
@@ -36,18 +28,11 @@ public class Boss1 : Boss
 
     private void Start()
     {
-        //var findGo = GameObject.FindWithTag("PlayerBullet");
-        //PlayerBullet = findGo.GetComponent<PlayerBullet>();
+        MoveBoss(rb);
     }
 
     private void Update()
     {
-        currentSpawnTime += Time.deltaTime;
-        if(currentSpawnTime >= spawnTime)
-        {
-            MoveBoss(rb);
-        }
-
         if (transform.position.y <= stopPos.y)
         {
             StopMove(rb);
@@ -63,9 +48,7 @@ public class Boss1 : Boss
     {
         base.Die();
         HP = 0f;
-        AddScore(2000);
         Destroy(gameObject);
-        gm.SendMessage("StopGame");
     }
 
     public override void MoveBoss(Rigidbody2D rb)
@@ -94,10 +77,5 @@ public class Boss1 : Boss
             OnDamage(PlayerBullet.Damage);
             Debug.Log($"Damege {PlayerBullet.Damage}");
         }
-    }
-
-    public override void AddScore(float amount)
-    {
-        base.AddScore(amount);
     }
 }

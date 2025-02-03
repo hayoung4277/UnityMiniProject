@@ -13,8 +13,6 @@ TagManager:
   - Warning
   - Line
   - DestroyBox
-  - UI
-  - BossBullet
   layers:
   - Default
   - TransparentFX

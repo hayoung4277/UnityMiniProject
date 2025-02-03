@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timeText;
+
+    private float currentTime = 0f;
+    public float Score { get; set; }
+
     private float speedUpTime = 0f;
     private float speedUpInterval = 10f;
 
@@ -16,12 +21,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0f;
+        Score = 0f;
+
+        scoreText.text = $"Score: {Score:F2}";
+        timeText.text = $"Time: {currentTime}";
+
+        Time.timeScale = 1f;
     }
 
     private void Update()
     {
+        currentTime += Time.deltaTime;
         speedUpTime += Time.deltaTime;
+
+        scoreText.text = $"Score: {Score}";
+        timeText.text = $"Time: {currentTime}";
+
 
         if (speedUpTime >= speedUpInterval)
         {
@@ -36,13 +51,8 @@ public class GameManager : MonoBehaviour
         onStopGame.Invoke();
     }
 
-    public void StartGame()
+    public void AddScore(float amount)
     {
-        Time.timeScale = 1f;
-    }
-
-    public void ReStartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Score += amount;
     }
 }
