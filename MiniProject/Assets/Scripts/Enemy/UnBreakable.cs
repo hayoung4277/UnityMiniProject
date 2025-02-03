@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class UnBreakable : LivingEntity
@@ -50,5 +51,13 @@ public class UnBreakable : LivingEntity
         DestroyEffectPlayTime = data.DestroyEffectPlayTime;
         DestroySoundName = data.DestroySoundName;
         DestroySoundPlayTime = data.DestroySoundPlayTime;
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "DestroyBox")
+        {
+            Destroy(gameObject);
+        }
     }
 }
