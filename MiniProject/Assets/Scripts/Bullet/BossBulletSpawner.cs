@@ -17,20 +17,20 @@ public class BossBulletSpawner : MonoBehaviour
     public float sectorSpreadAngle = 30f; // 부채꼴 각도 (도 단위)
     public float sectorBulletSpeed = 3f;  // 탄알 속도
     public float sectorFireInterval = 3f; // 발사 간격
-    private float sectorFireRate = 1f;
+    public float sectorFireRate = 1f;
 
     [Header("TripleShotPattern")]
     public float TSBulletSpeed = 3f;
     public int TSBulletCount = 3;
     public float TSFireInterval = 3f;
-    private float TSFireRate = 0.5f;
+    public float TSFireRate = 0.5f;
 
     [Header("HalfCircleBulletPattern")]
     public int HCBulletCount = 10;
     public float HCBulletSpeed = 3f;
     public float HCSpreadAngle = 180f;
     public float HCFireInterval = 6f;
-    private float HCFireRate = 0.5f;
+    public float HCFireRate = 0.5f;
 
     private void Start()
     {
