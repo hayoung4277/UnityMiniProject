@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 
     private void Update()
@@ -42,6 +43,6 @@ public class GameManager : MonoBehaviour
 
     public void ReStartGame()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

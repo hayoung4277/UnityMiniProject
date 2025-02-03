@@ -43,21 +43,12 @@ public class PlayerBullet : Bullet
     {
         if (collision.gameObject.tag == "NormalMonster")
         {
-            Sound.Play();
-            if (!Sound.isPlaying)
-            {
-                Destroy(gameObject);
-            }
-
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Boss")
         {
-            Sound.Play();
-            if (!Sound.isPlaying)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }

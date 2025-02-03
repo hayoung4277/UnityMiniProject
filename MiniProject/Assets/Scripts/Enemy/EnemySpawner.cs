@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform parent;
     private int index = 0;
 
-    private float bossSpawnInterval = 60f;
+    private float bossSpawnInterval = 10f;
     private float bossSpawnTime = 0f;
 
     //일반 적 스폰
@@ -30,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
     public Transform unBSpawnPos;
 
     public float unBSpawnInterval = 5f;
+    private float unBSpawnMinInterval = 5f;
+    private float unBSpawnMaxInterval = 10f;
     private float unBSpawnTime = 0f;
 
     private void Update()
@@ -53,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
             normalSpawnTime = 0f;
         }
 
-        if(unBSpawnTime >= unBSpawnInterval)
+        if(unBSpawnTime >= unBSpawnInterval && bossInstance == null)
         {
             SpawnUnBreakable();
 
@@ -121,5 +123,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnUnBreakable()
     {
         Instantiate(unBreakablePrefab, unBSpawnPos.position, unBSpawnPos.rotation);
+
+        unBSpawnInterval = Random.Range(unBSpawnMinInterval, unBSpawnMaxInterval);
     }
 }

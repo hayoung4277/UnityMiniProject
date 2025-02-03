@@ -7,8 +7,6 @@ public class Boss1 : Boss
     private static readonly string dataId = "06001";
     private Rigidbody2D rb;
     //private SpriteRenderer bossSprite;
-    private float spawnTime = 60f;
-    private float currentSpawnTime = 0f;
 
     private Vector2 stopPos = new Vector2(0f, 3.6f);
 
@@ -63,6 +61,7 @@ public class Boss1 : Boss
         ui.AddScore(2000);
         Destroy(gameObject);
         gm.StopGame();
+        ui.GameClear();
     }
 
     public override void MoveBoss(Rigidbody2D rb)

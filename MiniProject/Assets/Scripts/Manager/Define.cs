@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public enum Languages
@@ -24,6 +25,7 @@ public static class DataTableIds
     public static readonly string UnBreakable = "UnBreakableTable";
     public static readonly string Boss = "BossTable";
     public static readonly string Minion = "MinionTable";
+    public static readonly string EnemyBullet = "EnemyBulletTable";
 }
 
 public static class Variables

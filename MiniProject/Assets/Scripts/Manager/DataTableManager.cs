@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static EnemyBulletData;
 
 public static class DataTableManager
 {
@@ -33,6 +34,11 @@ public static class DataTableManager
         minionTable.Load(DataTableIds.Minion);
         tables.Add(DataTableIds.Minion, minionTable);
 
+        var enemyBulletTable = new EnemyBulletTable();
+        enemyBulletTable.Load(DataTableIds.EnemyBullet);
+        tables.Add(DataTableIds.EnemyBullet, enemyBulletTable);
+
+
         //LoadStringTable();
     }
 
@@ -55,6 +61,7 @@ public static class DataTableManager
     public static UnBreakableTable UnBreakableTable => Get<UnBreakableTable>(DataTableIds.UnBreakable);
     public static BossTable BossTable => Get<BossTable>(DataTableIds.Boss);
     public static MinionTable MinionTable => Get<MinionTable>(DataTableIds.Minion);
+    public static EnemyBulletTable EnemyBulletTable => Get<EnemyBulletTable>(DataTableIds.EnemyBullet);
 
     public static T Get<T>(string id) where T : DataTable
     {

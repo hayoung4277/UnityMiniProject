@@ -52,7 +52,6 @@ public class Enemy : NomalMonster
     public override void Die()
     {
         base.Die();
-        DeathSound.Play();
         ui.AddScore(OfferedScore);
         Destroy(gameObject);
     }

@@ -7,16 +7,19 @@ public class BossBulletSpawner : MonoBehaviour
     [Header("Boss Bullet")]
     public GameObject bossBullet;
     public Transform bossTransform;
-    private float startTime = 5;
+
+    private float startTSTime = 3f;
+    private float startSTTime = 5f;
+    private float startHCTime = 8f;
 
     [Header("SectorBulletPattern")]
     public int sectorBulletCount = 5;    // 탄알 개수
     public float sectorSpreadAngle = 30f; // 부채꼴 각도 (도 단위)
     public float sectorBulletSpeed = 3f;  // 탄알 속도
-    public float sectorFireInterval = 5f; // 발사 간격
+    public float sectorFireInterval = 3f; // 발사 간격
     private float sectorFireRate = 1f;
 
-    [Header("ThreeStraightPattern")]
+    [Header("TripleShotPattern")]
     public float TSBulletSpeed = 3f;
     public int TSBulletCount = 3;
     public float TSFireInterval = 3f;
@@ -26,90 +29,104 @@ public class BossBulletSpawner : MonoBehaviour
     public int HCBulletCount = 10;
     public float HCBulletSpeed = 3f;
     public float HCSpreadAngle = 180f;
-    public float HCFireInterval = 5f;
-    private float HCFireRate = 1f;
+    public float HCFireInterval = 6f;
+    private float HCFireRate = 0.5f;
 
     private void Start()
     {
-        StartBulletPatterns();
+        StartCoroutine(SectorBulletPatternCoroutine());  // 부채꼴 패턴 시작
+        StartCoroutine(TripleShotBulletPatternCoroutine());  // 일직선 패턴 시작
+        StartCoroutine(HalfCircleBulletPatternCoroutine());
     }
-
 
     // 부채꼴 패턴을 코루틴으로 실행
     private IEnumerator SectorBulletPatternCoroutine()
     {
-        for (int i = 0; i < 3; i++) // 3번 발사
+        yield return new WaitForSeconds(startSTTime);
+
+        while(true)
         {
-            float startAngle = -sectorSpreadAngle - 60f;
-            float angleStep = sectorSpreadAngle / (sectorBulletCount - 1);
-            float angle = startAngle;
+            yield return new WaitForSeconds(sectorFireInterval);
 
-            for (int j = 0; j < sectorBulletCount; j++)
+            for (int i = 0; i < 3; i++) // 3번 발사
             {
-                float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
-                float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
-                Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
+                float startAngle = -sectorSpreadAngle - 75f;
+                float angleStep = sectorSpreadAngle / (sectorBulletCount - 1);
+                float angle = startAngle;
 
-                GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * sectorBulletSpeed;
+                for (int j = 0; j < sectorBulletCount; j++)
+                {
+                    float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+                    Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
-                angle += angleStep;
+                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * sectorBulletSpeed;
+
+                    angle += angleStep;
+                }
+                yield return new WaitForSeconds(sectorFireRate); // 발사 간격
             }
-            yield return new WaitForSeconds(sectorFireInterval); // 발사 간격
         }
     }
 
     // 일직선 패턴을 코루틴으로 실행
-    private IEnumerator ThreeStraightBulletPatternCoroutine()
+    private IEnumerator TripleShotBulletPatternCoroutine()
     {
-        for (int i = 0; i < 3; i++) // 3번 발사
+        yield return new WaitForSeconds(startTSTime);
+
+        while (true)
         {
-            float startPosX = 0.15f;
-            float startPosY = -0.5f;
-
-            for (int j = 0; j < TSBulletCount; j++)
+            for (int i = 0; i < 3; i++) // 3번 발사
             {
-                GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = Vector3.down * TSBulletSpeed;
+                float startPosX = 0.5f;
+                float startPosY = -0.5f;
 
-                bullet.transform.Translate(startPosX, startPosY, 0f);
+                for (int j = 0; j < TSBulletCount; j++)
+                {
+                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    bullet.GetComponent<Rigidbody2D>().velocity = Vector3.down * TSBulletSpeed;
 
-                startPosX -= 0.5f;
+                    bullet.transform.Translate(startPosX, startPosY, 0f);
+
+                    startPosX -= 0.5f;
+                }
+
+                yield return new WaitForSeconds(TSFireRate); // 발사 간격
             }
 
-            yield return new WaitForSeconds(TSFireInterval); // 발사 간격
+            yield return new WaitForSeconds(TSFireInterval);
         }
     }
 
     // 반원 패턴을 코루틴으로 실행
     private IEnumerator HalfCircleBulletPatternCoroutine()
     {
-        for (int i = 0; i < 4; i++) // 4번 발사
+        yield return new WaitForSeconds(startHCTime);
+
+        while (true)
         {
-            float startAngle = -HCSpreadAngle - 60f;
-            float angleStep = HCSpreadAngle / (HCBulletCount - 1);
-            float angle = startAngle;
-
-            for (int j = 0; j < HCBulletCount; j++)
+            for (int i = 0; i < 4; i++) // 4번 발사
             {
-                float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
-                float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
-                Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
+                float startAngle = -HCSpreadAngle;
+                float angleStep = HCSpreadAngle / (HCBulletCount - 1);
+                float angle = startAngle;
 
-                GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * HCBulletSpeed;
+                for (int j = 0; j < HCBulletCount; j++)
+                {
+                    float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+                    Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
-                angle += angleStep;
+                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * HCBulletSpeed;
+
+                    angle += angleStep;
+                }
+                yield return new WaitForSeconds(HCFireRate); // 발사 간격
             }
-            yield return new WaitForSeconds(HCFireInterval); // 발사 간격
-        }
-    }
 
-    // 각 패턴을 시작하는 함수
-    public void StartBulletPatterns()
-    {
-        StartCoroutine(SectorBulletPatternCoroutine());  // 부채꼴 패턴 시작
-        StartCoroutine(ThreeStraightBulletPatternCoroutine());  // 일직선 패턴 시작
-        StartCoroutine(HalfCircleBulletPatternCoroutine());  // 반원 패턴 시작
+            yield return new WaitForSeconds(HCFireInterval);
+        }
     }
 }

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public GameStart gameStartUI;
     public GameProgress gameProgressUI;
     public GameOver gameOverUI;
+    public GameClaer gameClearUI;
 
     public Player player;
 
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
         gameStartUI.Open();
         gameProgressUI.Close();
         gameOverUI.Close();
+        gameClearUI.Close();
 
         // 시작 버튼 이벤트 연결
         gameStartUI.startButton.onClick.AddListener(StartGame);
@@ -40,9 +42,19 @@ public class UIManager : MonoBehaviour
         gameOverUI.timeText.text = $"Time: {player.SurviveTime.ToString("F2")}";
     }
 
-    private void RestartGame()
+    public void GameClear()
+    {
+        gameProgressUI.Close();
+        gameClearUI.Open();
+
+        gameClearUI.scoreText.text = $"Score: {gameProgressUI.Score}";
+        gameClearUI.timeText.text = $"Time: {player.SurviveTime.ToString("F2")}";
+    }
+
+    public void RestartGame()
     {
         gameOverUI.Close();
+        gameClearUI.Close();
         gameStartUI.Open();
     }
 
