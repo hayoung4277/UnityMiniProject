@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform parent;
     private int index = 0;
 
-    private float bossSpawnInterval = 10f;
+    public float bossSpawnInterval = 10f;
     private float bossSpawnTime = 0f;
 
     //일반 적 스폰

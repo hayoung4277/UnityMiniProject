@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private float speedUpTime = 0f;
-    private float speedUpInterval = 10f;
+    //private float speedUpTime = 0f;
+    //private float speedUpInterval = 10f;
 
     public event System.Action onSpeedUp;
     public event System.Action onStopGame;
@@ -19,21 +19,31 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    private void Start()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
     private void Update()
     {
-        speedUpTime += Time.deltaTime;
+        //speedUpTime += Time.deltaTime;
 
-        if (speedUpTime >= speedUpInterval)
-        {
-            onSpeedUp.Invoke();
-            speedUpTime = 0f;
-        }
+        //if (speedUpTime >= speedUpInterval)
+        //{
+        //    onSpeedUp.Invoke();
+        //    speedUpTime = 0f;
+        //}
     }
 
     public void StopGame()
     {
         Time.timeScale = 0f ;
         onStopGame.Invoke();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
     }
 
     public void StartGame()

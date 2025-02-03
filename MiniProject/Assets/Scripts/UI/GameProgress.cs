@@ -7,7 +7,9 @@ public class GameProgress : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI fpsText;
 
+    private float fps;
     public Player player;
 
     private float currentTime;
@@ -15,11 +17,15 @@ public class GameProgress : GenericUI
     public float Score => score;
     public float CurrentTime => currentTime;
 
+    private float deltaTime = 0.0f;
+
     private void Start()
     {
         score = 0;
         currentTime = 0f;
         scoreText.text = $"Score: {Score}";
+
+        fpsText.enabled = false;
     }
 
     private void Update()
@@ -27,6 +33,16 @@ public class GameProgress : GenericUI
         currentTime += Time.deltaTime;
 
         timeText.text = $"Time: {CurrentTime.ToString("F2")}";
+
+        //deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        //fps = 1.0f / deltaTime;
+
+        fps = 1.0f / Time.deltaTime;
+
+        if (fpsText.enabled)
+        {
+            fpsText.text = $"FPS: {fps.ToString("F2")}";
+        }
     }
 
     public override void Open()
@@ -48,4 +64,16 @@ public class GameProgress : GenericUI
         score += amount;
         scoreText.text = $"Score: {score}";
     }
+
+    //public void ShowFPS()
+    //{
+    //    if (fpsText.enabled == false)
+    //    {
+    //        fpsText.enabled = true;
+    //    }
+    //    else
+    //    {
+    //        fpsText.enabled = false;
+    //    }
+    //}
 }

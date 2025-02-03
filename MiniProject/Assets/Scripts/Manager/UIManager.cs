@@ -20,11 +20,11 @@ public class UIManager : MonoBehaviour
         gameClearUI.Close();
 
         // 시작 버튼 이벤트 연결
-        gameStartUI.startButton.onClick.AddListener(StartGame);
-        gameOverUI.reStartButton.onClick.AddListener(RestartGame);
+        //gameStartUI.startButton.onClick.AddListener(StartGame);
+        //gameOverUI.reStartButton.onClick.AddListener(RestartGame);
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         gameStartUI.Close();
         gameProgressUI.Open();
@@ -61,5 +61,17 @@ public class UIManager : MonoBehaviour
     public void AddScore(float amount)
     {
         gameProgressUI.AddScore(amount);
+    }
+
+    public void ToggleFPS()
+    {
+        if (gameProgressUI.fpsText.enabled == false)
+        {
+            gameProgressUI.fpsText.enabled = true;
+        }
+        else
+        {
+            gameProgressUI.fpsText.enabled = false;
+        }
     }
 }
