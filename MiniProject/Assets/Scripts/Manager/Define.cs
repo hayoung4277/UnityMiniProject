@@ -45,3 +45,8 @@ public static class Layers
     public static readonly string Default = "Default";
     public static readonly string UI = "UI";
 }
+
+public static class GMCT
+{
+    public static readonly string GM = "GameController";
+}

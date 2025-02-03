@@ -7,10 +7,15 @@ public class Sunny : Player
     private Rigidbody2D rb;
     private static readonly string dataId = "01001";
 
+    private bool isInvisible = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         DeathSound = GetComponent<AudioSource>();
+
+        var findGm = GameObject.FindWithTag(GMCT.GM);
+        Gm = findGm.GetComponent<GameManager>();
 
         // PlayerData 가져오기
         Data = DataTableManager.PlayerTable.Get(dataId);
@@ -32,6 +37,14 @@ public class Sunny : Player
         }
     }
 
+    private void OnAnimatorIK(int layerIndex)
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetInvisible();
+        }
+    }
+
     public override void Initialized(PlayerData data)
     {
         base.Initialized(data);
@@ -42,6 +55,7 @@ public class Sunny : Player
         base.Die();
         HP = 0;
         DeathSound.Play();
+        Gm.StopGame();
         Destroy(gameObject);
     }
 
@@ -54,7 +68,16 @@ public class Sunny : Player
     {
         if (collision.gameObject.tag == "NormalMonster" || collision.gameObject.tag == "UnBreakable")
         {
-            Die();
+            if (isInvisible == false)
+            {
+                Die();
+            }
         }
+    }
+
+    private void SetInvisible()
+    {
+        isInvisible = !isInvisible;
+        Debug.Log($"SetInVisible {isInvisible}");
     }
 }

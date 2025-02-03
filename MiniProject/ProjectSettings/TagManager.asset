@@ -12,6 +12,7 @@ TagManager:
   - UnBreakable
   - Warning
   - Line
+  - DestroyBox
   layers:
   - Default
   - TransparentFX

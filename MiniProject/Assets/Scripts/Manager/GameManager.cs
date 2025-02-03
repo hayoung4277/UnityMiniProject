@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     private float currentTime = 0f;
-    public float Score { get; set; } = 0f;
+    public float Score { get; set; }
 
     private float speedUpTime = 0f;
     private float speedUpInterval = 10f;
@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        scoreText.text = $"Score: {Score}";
+        Score = 0f;
+
+        scoreText.text = $"Score: {Score:F2}";
         timeText.text = $"Time: {currentTime}";
 
         Time.timeScale = 1f;
@@ -47,5 +49,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f ;
         onStopGame.Invoke();
+    }
+
+    public void AddScore(float amount)
+    {
+        Score += amount;
     }
 }
