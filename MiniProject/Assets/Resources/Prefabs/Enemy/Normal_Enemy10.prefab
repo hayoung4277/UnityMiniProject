@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4426279534793161555}
   - component: {fileID: 1627682848726024998}
   m_Layer: 0
-  m_Name: Dragon3
+  m_Name: Normal_Enemy10
   m_TagString: NormalMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 16c7da5015bcd84418738db4a2ef0bb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 342c5819878691046a6a49fdf1bba778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -268,4 +268,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365871de49afc604dbb52e47f53bf2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataId: 040003
+  dataId: 040010
