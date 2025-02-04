@@ -5,13 +5,17 @@ using UnityEngine;
 public class BulletSpawner : MonoBehaviour
 {
     [Header("Player Bullet")]
-    public Transform playerTransform;
+    //public Transform playerTransform;
     public float playerFireRate = 0.8f;
     private float playerCurrentFireTime;
+
+    private Transform tf;
 
     private void Awake()
     {
         playerCurrentFireTime = 0f;
+        var findPos = GameObject.FindWithTag("BulletPos");
+        tf = findPos.transform;
     }
 
     private void Update()
@@ -36,6 +40,6 @@ public class BulletSpawner : MonoBehaviour
             return;
         }
 
-        GameObject bullet = Instantiate(bulletprefab, playerTransform.position, playerTransform.rotation);
+        GameObject bullet = Instantiate(bulletprefab, tf.position, tf.rotation);
     }
 }

@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform parent;
     private int index = 0;
 
-    public float bossSpawnInterval = 10f;
+    public float bossSpawnInterval = 60f;
     private float bossSpawnTime = 0f;
 
     //일반 적 스폰
@@ -33,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
     private float unBSpawnMinInterval = 5f;
     private float unBSpawnMaxInterval = 10f;
     private float unBSpawnTime = 0f;
+
+    public static event System.Action<Enemy> OnEnemySpawned;
 
     private void Update()
     {
@@ -82,8 +84,14 @@ public class EnemySpawner : MonoBehaviour
             var monster = selectedMonsters[i];
 
             monster.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            Instantiate(monster, currentSpawnPos, Quaternion.identity);
+            GameObject instance = Instantiate(monster, currentSpawnPos, Quaternion.identity);
             currentSpawnPos.x += 0.8f;
+
+            Enemy enemyComponent = instance.GetComponent<Enemy>();
+            if (enemyComponent != null)
+            {
+                OnEnemySpawned?.Invoke(enemyComponent); // 이벤트 호출
+            }
         }
     }
 

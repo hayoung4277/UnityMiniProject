@@ -9,6 +9,8 @@ public class Enemy : NomalMonster
 
     private UIManager ui;
 
+    public event System.Action<Enemy> OnSpawnItem;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +55,15 @@ public class Enemy : NomalMonster
     {
         base.Die();
         ui.AddScore(OfferedScore);
+
+        if (Random.value > 0.9f)
+        {
+            // 아이템 드롭 이벤트 호출
+            OnSpawnItem?.Invoke(this);
+            // 모든 이벤트 구독 해제
+            OnSpawnItem = null;
+        }
+
         Destroy(gameObject);
     }
 

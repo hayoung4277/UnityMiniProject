@@ -8,7 +8,6 @@ public class GameOver : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
-    public GameObject gameOverText;
     public Button reStartButton;
 
     //private GameProgress progress;

@@ -15,7 +15,7 @@ public class FanShotAbility : Ability
         tf = minion.transform;
     }
 
-    public override void Activate()
+    public override void Fire()
     {
         var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
 
@@ -24,7 +24,7 @@ public class FanShotAbility : Ability
 
         float angle = startAngle;
 
-        for(int i = 0; i < fanBulletCount; i++)
+        for (int i = 0; i < fanBulletCount; i++)
         {
             float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
             float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
@@ -35,5 +35,14 @@ public class FanShotAbility : Ability
 
             angle += angleStep;
         }
+    }
+
+    public override void UpdateAbility()
+    {
+        base.UpdateAbility();
+    }
+
+    public override void ApplyRarityScaling(int rarity)
+    {
     }
 }

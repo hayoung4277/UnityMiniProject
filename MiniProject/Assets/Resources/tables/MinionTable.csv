@@ -1,2 +1,3 @@
-Id,NameId,Rairity,Duration,FireRate,AbilityIds,SpriteId
-10001,연사기,1,30,0,0,0
+Id,NameId,Rairity,Duration,FireRate,AbilityIdsRaw,SpriteId
+10001,연사기,1,30,0.8,"1,3",0
+10002,연사기2호,2,10,0.4,"2,3",0

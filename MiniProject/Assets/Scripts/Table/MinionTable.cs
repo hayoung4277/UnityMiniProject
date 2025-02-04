@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MinionData
@@ -9,15 +11,36 @@ public class MinionData
     public int Rairity { get; set; }
     public float Duration { get; set; }
     public float FireRate { get; set; }
-    public List<int> AbilityIds { get; set; }
+    public string AbilityIdsRaw { get; set; }  //CSV의 AbilityIds 원본 문자열
+    public List<int> AbilityIds { get; private set; } = new List<int>();
     public int SpriteId { get; set; }
+
+    public void ParseAbilityIds()
+    {
+        if (string.IsNullOrEmpty(AbilityIdsRaw))
+        {
+            Debug.LogWarning($"AbilityIds is empty for Minion {NameId}");
+            return;
+        }
+
+        try
+        {
+            AbilityIds = AbilityIdsRaw.Split(',')
+                                      .Select(id => int.Parse(id.Trim()))
+                                      .ToList();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error parsing AbilityIds for Minion {NameId}: {e.Message}");
+            AbilityIds.Clear();
+        }
+    }
 
     public override string ToString()
     {
-        return $"{Id} / {NameId} / {Rairity} / {Duration} / {FireRate} / {AbilityIds} /{SpriteId}";
+        return $"{Id} / {NameId} / {Rairity} / {Duration} / {FireRate} / [{string.Join(",", AbilityIds)}] / {SpriteId}";
     }
 }
-
 public class MinionTable : DataTable
 {
     private static readonly Dictionary<string, MinionData> table = new Dictionary<string, MinionData>();
@@ -44,11 +67,11 @@ public class MinionTable : DataTable
                 continue;
             }
 
+            item.ParseAbilityIds(); //CSV에서 읽은 AbilityIdsRaw를 List<int>로 변환
             table.Add(item.Id, item);
         }
 
         Debug.Log($"Loaded MinionData with {table.Count} entries from {filename}.");
-
     }
 
     public MinionData Get(string id)

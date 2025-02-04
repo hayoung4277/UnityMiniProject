@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShieldAbility : Ability
 {
     private Player player;
-    private int count = 1;
 
     public ShieldAbility(Minion minion) : base(minion)
     {
@@ -15,9 +14,9 @@ public class ShieldAbility : Ability
 
     public override void Activate()
     {
-        if(count ==1 && player != null)
+        if(player != null && player.shieldCount == 0)
         {
-            player.HPAdd();
+            player.OnShield();
         }
     }
 }

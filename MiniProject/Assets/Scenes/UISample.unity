@@ -2756,6 +2756,7 @@ MonoBehaviour:
   bossPrefabs:
   - {fileID: 6297419714822327034, guid: cb15bc16b493eb348859a4f9532967bd, type: 3}
   parent: {fileID: 407569603}
+  bossSpawnInterval: 10
   monsterPrefabs:
   - {fileID: 5156981415074197973, guid: ae7eab1279e72224995cb118c286500f, type: 3}
   - {fileID: 2233614484521026796, guid: c877309a07422254aa9a591f89227ab4, type: 3}
@@ -5635,7 +5636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c8674e278669f499a3ba67b534448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 2001958287}
   playerFireRate: 0.8
 --- !u!1 &886940195
 GameObject:
@@ -11418,11 +11418,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977642222}
   m_CullTransparentMesh: 0
---- !u!4 &2001958287 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 979769295460597580, guid: abfe4101578383546a4099d1671ede4d, type: 3}
-  m_PrefabInstance: {fileID: 26432710167694893}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2017810084
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,6 @@ public class ScoreMultiplierAbility : Ability
 
     public override void Activate()
     {
-        throw new System.NotImplementedException();
+        base.Activate();
     }
 }

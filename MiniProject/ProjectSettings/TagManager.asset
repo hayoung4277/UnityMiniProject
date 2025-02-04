@@ -15,6 +15,11 @@ TagManager:
   - DestroyBox
   - UI
   - BossBullet
+  - Start
+  - GameOver
+  - Progress
+  - BulletPos
+  - Item
   layers:
   - Default
   - TransparentFX

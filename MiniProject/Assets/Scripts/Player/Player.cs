@@ -13,6 +13,7 @@ public class Player : LivingEntity
     public string HitSoundName { get; private set; }
     public string AnimationName { get; private set; }
     public float SurviveTime => surviveTime;
+    public bool IsShield { get; private set; } = false;
 
     public PlayerData Data { get; private set; }
     public AudioSource DeathSound { get; private set; }
@@ -24,6 +25,9 @@ public class Player : LivingEntity
     private float surviveTime;
 
     public bool isInvisible = false;
+    public int shieldCount = 0;
+
+    public GameObject spanwer;
 
     private void Awake()
     {
@@ -95,10 +99,22 @@ public class Player : LivingEntity
 
         if(collision.gameObject.tag == "BossBullet")
         {
-            if(isInvisible == false)
+            if(isInvisible == false && IsShield == false)
             {
                 OnPlayerDamage();
             }
+
+            if(IsShield == true)
+            {
+                IsShield = false;
+                shieldCount = 0;
+            }
+        }
+
+        if(collision.gameObject.tag == "Item")
+        {
+            var item = collision.GetComponent<IItem>();
+            item?.UseItem(spanwer);
         }
     }
 
@@ -112,8 +128,17 @@ public class Player : LivingEntity
         }
     }
 
-    public void HPAdd()
+    //public void HPAdd()
+    //{
+    //    Debug.Log($"Before HP: {HP}");
+    //    HP++;
+    //    Debug.Log($"HP Add! After HP: {HP}");
+    //}
+
+    public void OnShield()
     {
-        HP++;
+        IsShield = true;
+        shieldCount++;
+        Debug.Log("OnShield!");
     }
 }

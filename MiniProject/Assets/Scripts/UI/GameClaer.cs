@@ -8,7 +8,6 @@ public class GameClaer : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
-    public GameObject gameClaerText;
     public Button reStartButton;
 
     public override void Open()

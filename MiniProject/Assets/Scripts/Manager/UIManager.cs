@@ -38,8 +38,8 @@ public class UIManager : MonoBehaviour
         Debug.Log($"GameProgress Score: {gameProgressUI.Score}");  // 디버그 확인
         Debug.Log($"GameProgress Time: {gameProgressUI.CurrentTime}");
 
-        gameOverUI.scoreText.text = $"Score: {gameProgressUI.Score}";
-        gameOverUI.timeText.text = $"Time: {player.SurviveTime.ToString("F2")}";
+        gameOverUI.scoreText.text = $"{gameProgressUI.Score}";
+        gameOverUI.timeText.text = $"{player.SurviveTime.ToString("F2")}";
     }
 
     public void GameClear()
@@ -47,8 +47,8 @@ public class UIManager : MonoBehaviour
         gameProgressUI.Close();
         gameClearUI.Open();
 
-        gameClearUI.scoreText.text = $"Score: {gameProgressUI.Score}";
-        gameClearUI.timeText.text = $"Time: {player.SurviveTime.ToString("F2")}";
+        gameClearUI.scoreText.text = $"{gameProgressUI.Score}";
+        gameClearUI.timeText.text = $"{player.SurviveTime.ToString("F2")}";
     }
 
     public void RestartGame()
@@ -63,15 +63,15 @@ public class UIManager : MonoBehaviour
         gameProgressUI.AddScore(amount);
     }
 
-    public void ToggleFPS()
-    {
-        if (gameProgressUI.fpsText.enabled == false)
-        {
-            gameProgressUI.fpsText.enabled = true;
-        }
-        else
-        {
-            gameProgressUI.fpsText.enabled = false;
-        }
-    }
+    //public void ToggleFPS()
+    //{
+    //    if (gameProgressUI.fpsText.enabled == false)
+    //    {
+    //        gameProgressUI.fpsText.enabled = true;
+    //    }
+    //    else
+    //    {
+    //        gameProgressUI.fpsText.enabled = false;
+    //    }
+    //}
 }
