@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float Damage { get; private set; }
+    public float Speed { get; private set; }
+    public string EffectName { get; private set; }
+    public bool CanGuided { get; private set; }
 
     public EnemyBulletData Data { get; private set; }
 
@@ -33,6 +36,9 @@ public class EnemyBullet : MonoBehaviour
     private void Initialized(EnemyBulletData data)
     {
         Damage = data.Damage;
+        Speed = data.Speed;
+        EffectName = data.EffectName;
+        CanGuided = data.CanGuided;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

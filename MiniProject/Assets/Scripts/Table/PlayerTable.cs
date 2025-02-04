@@ -13,11 +13,14 @@ public class PlayerData
     public string HitAnimEffectName { get; set; }
     public string HitSoundName { get; set; }
     public string AnimationName { get; set; }
+    public float FireRate { get; set; }
+    public float MoveSpeed { get; set; }
 
     public override string ToString()
     {
         return $"{Id} / {NameId} / {HP} / {CriticalChance} / {CriticalMultiplier} / " +
-            $"{ScoreMultiplier} / {HitAnimEffectName} / {HitSoundName} / {AnimationName}";
+            $"{ScoreMultiplier} / {HitAnimEffectName} / {HitSoundName} / {AnimationName}" +
+            $"{FireRate} / {MoveSpeed}";
     }
 }
 

@@ -6,10 +6,13 @@ public class EnemyBulletData
 {
     public string Id { get; set; }
     public float Damage { get; set; }
+    public float Speed { get; set; }
+    public string EffectName { get; set; }
+    public bool CanGuided { get; set; }
 
     public override string ToString()
     {
-        return $"{Id} / {Damage}";
+        return $"{Id} / {Damage} / {Speed} / {EffectName} / {CanGuided}";
     }
 
     public class EnemyBulletTable : DataTable

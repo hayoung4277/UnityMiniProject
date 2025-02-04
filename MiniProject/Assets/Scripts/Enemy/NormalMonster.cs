@@ -13,11 +13,12 @@ public class NomalMonster : LivingEntity
     public float DeathSoundPlayTime { get; protected set; }
     public string AnimationName { get; protected set; }
     public float OfferedScore { get; protected set; }
-    public float MonsterSpeed { get; protected set; }
+    public float DropRate { get; protected set; }
 
     public PlayerBullet PlayerBullet { get; protected set; }
     public NormalMonsterData Data { get; protected set; }
     public AudioSource DeathSound { get; protected set; }
+    public float MonsterSpeed { get; protected set; } = 2f;
 
     public virtual void MonsterDown(Rigidbody2D rb)
     {
@@ -35,7 +36,7 @@ public class NomalMonster : LivingEntity
         DeathSoundPlayTime = data.DeathSoundPlayTime;
         AnimationName = data.AnimationName;
         OfferedScore = data.OfferedScore;
-        MonsterSpeed = data.MonsterSpeed;
+        DropRate = data.DropRate;
     }
 
     public override void OnDamage(float damage)

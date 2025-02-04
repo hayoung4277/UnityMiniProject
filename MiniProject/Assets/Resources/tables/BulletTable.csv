@@ -2,3 +2,4 @@ Id,Damage,BulletSpeed,BulletEffectName,CanDestroyed,CanGuided,CanPierce,PierceCo
 030001,100.0,3.0,PE_03001,false,false,false,0
 030002,8.0,2.0,PE_03002,false,false,false,0
 030003,12.0,5.0,PE_03003,false,false,false,0
+100001,5.0,500.0,OE_100001,false,false,false,0

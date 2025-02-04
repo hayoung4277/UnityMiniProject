@@ -58,7 +58,7 @@ public class Boss1 : Boss
     {
         base.Die();
         HP = 0f;
-        ui.AddScore(2000);
+        ui.AddScore(OfferedScore);
         Destroy(gameObject);
         gm.StopGame();
         ui.GameClear();
@@ -89,7 +89,6 @@ public class Boss1 : Boss
             if (playerBullet != null)
             {
                 OnDamage(playerBullet.Damage);
-                Debug.Log($"Damege {playerBullet.Damage}");
             }
             else
             {

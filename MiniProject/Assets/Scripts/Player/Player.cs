@@ -12,6 +12,9 @@ public class Player : LivingEntity
     public string HitAnimEffectName { get; private set; }
     public string HitSoundName { get; private set; }
     public string AnimationName { get; private set; }
+    public float FireRate { get; private set; }
+    public float MoveSpeed { get; private set; }
+
     public float SurviveTime => surviveTime;
     public bool IsShield { get; private set; } = false;
 
@@ -70,6 +73,8 @@ public class Player : LivingEntity
         HitAnimEffectName = data.HitAnimEffectName;
         HitSoundName = data.HitSoundName;
         AnimationName = data.AnimationName;
+        FireRate = data.FireRate;
+        MoveSpeed = data.MoveSpeed;
     }
 
     private void Update()
@@ -127,13 +132,6 @@ public class Player : LivingEntity
             Die();
         }
     }
-
-    //public void HPAdd()
-    //{
-    //    Debug.Log($"Before HP: {HP}");
-    //    HP++;
-    //    Debug.Log($"HP Add! After HP: {HP}");
-    //}
 
     public void OnShield()
     {

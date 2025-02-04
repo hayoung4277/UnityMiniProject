@@ -14,12 +14,12 @@ public class NormalMonsterData
     public float DeathSoundPlayTime { get; set; }
     public string AnimationName { get; set; }
     public float OfferedScore { get; set; }
-    public float MonsterSpeed { get; set; }
+    public float DropRate { get; set; }
 
     public override string ToString()
     {
         return $"{Id} / {NameId} / {HP} / {SpriteName} / {DeathEffectName} / {DeathEffectPlayTime} / " +
-            $"{DeathSoundName} / {DeathSoundPlayTime} / {AnimationName} / {OfferedScore} / {MonsterSpeed}";
+            $"{DeathSoundName} / {DeathSoundPlayTime} / {AnimationName} / {OfferedScore} / {DropRate}";
     }
 }
 

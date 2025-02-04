@@ -1,4 +1,4 @@
-Id,Damage
-070001,100.0
-070002,8.0
-070003,12.0
+Id,Damage,Speed,EffectName,CanGuided
+070001,80.0,PE_03001,false
+070002,100.0,PE_03002,false
+070003,120.0,PE_03003,false

@@ -6,6 +6,7 @@ public class Boss : LivingEntity
 {
     public float HP { get; protected set; }
     public float MoveSpeed { get; protected set; }
+    public float OfferedScore { get; protected set; }
     public string BossSpriteName { get; protected set; }
     public string DeathEffectName { get; protected set; }
     public float DeathEffectPlayTime { get; protected set; }
@@ -36,6 +37,7 @@ public class Boss : LivingEntity
     {
         HP = data.HP;
         MoveSpeed = data.MoveSpeed;
+        OfferedScore = data.OfferedScore;
         BossSpriteName = data.BossSpriteName;
         DeathEffectName = data.DeathEffectName;
         DeathEffectPlayTime = data.DeathEffectPlayTime;

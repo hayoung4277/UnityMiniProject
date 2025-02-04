@@ -6,16 +6,22 @@ public class BulletSpawner : MonoBehaviour
 {
     [Header("Player Bullet")]
     //public Transform playerTransform;
-    public float playerFireRate = 0.8f;
+    private float playerFireRate;
     private float playerCurrentFireTime;
 
     private Transform tf;
+    private Player player;
 
     private void Awake()
     {
-        playerCurrentFireTime = 0f;
+        var findPlayer = GameObject.FindWithTag("Player");
+        player = findPlayer.GetComponent<Player>();
+
         var findPos = GameObject.FindWithTag("BulletPos");
         tf = findPos.transform;
+
+        playerCurrentFireTime = 0f;
+        playerFireRate = player.FireRate;
     }
 
     private void Update()

@@ -7,6 +7,7 @@ public class BossData
     public string Id { get; set; }
     public float HP { get; set; }
     public float MoveSpeed { get; set; }
+    public float OfferedScore { get; set; }
     public string BossSpriteName { get; set; }
     public string DeathEffectName { get; set; }
     public float DeathEffectPlayTime { get; set; }
@@ -15,7 +16,7 @@ public class BossData
 
     public override string ToString()
     {
-        return $"{Id} / {HP} / {MoveSpeed} / {BossSpriteName} / {DeathEffectName} / " +
+        return $"{Id} / {HP} / {MoveSpeed} / {OfferedScore} / {BossSpriteName} / {DeathEffectName} / " +
             $"{DeathEffectPlayTime} / {DeathSoundName} / {DeathSoundPlayTime}";
     }
 }
