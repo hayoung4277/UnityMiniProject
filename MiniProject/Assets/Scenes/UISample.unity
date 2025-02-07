@@ -5636,7 +5636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c8674e278669f499a3ba67b534448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFireRate: 0.8
 --- !u!1 &886940195
 GameObject:
   m_ObjectHideFlags: 0
@@ -7480,7 +7479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1075539647
 RectTransform:
   m_ObjectHideFlags: 0

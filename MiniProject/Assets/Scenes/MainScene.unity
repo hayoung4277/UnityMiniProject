@@ -1971,8 +1971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c8674e278669f499a3ba67b534448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1020163923}
-  playerFireRate: 0.35
 --- !u!1 &898305961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,11 +2015,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1379603192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1020163923 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 979769295460597580, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
-  m_PrefabInstance: {fileID: 1123561425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1035393673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,7 +2109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 806096299}
   timeText: {fileID: 49631241}
-  gameClaerText: {fileID: 1604034802}
   reStartButton: {fileID: 0}
 --- !u!1 &1097486039
 GameObject:
@@ -3686,7 +3678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1436498193}
   timeText: {fileID: 1135225710}
-  gameOverText: {fileID: 1436498191}
   reStartButton: {fileID: 284258580}
 --- !u!114 &2138236724
 MonoBehaviour:
