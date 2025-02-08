@@ -1,0 +1,3 @@
+Id,HP,MoveSpeed,OfferedScore,BossSpriteName,DeathEffectName,DeathEffectPlayTime,DeathSoundName,DeathSoundPlayTime
+06001,2500,3,10000,a,a,2.5,a,2.5
+06002,2000,2,10000,a,a,2.5,a,2.5

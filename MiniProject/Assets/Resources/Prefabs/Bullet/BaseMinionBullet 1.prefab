@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 100001
+  effectPrefab: {fileID: 3893372546736928575, guid: 851710f16725aae48862672d4b944321, type: 3}
 --- !u!50 &3380106036357820239
 Rigidbody2D:
   serializedVersion: 4
