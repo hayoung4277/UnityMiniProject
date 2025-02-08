@@ -4942,9 +4942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23dabed549fe044fa7639607b770f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataId: 100001
+  dataId: 110001
   hitEffectPrefab: {fileID: 0}
-  bulletEffect: {fileID: 3645837868890397838, guid: 41151b99a2fb6e140bc75ec70033bd6e, type: 3}
 --- !u!61 &1213867511494805107
 BoxCollider2D:
   m_ObjectHideFlags: 0

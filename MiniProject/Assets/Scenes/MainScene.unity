@@ -7018,9 +7018,17 @@ PrefabInstance:
       propertyPath: spanwer
       value: 
       objectReference: {fileID: 2092061029}
+    - target: {fileID: 336113329956784091, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
+      propertyPath: isInvisible
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4246397111066840863, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_Name
       value: MK01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169715329367222028, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8868690836839079034, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_LocalPosition.x
