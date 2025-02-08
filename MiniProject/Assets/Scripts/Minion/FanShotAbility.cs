@@ -17,7 +17,7 @@ public class FanShotAbility : Ability
 
     public override void Fire()
     {
-        var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
+        var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/BaseMinionBullet");
 
         float startAngle = fanSpreadAngle;
         float angleStep = fanSpreadAngle / (fanBulletCount - 1);

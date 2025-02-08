@@ -138,7 +138,6 @@ public class Minion : MonoBehaviour
         // 목표 위치 설정 (플레이어 기준으로 일정 거리 유지)
         Vector3 targetPos = player.transform.position + new Vector3(isRightSide ? offsetX : -offsetX, 0, 0);
 
-        // 부드럽게 따라가기
         transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
     }
 

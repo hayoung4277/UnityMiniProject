@@ -7,6 +7,7 @@ public class BossBulletSpawner : MonoBehaviour
     [Header("Boss Bullet")]
     public GameObject bossBullet;
     public Transform bossTransform;
+    private float bulletSpeed;
 
     private float startTSTime = 3f;
     private float startSTTime = 5f;
@@ -31,6 +32,11 @@ public class BossBulletSpawner : MonoBehaviour
     public float HCSpreadAngle = 180f;
     public float HCFireInterval = 6f;
     public float HCFireRate = 0.5f;
+
+    private void Awake()
+    {
+        bulletSpeed = bossBullet.GetComponent<EnemyBullet>().Speed;
+    }
 
     private void Start()
     {
@@ -61,7 +67,7 @@ public class BossBulletSpawner : MonoBehaviour
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
                     GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * sectorBulletSpeed;
+                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed;
 
                     angle += angleStep;
                 }
@@ -85,7 +91,7 @@ public class BossBulletSpawner : MonoBehaviour
                 for (int j = 0; j < TSBulletCount; j++)
                 {
                     GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = Vector3.down * TSBulletSpeed;
+                    bullet.GetComponent<Rigidbody2D>().velocity = Vector3.down * bulletSpeed;
 
                     bullet.transform.Translate(startPosX, startPosY, 0f);
 
@@ -119,7 +125,7 @@ public class BossBulletSpawner : MonoBehaviour
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
                     GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * HCBulletSpeed;
+                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed;
 
                     angle += angleStep;
                 }

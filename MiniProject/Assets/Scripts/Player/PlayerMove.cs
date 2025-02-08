@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float speed = 10f;
+    private float speed;
     private Vector3 targetPos;
-    private bool isMove = false;
 
     private Camera mainCamera;
     private Vector2 minBounds;
     private Vector2 maxBounds;
+    private Vector2 touchOffset;
+
     private float spriteHalfWidth;
     private float spriteHalfHeight;
+
+    private bool isSwiping = false;
+
+    private Player player;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+
+        var findPlayer = GameObject.FindWithTag("Player");
+        player = findPlayer.GetComponent<Player>();
+    }
 
     private void Start()
     {
         targetPos = transform.position;
-        mainCamera = Camera.main;
+
+        speed = player.MoveSpeed;
 
         // 화면 경계 계산
         minBounds = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0));  // 왼쪽 아래
@@ -41,45 +55,58 @@ public class PlayerMove : MonoBehaviour
 
     private void TouchInput()
     {
-        // 터치 입력 처리
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
+            Vector3 touchWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+            touchWorldPos.z = transform.position.z; // 2D 게임이므로 z 고정
+
+            if (touch.phase == TouchPhase.Began)
             {
-                Vector3 touchPos = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
-                touchPos.y = transform.position.y;
-                touchPos.z = transform.position.z;
-
-                targetPos = touchPos;
-                isMove = true;
+                touchOffset = (Vector2)transform.position - (Vector2)touchWorldPos; // 초기 터치 위치와 캐릭터 위치 차이 저장
+                isSwiping = true;
             }
-        }
-
-        // 마우스 입력 처리 (디버깅용)
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            mousePos.y = transform.position.y;
-            mousePos.z = transform.position.z;
-
-            targetPos = mousePos;
-            isMove = true;
+            else if (touch.phase == TouchPhase.Moved && isSwiping)
+            {
+                targetPos = new Vector3(touchWorldPos.x + touchOffset.x, transform.position.y, transform.position.z);
+            }
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                isSwiping = false;
+            }
         }
     }
 
     private void MovePlayer()
     {
-        if (isMove)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, targetPos) < 0.1f)
-            {
-                isMove = false;
-            }
-        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
+
+    //private void TouchInput()
+    //{
+    //    if (Input.touchCount == 1)
+    //    {
+    //        Touch touch = Input.GetTouch(0);
+    //        Vector3 touchWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+    //        touchWorldPos.z = transform.position.z; // 2D 게임이므로 z값 고정
+
+    //        if (touch.phase == TouchPhase.Began)
+    //        {
+    //            touchStartPos = touchWorldPos;
+    //            touchOffset = (Vector2)transform.position - (Vector2)touchWorldPos; // 손가락과 플레이어 위치 차이 저장
+    //            isSwiping = true;
+    //        }
+    //        else if (touch.phase == TouchPhase.Moved && isSwiping)
+    //        {
+    //            transform.position = new Vector3(touchWorldPos.x + touchOffset.x, transform.position.y, transform.position.z);
+    //        }
+    //        else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+    //        {
+    //            isSwiping = false;
+    //        }
+    //    }
+    //}
+
 
     private void RestrictMovement()
     {
