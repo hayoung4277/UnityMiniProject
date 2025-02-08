@@ -11,6 +11,7 @@ public class Meteor : UnBreakable
     [Header("Warning & Line Prefabs")]
     public GameObject warningPrefab;  // 경고 이미지 프리팹
     public GameObject linePrefab;  // 경고 라인 프리팹
+    //public float waittime; // 운석 대기 시간 퍼블릭으로 뺀 것
 
     private GameObject warningInstance;  // 생성된 경고 이미지
     private GameObject lineInstance;  // 생성된 경고 라인
@@ -91,7 +92,8 @@ public class Meteor : UnBreakable
             warningAnimator.Play("WarningBlink");  // 애니메이션 실행
         }
 
-        yield return new WaitForSeconds(1.2f);  // 애니메이션이 끝날 때까지 대기
+        yield return new WaitForSeconds(2.1f);  // 애니메이션이 끝날 때까지 대기
+        //yield return new WaitForSeconds(waittime);  // 애니메이션이 끝날 때까지 대기
 
         // 경고 이미지 & 라인 제거
         Destroy(warningInstance);
