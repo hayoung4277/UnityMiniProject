@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1987029626423268602}
   m_Layer: 0
   m_Name: MinionPos2
-  m_TagString: Untagged
+  m_TagString: SpawnPos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 1277914708777296950}
   m_Layer: 0
   m_Name: MinionPos1
-  m_TagString: Untagged
+  m_TagString: SpawnPos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
