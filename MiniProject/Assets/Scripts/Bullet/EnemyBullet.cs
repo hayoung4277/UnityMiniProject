@@ -13,6 +13,9 @@ public class EnemyBullet : MonoBehaviour
 
     public string dataId = "70001";
 
+    [Header("HitEffectPrefab")]
+    public GameObject effectPrefab;
+
     private void Awake()
     {
         Data = DataTableManager.EnemyBulletTable.Get(dataId);
@@ -45,12 +48,22 @@ public class EnemyBullet : MonoBehaviour
     {
         if(collision.gameObject.tag == "DestroyBox")
         {
+            SpawnHitEffect();
             Destroy(gameObject);
         }
 
         if(collision.gameObject.tag == "Player")
         {
+            SpawnHitEffect();
             Destroy(gameObject);
+        }
+    }
+
+    private void SpawnHitEffect()
+    {
+        if (effectPrefab != null)
+        {
+            Instantiate(effectPrefab, transform.position, Quaternion.identity);
         }
     }
 }
