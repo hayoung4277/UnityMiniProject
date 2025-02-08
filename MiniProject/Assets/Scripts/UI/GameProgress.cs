@@ -10,7 +10,7 @@ public class GameProgress : GenericUI
     //public TextMeshProUGUI fpsText;
 
     private float fps;
-    public Player player;
+    private Player player;
 
     private float currentTime;
     private float score;
@@ -18,6 +18,12 @@ public class GameProgress : GenericUI
     public float CurrentTime => currentTime;
 
     private float deltaTime = 0.0f;
+
+    private void Awake()
+    {
+        var findPlayer = GameObject.FindWithTag("Player");
+        player = findPlayer.GetComponent<Player>();
+    }
 
     private void Start()
     {

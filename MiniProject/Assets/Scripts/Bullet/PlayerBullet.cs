@@ -7,6 +7,9 @@ public class PlayerBullet : Bullet
     private Rigidbody2D rb;
     public string dataId = "030001";
 
+    [Header("HitEffectPrefab")]
+    public GameObject effectPrefab;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,12 +46,22 @@ public class PlayerBullet : Bullet
     {
         if (collision.gameObject.tag == "NormalMonster")
         {
+            SpawnHitEffect();
             Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Boss")
         {
+            SpawnHitEffect();
             Destroy(gameObject);
+        }
+    }
+
+    private void SpawnHitEffect()
+    {
+        if (effectPrefab != null)
+        {
+            Instantiate(effectPrefab, transform.position, Quaternion.identity);
         }
     }
 }
