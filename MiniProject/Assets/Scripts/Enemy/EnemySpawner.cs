@@ -30,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
     public Transform unBSpawnPos;
 
     public float unBSpawnInterval = 5f;
-    private float unBSpawnMinInterval = 5f;
-    private float unBSpawnMaxInterval = 10f;
+    private float unBSpawnMinInterval = 7f;
+    private float unBSpawnMaxInterval = 15f;
     private float unBSpawnTime = 0f;
 
     public static event System.Action<Enemy> OnEnemySpawned;

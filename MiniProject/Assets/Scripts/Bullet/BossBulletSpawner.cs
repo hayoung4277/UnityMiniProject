@@ -6,6 +6,7 @@ public class BossBulletSpawner : MonoBehaviour
 {
     [Header("Boss Bullet")]
     public GameObject bossBullet;
+    private GameObject bulletPrefab;
     public Transform bossTransform;
     private float bulletSpeed;
 
@@ -33,9 +34,35 @@ public class BossBulletSpawner : MonoBehaviour
     public float HCFireInterval = 6f;
     public float HCFireRate = 0.5f;
 
+    //private void Awake()
+    //{
+    //    bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/BossBullet");
+    //}
+
     private void Start()
     {
-        bulletSpeed = bossBullet.GetComponent<EnemyBullet>().Speed;
+        bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/BossBullet");
+
+        if (bulletPrefab == null)
+        {
+            Debug.LogError("bulletPrefab을 Resources.Load에서 불러오지 못했습니다.");
+            return;
+        }
+
+        GameObject tempBullet = Instantiate(bulletPrefab); // 임시 생성
+        EnemyBullet bulletComponent = tempBullet.GetComponent<EnemyBullet>();
+
+        if (bulletComponent != null)
+        {
+            bulletSpeed = bulletComponent.Speed;
+            Debug.Log($"bulletSpeed: {bulletSpeed}");
+        }
+        else
+        {
+            Debug.LogError("bulletPrefab에 EnemyBullet 컴포넌트가 없습니다.");
+        }
+
+        Destroy(tempBullet);
 
         StartCoroutine(SectorBulletPatternCoroutine());  // 부채꼴 패턴 시작
         StartCoroutine(TripleShotBulletPatternCoroutine());  // 일직선 패턴 시작
@@ -63,7 +90,7 @@ public class BossBulletSpawner : MonoBehaviour
                     float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
-                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    GameObject bullet = Instantiate(bulletPrefab, bossTransform.position, Quaternion.identity);
                     bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed;
 
                     angle += angleStep;
@@ -87,7 +114,7 @@ public class BossBulletSpawner : MonoBehaviour
 
                 for (int j = 0; j < TSBulletCount; j++)
                 {
-                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    GameObject bullet = Instantiate(bulletPrefab, bossTransform.position, Quaternion.identity);
                     bullet.GetComponent<Rigidbody2D>().velocity = Vector3.down * bulletSpeed;
 
                     bullet.transform.Translate(startPosX, startPosY, 0f);
@@ -121,7 +148,7 @@ public class BossBulletSpawner : MonoBehaviour
                     float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
-                    GameObject bullet = Instantiate(bossBullet, bossTransform.position, Quaternion.identity);
+                    GameObject bullet = Instantiate(bulletPrefab, bossTransform.position, Quaternion.identity);
                     bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * bulletSpeed;
 
                     angle += angleStep;

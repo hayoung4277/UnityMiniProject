@@ -5,7 +5,6 @@ using UnityEngine;
 public class MinionSpawner : MonoBehaviour
 {
     public GameObject prefab;
-    //public Transform[] spawnPos;
     private List<Transform> spawnPositions = new List<Transform>();
 
     private List<int> usedIndices = new List<int>(); // 사용된 위치 저장
