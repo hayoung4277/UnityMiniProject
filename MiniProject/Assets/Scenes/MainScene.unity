@@ -7018,10 +7018,6 @@ PrefabInstance:
       propertyPath: spanwer
       value: 
       objectReference: {fileID: 2092061029}
-    - target: {fileID: 1493157341583584329, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
-      propertyPath: m_TagString
-      value: SpawnPos
-      objectReference: {fileID: 0}
     - target: {fileID: 4246397111066840863, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_Name
       value: MK01
@@ -7065,10 +7061,6 @@ PrefabInstance:
     - target: {fileID: 8868690836839079034, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216845831143262495, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
-      propertyPath: m_TagString
-      value: SpawnPos
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8854,7 +8846,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1637960951}
   timeText: {fileID: 235318859}
-  player: {fileID: 1123561426}
 --- !u!114 &1513651092
 MonoBehaviour:
   m_ObjectHideFlags: 0

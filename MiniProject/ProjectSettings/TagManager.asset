@@ -26,10 +26,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NormalEnemy
   - Water
   - UI
-  - 
+  - Boss
   - 
   - 
   - 

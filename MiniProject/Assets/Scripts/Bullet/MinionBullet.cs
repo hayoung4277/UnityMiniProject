@@ -8,7 +8,7 @@ public class MinionBullet : Bullet
     public string dataId = "";
 
     [Header("HitEffectPrefab")]
-    public GameObject effectPrefab;
+    public GameObject hitEffectPrefab;
 
     private void Awake()
     {
@@ -39,28 +39,27 @@ public class MinionBullet : Bullet
     public override void Fire(Rigidbody2D rb)
     {
         base.Fire(rb);
+        Destroy(gameObject, 5f); // 일정 시간 후 삭제
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NormalMonster")
         {
-            SpawnHitEffect();
             Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Boss")
         {
-            SpawnHitEffect();
             Destroy(gameObject);
         }
     }
 
-    private void SpawnHitEffect()
-    {
-        if (effectPrefab != null)
-        {
-            Instantiate(effectPrefab, transform.position, Quaternion.identity);
-        }
-    }
+    //private void SpawnHitEffect()
+    //{
+    //    if (hitEffectPrefab != null)
+    //    {
+    //        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+    //    }
+    //}
 }

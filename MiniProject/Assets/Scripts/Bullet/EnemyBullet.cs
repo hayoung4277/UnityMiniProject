@@ -14,7 +14,10 @@ public class EnemyBullet : MonoBehaviour
     public string dataId = "70001";
 
     [Header("HitEffectPrefab")]
-    public GameObject effectPrefab;
+    public GameObject hitEffectPrefab;
+
+    [Header("Movement Effect")]
+    public ParticleSystem movementEffect;
 
     private void Awake()
     {
@@ -61,9 +64,9 @@ public class EnemyBullet : MonoBehaviour
 
     private void SpawnHitEffect()
     {
-        if (effectPrefab != null)
+        if (hitEffectPrefab != null)
         {
-            Instantiate(effectPrefab, transform.position, Quaternion.identity);
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         }
     }
 }

@@ -50,13 +50,16 @@ MonoBehaviour:
   sectorSpreadAngle: 30
   sectorBulletSpeed: 3
   sectorFireInterval: 5
+  sectorFireRate: 1
   TSBulletSpeed: 3
   TSBulletCount: 3
   TSFireInterval: 3
+  TSFireRate: 0.5
   HCBulletCount: 10
   HCBulletSpeed: 3
   HCSpreadAngle: 180
   HCFireInterval: 5
+  HCFireRate: 0.5
 --- !u!1 &6297419714822327034
 GameObject:
   m_ObjectHideFlags: 0
