@@ -11,7 +11,7 @@ public class EnemyBullet : MonoBehaviour
 
     public EnemyBulletData Data { get; private set; }
 
-    public string dataId = "070001";
+    public string dataId = "70001";
 
     private void Awake()
     {
