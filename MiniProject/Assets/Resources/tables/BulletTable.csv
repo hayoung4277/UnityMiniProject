@@ -8,5 +8,9 @@ Id,Damage,BulletSpeed,BulletEffectName,CanDestroyed,CanGuided,CanPierce,PierceCo
 30001,50,5,PE_03001,FALSE,FALSE,FALSE,0,
 30002,8,2,PE_03002,FALSE,FALSE,FALSE,0,
 30003,12,5,PE_03003,FALSE,FALSE,FALSE,0,
+<<<<<<< HEAD
 100001,40,40,a,FALSE,FALSE,FALSE,0,
+>>>>>>> origin/feature/baseFunction
+=======
+100001,40,5,a,FALSE,FALSE,FALSE,0,
 >>>>>>> origin/feature/baseFunction
