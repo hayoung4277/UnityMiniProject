@@ -1,2 +1,0 @@
-Id,NameId,HP,MoveSpeed,IsHitable,SpawnWarningImage_1,SpawnWarningImage_2,SpawnWarningTime,ObjectImageName,DestroyEffectName,DestroyEffectPlayTime,DestroySoundName,DestroySoundPlayTime
-050001,01050001,10.0,5.0,false,a,a,2,a,a,0,a,0
