@@ -35,9 +35,6 @@ public class UIManager : MonoBehaviour
         gameProgressUI.Close();
         gameOverUI.Open();
 
-        Debug.Log($"GameProgress Score: {gameProgressUI.Score}");  // 디버그 확인
-        Debug.Log($"GameProgress Time: {gameProgressUI.CurrentTime}");
-
         gameOverUI.scoreText.text = $"{gameProgressUI.Score}";
         gameOverUI.timeText.text = $"{player.SurviveTime.ToString("F2")}";
     }

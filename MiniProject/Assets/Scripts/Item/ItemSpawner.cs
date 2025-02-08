@@ -35,5 +35,16 @@ public class ItemSpawner : MonoBehaviour
         {
             Instantiate(normalDrop, spawnPosition, Quaternion.identity);
         }
+
+        //int availableIndex = GetAvailableIndex();
+        //if (availableIndex == -1) return;
+
+        //GameObject prefabInstance = Instantiate(prefab, spawnPos[availableIndex].position, spawnPos[availableIndex].rotation);
+        //Minion minion = prefabInstance.GetComponent<Minion>();
+        //minion.SpawnIndex = availableIndex;
+        //minion.OnMinionDestroyed += HandleMinionDestroyed;
+
+        //usedIndices.Add(availableIndex);
+        //activeMinions[availableIndex] = minion;
     }
 }

@@ -95,5 +95,19 @@ public class Boss1 : Boss
                 Debug.LogError("PlayerBullet component not found on the collided object.");
             }
         }
+
+        if (collision.gameObject.tag == "MinionBullet")
+        {
+            var minionBullet = collision.gameObject.GetComponent<MinionBullet>();
+
+            if (minionBullet != null)
+            {
+                OnDamage(minionBullet.Damage);
+            }
+            else
+            {
+                Debug.LogError("MinionBullet component not found on the collided object.");
+            }
+        }
     }
 }

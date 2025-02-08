@@ -21,6 +21,10 @@ public class BulletSpawner : MonoBehaviour
         tf = findPos.transform;
 
         playerCurrentFireTime = 0f;
+    }
+
+    private void Start()
+    {
         playerFireRate = player.FireRate;
     }
 
@@ -29,7 +33,7 @@ public class BulletSpawner : MonoBehaviour
         //플레이어의 탄환 생성
         playerCurrentFireTime += Time.deltaTime;
 
-        if (playerCurrentFireTime > playerFireRate)
+        if (playerCurrentFireTime >= playerFireRate)
         {
             playerCurrentFireTime = 0f;
 

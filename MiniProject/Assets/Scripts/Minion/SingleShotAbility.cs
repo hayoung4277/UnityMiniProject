@@ -15,7 +15,7 @@ public class SingleShotAbility : Ability
 
     public override void Fire()
     {
-        var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/PlayerBullet");
+        var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/BaseMinionBullet");
         if (bulletPrefab == null)
         {
             Debug.LogError("Bullet Prefab not Found.");
