@@ -33,13 +33,10 @@ public class BossBulletSpawner : MonoBehaviour
     public float HCFireInterval = 6f;
     public float HCFireRate = 0.5f;
 
-    private void Awake()
-    {
-        bulletSpeed = bossBullet.GetComponent<EnemyBullet>().Speed;
-    }
-
     private void Start()
     {
+        bulletSpeed = bossBullet.GetComponent<EnemyBullet>().Speed;
+
         StartCoroutine(SectorBulletPatternCoroutine());  // 부채꼴 패턴 시작
         StartCoroutine(TripleShotBulletPatternCoroutine());  // 일직선 패턴 시작
         StartCoroutine(HalfCircleBulletPatternCoroutine());
