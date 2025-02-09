@@ -43,7 +43,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnPlayerBullet()
     {
-        var bulletprefab = Resources.Load<GameObject>("Prefabs/Bullet/BasePlayerBullet");
+        var bulletprefab = Resources.Load<GameObject>($"Prefabs/Bullet/{player.BulletName}");
         if (bulletprefab == null)
         {
             Debug.LogError("Bullet Prefab not Found");

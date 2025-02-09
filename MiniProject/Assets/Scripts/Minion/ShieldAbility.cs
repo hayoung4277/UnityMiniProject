@@ -14,7 +14,7 @@ public class ShieldAbility : Ability
 
     public override void Activate()
     {
-        if(player != null && player.shieldCount == 0)
+        if(player != null && player.IsShield == true)
         {
             player.OnShield();
         }
