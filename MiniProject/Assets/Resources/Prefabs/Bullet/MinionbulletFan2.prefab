@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3827945433301480601}
   - component: {fileID: 1213867511494805107}
   m_Layer: 0
-  m_Name: Minion_bullet_Fan_1
+  m_Name: MinionbulletFan2
   m_TagString: MinionBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025754, y: 0.025754, z: 0.25754}
+  m_LocalScale: {x: 0.053154, y: 0.053154, z: 0.53154}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -555,7 +555,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -1.5707963
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1540,11 +1540,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 4
+    tilesX: 2
     tilesY: 2
     animationType: 0
     rowIndex: 0
-    cycles: 2
+    cycles: 4
     uvChannelMask: -1
     rowMode: 1
     sprites:
@@ -3682,8 +3682,8 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
-    collisionMode: 0
+    type: 1
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
@@ -4850,7 +4850,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae6526fc6d4b6554abfdf76ea94e2c41, type: 2}
+  - {fileID: 2100000, guid: 9f70cb5b5680a9c49ad02d31618baa24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4884,7 +4884,7 @@ ParticleSystemRenderer:
   m_ShadowBias: 0
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
-  m_Flip: {x: 0, y: 0, z: 0}
+  m_Flip: {x: 0, y: 1, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23dabed549fe044fa7639607b770f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataId: 110004
+  dataId: 110003
   hitEffectPrefab: {fileID: 0}
 --- !u!61 &1213867511494805107
 BoxCollider2D:

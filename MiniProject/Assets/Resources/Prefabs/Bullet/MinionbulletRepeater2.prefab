@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3827945433301480601}
   - component: {fileID: 1213867511494805107}
   m_Layer: 0
-  m_Name: Minion_bullet_Repeater_2
+  m_Name: MinionbulletRepeater2
   m_TagString: MinionBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
