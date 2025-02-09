@@ -7018,9 +7018,17 @@ PrefabInstance:
       propertyPath: spanwer
       value: 
       objectReference: {fileID: 2092061029}
+    - target: {fileID: 336113329956784091, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
+      propertyPath: isInvisible
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4246397111066840863, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_Name
       value: MK01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169715329367222028, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8868690836839079034, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11735,10 +11743,10 @@ RectTransform:
   - {fileID: 526181531}
   m_Father: {fileID: 969977940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 2280}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978090153
 MonoBehaviour:
