@@ -307,8 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 01001
-  isInvisible: 1
-  shieldCount: 0
+  isInvisible: 0
   spanwer: {fileID: 0}
 --- !u!68 &5169715329367222028
 EdgeCollider2D:
@@ -345,11 +344,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.4783079, y: -0.41896138}
+  - {x: -0.38822952, y: -0.41896138}
   - {x: -0.38758373, y: -0.0073836744}
   - {x: -0.0022802358, y: 0.45542768}
   - {x: 0.39320135, y: -0.04443732}
-  - {x: 0.4648198, y: -0.413161}
+  - {x: 0.39552885, y: -0.39237362}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
