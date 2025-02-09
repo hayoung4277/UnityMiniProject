@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23dabed549fe044fa7639607b770f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataId: 110003
+  dataId: 110004
   hitEffectPrefab: {fileID: 0}
 --- !u!61 &1213867511494805107
 BoxCollider2D:

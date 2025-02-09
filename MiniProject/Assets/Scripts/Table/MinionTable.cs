@@ -12,9 +12,10 @@ public class MinionData
     public float Duration { get; set; }
     public float FireRate { get; set; }
     public string AbilityIdsRaw { get; set; }  //CSV의 AbilityIds 원본 문자열
-    public List<int> AbilityIds { get; private set; } = new List<int>();
     public string SpriteId { get; set; }
     public string BulletName { get; set; }
+
+    public List<int> AbilityIds { get; private set; } = new List<int>();
 
     public void ParseAbilityIds()
     {

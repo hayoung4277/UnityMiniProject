@@ -25,7 +25,7 @@ public class ItemSupplyDrop : MonoBehaviour, IItem
     public void UseItem(GameObject target)
     {
         var spawner = target.GetComponent<MinionSpawner>();
-        spawner?.SpawnMinion();
+        //spawner?.SpawnMinion();
 
         Destroy(gameObject);
     }
