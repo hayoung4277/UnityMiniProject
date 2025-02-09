@@ -4988,5 +4988,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 030001
-  hitEffectPrefab: {fileID: 0}
-  bulletEffect: {fileID: 0}

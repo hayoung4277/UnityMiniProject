@@ -14,6 +14,7 @@ public class MinionData
     public string AbilityIdsRaw { get; set; }  //CSV의 AbilityIds 원본 문자열
     public List<int> AbilityIds { get; private set; } = new List<int>();
     public int SpriteId { get; set; }
+    public string BulletName { get; set; }
 
     public void ParseAbilityIds()
     {
@@ -38,7 +39,7 @@ public class MinionData
 
     public override string ToString()
     {
-        return $"{Id} / {NameId} / {Rairity} / {Duration} / {FireRate} / [{string.Join(",", AbilityIds)}] / {SpriteId}";
+        return $"{Id} / {NameId} / {Rairity} / {Duration} / {FireRate} / [{string.Join(",", AbilityIds)}] / {SpriteId} / {BulletName}";
     }
 }
 public class MinionTable : DataTable

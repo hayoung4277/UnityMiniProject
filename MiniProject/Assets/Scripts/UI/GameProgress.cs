@@ -19,7 +19,7 @@ public class GameProgress : GenericUI
 
     private float deltaTime = 0.0f;
 
-    private void Awake()
+    protected override void Awake()
     {
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();

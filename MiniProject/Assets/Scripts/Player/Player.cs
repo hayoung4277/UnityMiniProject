@@ -14,6 +14,7 @@ public class Player : LivingEntity
     public string AnimationName { get; private set; }
     public float FireRate { get; private set; }
     public float MoveSpeed { get; private set; }
+    public string BulletName { get; private set; }
 
     public float SurviveTime => surviveTime;
     public bool IsShield { get; private set; } = false;
@@ -28,7 +29,9 @@ public class Player : LivingEntity
     private float surviveTime;
 
     public bool isInvisible = false;
-    public int shieldCount = 0;
+
+    private float shieldCoolTime;
+    private float shieldCoolInterval = 30f;
 
     public GameObject spanwer;
 
@@ -62,6 +65,8 @@ public class Player : LivingEntity
             Debug.LogError($"Player data with ID '{dataId}' not found.");
             return;
         }
+
+        shieldCoolTime = 0f;
     }
     private void Initialized(PlayerData data)
     {
@@ -75,11 +80,19 @@ public class Player : LivingEntity
         AnimationName = data.AnimationName;
         FireRate = data.FireRate;
         MoveSpeed = data.MoveSpeed;
+        BulletName = data.BulletName;
     }
 
     private void Update()
     {
         surviveTime += Time.deltaTime;
+        shieldCoolTime += Time.deltaTime;
+
+        if(IsShield == false && shieldCoolTime >= shieldCoolInterval)
+        {
+            IsShield = true;
+            shieldCoolTime = 0f;
+        }
     }
 
     public override void Die()
@@ -107,12 +120,12 @@ public class Player : LivingEntity
             if(isInvisible == false && IsShield == false)
             {
                 OnPlayerDamage();
+                Debug.Log("Shield CoolTime!");
             }
 
             if(IsShield == true)
             {
                 IsShield = false;
-                shieldCount = 0;
             }
         }
 
@@ -136,7 +149,6 @@ public class Player : LivingEntity
     public void OnShield()
     {
         IsShield = true;
-        shieldCount++;
         Debug.Log("OnShield!");
     }
 }

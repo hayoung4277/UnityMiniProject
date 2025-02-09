@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerBullet : Bullet
 {
     private Rigidbody2D rb;
-    public string dataId = "030001";
+    private Player player;
+    public string dataId = "";
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.BulletTable.Get(dataId);
         Sound = GetComponent<AudioSource>();
 
+        var findPlayer = GameObject.FindWithTag("Player");
+        player = findPlayer.GetComponent<Player>();
+
+        Data = DataTableManager.BulletTable.Get(dataId);
         if (Data != null)
         {
             Initialize(Data);

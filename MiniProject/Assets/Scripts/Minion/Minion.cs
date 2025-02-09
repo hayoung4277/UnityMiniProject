@@ -11,6 +11,7 @@ public class Minion : MonoBehaviour
     public float Duration { get; private set; }
     public float FireRate { get; private set; }
     public int SpriteId { get; private set; }
+    public string BulletName { get; private set; }
 
     public List<Ability> Abilities { get; private set; } = new List<Ability>();
 
@@ -68,6 +69,7 @@ public class Minion : MonoBehaviour
         Duration = data.Duration;
         FireRate = data.FireRate;
         SpriteId = data.SpriteId;
+        BulletName = data.BulletName;
 
         Abilities.Clear(); //기존 능력 초기화
 

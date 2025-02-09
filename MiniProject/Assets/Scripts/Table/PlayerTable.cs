@@ -15,12 +15,13 @@ public class PlayerData
     public string AnimationName { get; set; }
     public float FireRate { get; set; }
     public float MoveSpeed { get; set; }
+    public string BulletName { get; set; }
 
     public override string ToString()
     {
         return $"{Id} / {NameId} / {HP} / {CriticalChance} / {CriticalMultiplier} / " +
             $"{ScoreMultiplier} / {HitAnimEffectName} / {HitSoundName} / {AnimationName}" +
-            $"{FireRate} / {MoveSpeed}";
+            $"{FireRate} / {MoveSpeed} / {BulletName}";
     }
 }
 
