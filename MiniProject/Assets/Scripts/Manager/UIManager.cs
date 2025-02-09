@@ -10,6 +10,13 @@ public class UIManager : MonoBehaviour
     public GameClaer gameClearUI;
 
     public Player player;
+    private GameManager gm;
+
+    private void Awake()
+    {
+        var findGm = GameObject.FindWithTag(GMCT.GM);
+        gm = findGm.GetComponent<GameManager>();
+    }
 
     private void Start()
     {
@@ -53,6 +60,16 @@ public class UIManager : MonoBehaviour
         gameOverUI.Close();
         gameClearUI.Close();
         gameStartUI.Open();
+    }
+
+    public void UnPauseGame()
+    {
+        gameProgressUI.UnPauseGame();
+    }
+
+    public void PauseGame()
+    {
+        gameProgressUI.PauseGame();
     }
 
     public void AddScore(float amount)
