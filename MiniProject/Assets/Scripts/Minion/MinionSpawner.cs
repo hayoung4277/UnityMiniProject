@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class MinionSpawner : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject[] singleShotPrefabs;
+    public GameObject[] fanShotPrefabs;
+    public GameObject[] shieldPrefabs;
+    public GameObject[] multiplePrefabs;
+    public GameObject[] singleShieldPrefabs;
+
     private List<Transform> spawnPositions = new List<Transform>();
 
     private List<int> usedIndices = new List<int>(); // 사용된 위치 저장
     private Dictionary<int, Minion> activeMinions = new Dictionary<int, Minion>(); // 인덱스별 Minion 저장
 
-    private static readonly List<int> commonProbabilities = new List<int> { 50, 30, 15, 4, 1 }; // 일반 보급상자 확률 (1~5 희귀도)
-    private static readonly List<int> legendaryProbabilities = new List<int> { 0, 0, 0, 60, 40 }; // 전설 보급상자 확률 (4~5 희귀도)
-
-    void Start()
+    private void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
 
@@ -33,19 +36,58 @@ public class MinionSpawner : MonoBehaviour
 
     public void SpawnMinion(ItemType itemType)
     {
-        int availableIndex = GetAvailableIndex();
+        int randomValue = Random.Range(1, 5);
 
-        if (availableIndex == -1)
-            return;
+        if (itemType == ItemType.Common)
+        {
 
-        int rarity = GetRarityBasedOnItem(itemType); // 아이템 타입에 따른 희귀도 계산
-        GameObject prefabInstance = Instantiate(prefab, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
-        Minion minion = prefabInstance.GetComponent<Minion>();
-        minion.SpawnIndex = availableIndex;
-        minion.OnMinionDestroyed += HandleMinionDestroyed;
-
-        usedIndices.Add(availableIndex);
-        activeMinions[availableIndex] = minion;
+            switch (randomValue)
+            {
+                case 1:
+                    SpawnCommonMinion(singleShotPrefabs);
+                    break;
+                case 2:
+                    SpawnCommonMinion(fanShotPrefabs);
+                    break;
+                case 3:
+                    SpawnCommonMinion(shieldPrefabs);
+                    break;
+                case 4:
+                    SpawnCommonMinion(multiplePrefabs);
+                    break;
+                case 5:
+                    SpawnCommonMinion(singleShieldPrefabs);
+                    break;
+                default:
+                    Debug.LogWarning($"알 수 없는 프리팹");
+                    break;
+            }
+        }
+        
+        if (itemType == ItemType.Legendary)
+        {
+            switch (randomValue)
+            {
+                case 1:
+                    SpawnLegendMinion(singleShotPrefabs);
+                    break;
+                case 2:
+                    SpawnLegendMinion(fanShotPrefabs);
+                    break;
+                case 3:
+                    SpawnLegendMinion(shieldPrefabs);
+                    break;
+                case 4:
+                    SpawnLegendMinion(multiplePrefabs);
+                    break;
+                case 5:
+                    SpawnLegendMinion(singleShieldPrefabs);
+                    break;
+                default:
+                    Debug.LogWarning($"알 수 없는 프리팹");
+                    break;
+            }
+        }
     }
 
     private int GetAvailableIndex()
@@ -70,36 +112,38 @@ public class MinionSpawner : MonoBehaviour
         Debug.Log($"Minion Destroyed! Index {minion.SpawnIndex} is now free.");
     }
 
-    private int GetRarityBasedOnItem(ItemType itemType)
+    private void SpawnCommonMinion(GameObject[] prefab)
     {
-        List<int> probabilities = itemType == ItemType.Legendary ? legendaryProbabilities : commonProbabilities;
+        int availableIndex = GetAvailableIndex();
 
-        // 확률을 기준으로 랜덤 값 뽑기
-        int total = 0;
-        foreach (int prob in probabilities)
-        {
-            total += prob;
-        }
+        int randomPrefabIndex = Random.Range(0, prefab.Length - 1);
 
-        int randomValue = UnityEngine.Random.Range(0, total);
+        if (availableIndex == -1)
+            return;
 
-        int cumulativeProbability = 0;
-        for (int i = 0; i < probabilities.Count; i++)
-        {
-            cumulativeProbability += probabilities[i];
-            if (randomValue < cumulativeProbability)
-            {
-                return i + 1; // 희귀도 1부터 시작
-            }
-        }
+        GameObject prefabInstance = Instantiate(prefab[randomPrefabIndex], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Minion minion = prefabInstance.GetComponent<Minion>();
+        minion.SpawnIndex = availableIndex;
+        minion.OnMinionDestroyed += HandleMinionDestroyed;
 
-        return 1; // 기본적으로 희귀도 1 반환
+        usedIndices.Add(availableIndex);
+        activeMinions[availableIndex] = minion;
     }
-}
 
-public enum ItemType
-{
-    Common,   // 일반 보급상자
-    Legendary // 전설 보급상자
+    private void SpawnLegendMinion(GameObject[] prefab)
+    {
+        int availableIndex = GetAvailableIndex();
+
+        if (availableIndex == -1)
+            return;
+
+        GameObject prefabInstance = Instantiate(prefab[prefab.Length - 1], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Minion minion = prefabInstance.GetComponent<Minion>();
+        minion.SpawnIndex = availableIndex;
+        minion.OnMinionDestroyed += HandleMinionDestroyed;
+
+        usedIndices.Add(availableIndex);
+        activeMinions[availableIndex] = minion;
+    }
 }
 

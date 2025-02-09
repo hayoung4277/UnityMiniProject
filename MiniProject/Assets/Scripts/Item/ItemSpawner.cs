@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject normalDrop;
+    public GameObject commonDrop;
     public GameObject legendaryDrop;
 
     private void OnEnable()
@@ -26,25 +26,26 @@ public class ItemSpawner : MonoBehaviour
     {
         Vector3 spawnPosition = enemy.transform.position;
 
-        // 아이템 드롭 확률 적용
+        GameObject itemInstance;
+        ItemSupplyDrop itemSupplyDrop;
+
         if (Random.value > 0.9f) // 10% 확률로 전설 아이템
         {
-            Instantiate(legendaryDrop, spawnPosition, Quaternion.identity);
+            itemInstance = Instantiate(legendaryDrop, spawnPosition, Quaternion.identity);
+            itemSupplyDrop = itemInstance.GetComponent<ItemSupplyDrop>();
+            if (itemSupplyDrop != null)
+            {
+                itemSupplyDrop.Type = ItemType.Legendary;
+            }
         }
         else // 90% 확률로 일반 아이템
         {
-            Instantiate(normalDrop, spawnPosition, Quaternion.identity);
+            itemInstance = Instantiate(commonDrop, spawnPosition, Quaternion.identity);
+            itemSupplyDrop = itemInstance.GetComponent<ItemSupplyDrop>();
+            if (itemSupplyDrop != null)
+            {
+                itemSupplyDrop.Type = ItemType.Common;
+            }
         }
-
-        //int availableIndex = GetAvailableIndex();
-        //if (availableIndex == -1) return;
-
-        //GameObject prefabInstance = Instantiate(prefab, spawnPos[availableIndex].position, spawnPos[availableIndex].rotation);
-        //Minion minion = prefabInstance.GetComponent<Minion>();
-        //minion.SpawnIndex = availableIndex;
-        //minion.OnMinionDestroyed += HandleMinionDestroyed;
-
-        //usedIndices.Add(availableIndex);
-        //activeMinions[availableIndex] = minion;
     }
 }

@@ -12,11 +12,11 @@ public class ShieldAbility : Ability
         player = findGo.GetComponent<Player>();
     }
 
-    public override void Activate()
+    public override void Activate(int rarity)
     {
-        if(player != null && player.IsShield == true)
+        if(player != null && player.shieldCount == 0)
         {
-            player.OnShield();
+            player.IsShieldSetting();
         }
     }
 }

@@ -8,7 +8,6 @@ public class SingleShotAbility : Ability
     private Transform tf;
     private Coroutine burstCoroutine;
     private Minion minion;
-    //private float bulletSpeed = 3f;
 
     public SingleShotAbility(Minion minion) : base(minion)
     {
@@ -16,6 +15,21 @@ public class SingleShotAbility : Ability
         tf = minion.transform;
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
+    }
+
+    public override void Activate(int rarity)
+    {
+        if (rarity >= 4)
+        {
+            if (burstCoroutine == null) // 점사 모드 중복 실행 방지
+            {
+                BurstFire(minion);
+            }
+            else
+            {
+                Fire();
+            }
+        }
     }
 
     public override void Fire()
@@ -43,14 +57,14 @@ public class SingleShotAbility : Ability
         }
     }
 
-    public void StopBurstFire(MonoBehaviour caller)
-    {
-        if (burstCoroutine != null)
-        {
-            caller.StopCoroutine(burstCoroutine);
-            burstCoroutine = null;
-        }
-    }
+    //public void StopBurstFire(MonoBehaviour caller)
+    //{
+    //    if (burstCoroutine != null)
+    //    {
+    //        caller.StopCoroutine(burstCoroutine);
+    //        burstCoroutine = null;
+    //    }
+    //}
 
     private IEnumerator BurstFireCoroutine()
     {
@@ -62,8 +76,7 @@ public class SingleShotAbility : Ability
         }
 
         int burstCount = 3;
-        float burstDelay = 0.1f;
-        float burstCooldown = 0.5f;
+        float burstDelay = 0.08f;
 
         while (true)
         {
@@ -73,19 +86,12 @@ public class SingleShotAbility : Ability
                 yield return new WaitForSeconds(burstDelay);
             }
 
-            yield return new WaitForSeconds(burstCooldown);
+            yield return new WaitForSeconds(FireRate);
         }
     }
 
     public override void ApplyRarityScaling(int rarity)
     {
-        if (rarity >= 4)
-        {
-            BurstFire(minion);
-        }
-        else
-        {
-            Fire();
-        }
+        
     }
 }

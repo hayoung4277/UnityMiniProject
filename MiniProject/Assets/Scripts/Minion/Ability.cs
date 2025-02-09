@@ -18,7 +18,7 @@ public abstract class Ability
         fireTimer = 0f;
     }
 
-    public virtual void Activate() { }
+    public virtual void Activate(int rarity) { }
     public virtual void Fire() { }
     public virtual void UpdateAbility()
     {

@@ -10,6 +10,7 @@ public class Enemy : NomalMonster
     private UIManager ui;
 
     public event System.Action<Enemy> OnSpawnItem;
+    public event System.Action<Enemy> OnScoreMultiplier;
 
     private void Awake()
     {
@@ -56,7 +57,9 @@ public class Enemy : NomalMonster
         base.Die();
         ui.AddScore(OfferedScore);
 
-        if (Random.value > 0.9f)
+        float randomValue = Random.Range(0f, 0.5f);
+
+        if (randomValue <= DropRate)
         {
             // 아이템 드롭 이벤트 호출
             OnSpawnItem?.Invoke(this);

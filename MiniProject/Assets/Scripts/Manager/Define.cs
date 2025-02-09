@@ -54,3 +54,11 @@ public static class GMCT
     public static readonly string GM = "GameController";
     public static readonly string UI = "UI";
 }
+
+public enum ItemType
+{
+    Null,
+    Common,   // 일반 보급상자
+    Legendary // 전설 보급상자
+}
+

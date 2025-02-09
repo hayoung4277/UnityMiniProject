@@ -60,10 +60,11 @@ public class Minion : MonoBehaviour
     {
         foreach (var ab in Abilities)
         {
-            ab.Activate();
+            ab.Activate(Rairity);
         }
+        Debug.Log($"Rairity: {Rairity}");
 
-        fireCoroutine = StartCoroutine(FireRoutine());
+        //fireCoroutine = StartCoroutine(FireRoutine());
     }
 
     public void Initialized(MinionData data)
@@ -89,18 +90,6 @@ public class Minion : MonoBehaviour
             {
                 Debug.LogWarning($"Ability with ID {abilityId} not found for Minion {NameId}");
             }
-        }
-    }
-
-    private IEnumerator FireRoutine()
-    {
-        while (!IsDead)
-        {
-            foreach (var ability in Abilities)
-            {
-                ability.ApplyRarityScaling(Rairity);
-            }
-            yield return new WaitForSeconds(FireRate);
         }
     }
 

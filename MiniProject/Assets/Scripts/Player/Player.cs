@@ -17,7 +17,6 @@ public class Player : LivingEntity
     public string BulletName { get; private set; }
 
     public float SurviveTime => surviveTime;
-    public bool IsShield { get; private set; } = false;
 
     public PlayerData Data { get; private set; }
     public AudioSource DeathSound { get; private set; }
@@ -27,6 +26,10 @@ public class Player : LivingEntity
     private Rigidbody2D rb;
     public string dataId = "01001";
     private float surviveTime;
+
+    public bool isShield;
+    private bool isHit;
+    public int shieldCount;
 
     public bool isInvisible = false;
 
@@ -66,6 +69,9 @@ public class Player : LivingEntity
             return;
         }
 
+        isShield = true;
+        isHit = false;
+        shieldCount = 0;
         shieldCoolTime = 0f;
     }
     private void Initialized(PlayerData data)
@@ -86,12 +92,16 @@ public class Player : LivingEntity
     private void Update()
     {
         surviveTime += Time.deltaTime;
-        shieldCoolTime += Time.deltaTime;
 
-        if(IsShield == false && shieldCoolTime >= shieldCoolInterval)
+        if (isShield == false)
         {
-            IsShield = true;
-            shieldCoolTime = 0f;
+            shieldCoolTime += Time.deltaTime;
+
+            if (shieldCoolTime >= shieldCoolInterval)
+            {
+                isShield = true;
+                shieldCoolTime = 0f;
+            }
         }
     }
 
@@ -115,21 +125,25 @@ public class Player : LivingEntity
             }
         }
 
-        if(collision.gameObject.tag == "BossBullet")
+        if (collision.gameObject.tag == "BossBullet")
         {
-            if(isInvisible == false && IsShield == false)
+            if (isInvisible == false && isShield == false)
             {
                 OnPlayerDamage();
+                isShield = true;
+                isHit = true;
                 Debug.Log("Shield CoolTime!");
             }
 
-            if(IsShield == true)
+            if (isHit == true && isShield == true)
             {
-                IsShield = false;
+                isShield = false;
+                isHit = false;
+                shieldCount = 0;
             }
         }
 
-        if(collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Item")
         {
             var item = collision.GetComponent<IItem>();
             item?.UseItem(spanwer);
@@ -139,16 +153,16 @@ public class Player : LivingEntity
     public void OnPlayerDamage()
     {
         HP--;
-        if(HP <= 0)
+        if (HP <= 0)
         {
             HP = 0;
             Die();
         }
     }
 
-    public void OnShield()
+    public void IsShieldSetting()
     {
-        IsShield = true;
+        shieldCount++;
         Debug.Log("OnShield!");
     }
 }

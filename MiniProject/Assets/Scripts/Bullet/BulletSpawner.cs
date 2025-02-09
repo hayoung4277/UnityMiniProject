@@ -46,7 +46,6 @@ public class BulletSpawner : MonoBehaviour
     private void SpawnPlayerBullet()
     {
         var bulletprefab = Resources.Load<GameObject>($"Prefabs/Bullet/{bulletName}");
-        Debug.Log($"BulletName: {bulletName}");
 
         if (bulletprefab == null)
         {
