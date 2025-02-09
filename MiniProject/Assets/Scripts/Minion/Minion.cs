@@ -10,7 +10,7 @@ public class Minion : MonoBehaviour
     public int Rairity { get; private set; }
     public float Duration { get; private set; }
     public float FireRate { get; private set; }
-    public int SpriteId { get; private set; }
+    public string SpriteId { get; private set; }
     public string BulletName { get; private set; }
 
     public List<Ability> Abilities { get; private set; } = new List<Ability>();
