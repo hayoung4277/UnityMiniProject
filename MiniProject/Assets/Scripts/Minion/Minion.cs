@@ -31,6 +31,8 @@ public class Minion : MonoBehaviour
     private float offsetX = 1.2f;  // 플레이어 기준으로 떨어질 거리
     private bool isRightSide = true;
 
+    private Coroutine fireCoroutine;
+
     private void Awake()
     {
         Data = DataTableManager.MinionTable.Get(dataId);
@@ -60,6 +62,8 @@ public class Minion : MonoBehaviour
         {
             ab.Activate();
         }
+
+        fireCoroutine = StartCoroutine(FireRoutine());
     }
 
     public void Initialized(MinionData data)
@@ -85,6 +89,18 @@ public class Minion : MonoBehaviour
             {
                 Debug.LogWarning($"Ability with ID {abilityId} not found for Minion {NameId}");
             }
+        }
+    }
+
+    private IEnumerator FireRoutine()
+    {
+        while (!IsDead)
+        {
+            foreach (var ability in Abilities)
+            {
+                ability.ApplyRarityScaling(Rairity);
+            }
+            yield return new WaitForSeconds(FireRate);
         }
     }
 
