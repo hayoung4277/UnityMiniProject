@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameProgress : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
     //public TextMeshProUGUI fpsText;
+
+    private static Transform canvasTransform;
+
+    private Transform child2;
 
     private float fps;
     private Player player;
@@ -16,6 +21,7 @@ public class GameProgress : GenericUI
     private float score;
     public float Score => score;
     public float CurrentTime => currentTime;
+    public bool isPause;
 
     private float deltaTime = 0.0f;
 
@@ -23,13 +29,33 @@ public class GameProgress : GenericUI
     {
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();
+
+        GameObject canvasObj = GameObject.FindWithTag("Progress");
+        if (canvasObj != null)
+        {
+            canvasTransform = canvasObj.transform;
+            child2 = canvasTransform.GetChild(1);
+
+
+            // 처음에는 두 번째 자식(메뉴 UI 등)을 비활성화
+            child2.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Canvas를 찾을 수 없습니다!");
+        }
+
+        isPause = false;
     }
 
     private void Start()
     {
-        score = 0;
-        currentTime = 0f;
-        scoreText.text = $"Score: {Score}";
+        if (!isPause)
+        {
+            currentTime += Time.deltaTime;
+            timeText.text = $"Time: {CurrentTime.ToString("F2")}";
+            fps = 1.0f / Time.deltaTime;
+        }
 
         //fpsText.enabled = false;
     }
@@ -69,6 +95,20 @@ public class GameProgress : GenericUI
     {
         score += amount;
         scoreText.text = $"Score: {score}";
+    }
+
+    public void PauseGame()
+    {
+        isPause = true;
+        Time.timeScale = 0;
+        child2.gameObject.SetActive(true);
+    }
+
+    public void UnPauseGame()
+    {
+        isPause = false;
+        Time.timeScale = 1;
+        child2.gameObject.SetActive(false);
     }
 
     //public void ShowFPS()

@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     public event System.Action onSpeedUp;
     public event System.Action onStopGame;
 
-    private bool isPause;
-
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -41,18 +39,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         onStopGame.Invoke();
-    }
-
-    public void PauseGame()
-    {
-        if (isPause)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
     }
 
     public void StartGame()
