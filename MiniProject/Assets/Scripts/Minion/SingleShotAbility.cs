@@ -11,11 +11,12 @@ public class SingleShotAbility : Ability
     public SingleShotAbility(Minion minion) : base(minion)
     {
         tf = minion.transform;
+        BulletName = minion.BulletName;
     }
 
     public override void Fire()
     {
-        var bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet/BaseMinionBullet");
+        var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
         if (bulletPrefab == null)
         {
             Debug.LogError("Bullet Prefab not Found.");

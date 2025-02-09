@@ -8,6 +8,7 @@ public class BulletSpawner : MonoBehaviour
     //public Transform playerTransform;
     private float playerFireRate;
     private float playerCurrentFireTime;
+    private string bulletName;
 
     private Transform tf;
     private Player player;
@@ -26,6 +27,7 @@ public class BulletSpawner : MonoBehaviour
     private void Start()
     {
         playerFireRate = player.FireRate;
+        bulletName = player.BulletName;
     }
 
     private void Update()
@@ -43,7 +45,9 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnPlayerBullet()
     {
-        var bulletprefab = Resources.Load<GameObject>($"Prefabs/Bullet/{player.BulletName}");
+        var bulletprefab = Resources.Load<GameObject>($"Prefabs/Bullet/{bulletName}");
+        Debug.Log($"BulletName: {bulletName}");
+
         if (bulletprefab == null)
         {
             Debug.LogError("Bullet Prefab not Found");

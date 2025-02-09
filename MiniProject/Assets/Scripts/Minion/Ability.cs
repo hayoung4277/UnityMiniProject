@@ -4,17 +4,17 @@ using UnityEngine;
 
 public abstract class Ability
 {
+    public string BulletName { get; set; }
+
     protected Minion owner;
     protected float fireRate;       // 발사 속도 (초당 발사 횟수)
     private float fireTimer;
-    private string bulletId;
 
     public Ability(Minion minion)
     {
         owner = minion;
         fireRate = minion.FireRate;
         fireTimer = 0f;
-        bulletId = minion.BulletName;
     }
 
     public virtual void Activate() { }
