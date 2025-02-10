@@ -4912,7 +4912,7 @@ GameObject:
   - component: {fileID: 1558332597376287028}
   - component: {fileID: 1558332597376287029}
   m_Layer: 0
-  m_Name: ready_attack 1
+  m_Name: NormalDrop_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9750,7 +9750,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 804c9909b24bd23458be88f2179e5e4c, type: 2}
+  - {fileID: 2100000, guid: 3d9d7633c649d0a45848762b55b307ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
