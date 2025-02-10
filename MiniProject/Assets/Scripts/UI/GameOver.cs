@@ -10,22 +10,27 @@ public class GameOver : GenericUI
     public TextMeshProUGUI timeText;
     public Button reStartButton;
 
-    //private GameProgress progress;
+    private AudioSource audioSource;
+    public AudioClip gameOverSound;
 
-    //private void Start()
-    //{
-    //    Open();
-    //    var findProgress = GameObject.FindWithTag("Progress");
-    //    progress = findProgress.GetComponent<GameProgress>();
-    //}
+    protected override void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public override void Open()
     {
         base.Open();
+
+        audioSource.PlayOneShot(gameOverSound);
     }
 
     public override void Close()
     {
         base.Close();
+        if(audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 }

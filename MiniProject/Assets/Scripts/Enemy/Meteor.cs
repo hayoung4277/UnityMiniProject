@@ -17,10 +17,14 @@ public class Meteor : UnBreakable
     private GameObject lineInstance;  // 생성된 경고 라인
     private Animator warningAnimator;  // 경고 애니메이터
 
+    private AudioSource audioSource;
+    public AudioClip warningClip;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.UnBreakableTable.Get(dataId);
+        audioSource = GetComponent<AudioSource>();
 
         var findPlayer = GameObject.FindWithTag("Player");
         if (findPlayer != null)
@@ -91,6 +95,8 @@ public class Meteor : UnBreakable
         {
             warningAnimator.Play("WarningBlink");  // 애니메이션 실행
         }
+
+        audioSource.PlayOneShot(warningClip);
 
         yield return new WaitForSeconds(2.1f);  // 애니메이션이 끝날 때까지 대기
         //yield return new WaitForSeconds(waittime);  // 애니메이션이 끝날 때까지 대기

@@ -9,3 +9,4 @@ Id,NameId,Rairity,Duration,FireRate,AbilityIdsRaw,SpriteId,BulletName
 10008,0110008,4,35,0.3,"1,3",Minion_Sprite_8,MinionbulletRepeater1
 10009,0110009,2,30,0.0,4,Minion_Sprite_9,null
 10010,0110010,1,30,0.4,1,Minion_Sprite_10,MinionbulletRepeater1
+10011,0110011,1,30,0.4,5,Minion_Sprite_11,MinionbulletRepeater1

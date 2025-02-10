@@ -307,6 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 01001
+  isShield: 0
+  shieldCount: 0
   isInvisible: 0
   spanwer: {fileID: 0}
 --- !u!68 &5169715329367222028

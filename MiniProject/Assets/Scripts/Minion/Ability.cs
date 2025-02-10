@@ -26,7 +26,7 @@ public abstract class Ability
 
         if(fireTimer >= fireRate)
         {
-            Fire();
+            //Activate();
             fireTimer = 0f;
         }
     }

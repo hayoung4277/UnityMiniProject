@@ -20,11 +20,14 @@ public class Boss2 : Boss
     private GameManager gm;
     private UIManager ui;
 
+    public AudioClip deathSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.BossTable.Get(dataId);
         mainCamera = Camera.main;
+        AudioSource = GetComponent<AudioSource>();
 
         var findGm = GameObject.FindWithTag(GMCT.GM);
         gm = findGm.GetComponent<GameManager>();
@@ -87,6 +90,7 @@ public class Boss2 : Boss
     public override void Die()
     {
         base.Die();
+        AudioSource.PlayOneShot(deathSound);
         HP = 0f;
         ui.AddScore(OfferedScore);
         Destroy(gameObject);

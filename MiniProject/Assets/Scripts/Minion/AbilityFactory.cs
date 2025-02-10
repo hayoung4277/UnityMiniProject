@@ -11,6 +11,8 @@ public static class AbilityFactory
             case 2: return new FanShotAbility(minion);
             case 3: return new ShieldAbility(minion);
             case 4: return new ScoreMultiplierAbility(minion);
+            case 5: return new FormationShotAbility(minion);
+            case 6: return new HomingShotAbility(minion);
             default:
                 Debug.LogWarning($"알 수 없는 Ability ID: {abilityId}");
                 return null;

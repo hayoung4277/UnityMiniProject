@@ -10,6 +10,8 @@ public class GameProgress : GenericUI
     public TextMeshProUGUI timeText;
     //public TextMeshProUGUI fpsText;
 
+    private AudioSource audioSource;
+
     private static Transform canvasTransform;
 
     private Transform child2;
