@@ -9714,7 +9714,7 @@ GameObject:
   - component: {fileID: 3672937312462212063}
   - component: {fileID: 3672937312462212062}
   m_Layer: 0
-  m_Name: Plazma_Ball
+  m_Name: Plazma_Ball 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9928,7 +9928,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
