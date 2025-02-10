@@ -15,6 +15,8 @@ public class ScoreMultiplierAbility : Ability
 
     public override void Activate(int rarity)
     {
+        OnScoreMuliplier();
+        Debug.Log($"Score Add: {score}");
     }
 
     public void OnScoreMuliplier()

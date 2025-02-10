@@ -62,7 +62,6 @@ public class Minion : MonoBehaviour
         {
             ab.Activate(Rairity);
         }
-        Debug.Log($"Rairity: {Rairity}");
 
         //fireCoroutine = StartCoroutine(FireRoutine());
     }

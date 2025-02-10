@@ -31,8 +31,6 @@ public class ItemSupplyDrop : MonoBehaviour, IItem
         var spawner = target.GetComponent<MinionSpawner>();
         spawner?.SpawnMinion(Type);
 
-        Debug.Log($"{Type}");
-
         Destroy(gameObject);
     }
 
