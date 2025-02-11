@@ -59,3 +59,7 @@ MonoBehaviour:
   - {fileID: 339220035790562603, guid: f7f63804715ccee46b891cd370f1451d, type: 3}
   singleShieldPrefabs:
   - {fileID: 339220035790562603, guid: c1864dc9012f56142b5a070edac90bf7, type: 3}
+  boomPrefabs:
+  - {fileID: 339220035790562603, guid: fb28cf9ea78597244b9a4036477cd23f, type: 3}
+  razerPrefabs:
+  - {fileID: 339220035790562603, guid: 5cdf2a08830b65a4580d7f95bc0e5a6d, type: 3}

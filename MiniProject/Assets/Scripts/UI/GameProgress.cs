@@ -31,6 +31,7 @@ public class GameProgress : GenericUI
     {
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();
+        audioSource = GetComponent<AudioSource>();
 
         GameObject canvasObj = GameObject.FindWithTag("Progress");
         if (canvasObj != null)
@@ -91,6 +92,16 @@ public class GameProgress : GenericUI
     public override void Close()
     {
         base.Close();
+    }
+
+    public void PlaySound()
+    {
+        audioSource.Play();
+    }
+
+    public void StopSound()
+    {
+        audioSource.Stop();
     }
 
     public void AddScore(float amount)

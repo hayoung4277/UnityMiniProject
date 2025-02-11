@@ -35,10 +35,12 @@ public class UIManager : MonoBehaviour
     {
         gameStartUI.Close();
         gameProgressUI.Open();
+        gameProgressUI.PlaySound();
     }
 
     public void GameOver()
     {
+        gameProgressUI.StopSound();
         gameProgressUI.Close();
         gameOverUI.Open();
 

@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
     }
 
     private void Start()
@@ -67,11 +66,6 @@ public class GameManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
-    }
-
-    public void StopPlayAudio()
-    {
-        audioSource.Stop();
     }
 
     public void ButtonClickSound()

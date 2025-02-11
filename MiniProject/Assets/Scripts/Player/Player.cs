@@ -112,7 +112,6 @@ public class Player : LivingEntity
         base.Die();
         HP = 0;
         Gm.StopGame();
-        Gm.StopPlayAudio();
         UIManager.GameOver();
         Destroy(gameObject);
     }

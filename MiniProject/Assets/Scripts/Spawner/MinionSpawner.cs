@@ -11,6 +11,9 @@ public class MinionSpawner : MonoBehaviour
     public GameObject[] multiplePrefabs;
     public GameObject[] singleShieldPrefabs;
     public GameObject[] boomPrefabs;
+    public GameObject[] razerPrefabs;
+
+    private int prefabCount = 7;
 
     private List<Transform> spawnPositions = new List<Transform>();
 
@@ -37,7 +40,7 @@ public class MinionSpawner : MonoBehaviour
 
     public void SpawnMinion(ItemType itemType)
     {
-        int randomValue = Random.Range(1, 5);
+        int randomValue = Random.Range(1, prefabCount);
 
         if (itemType == ItemType.Common)
         {
