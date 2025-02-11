@@ -7282,14 +7282,6 @@ PrefabInstance:
       propertyPath: spanwer
       value: 
       objectReference: {fileID: 2092061029}
-    - target: {fileID: 336113329956784091, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
-      propertyPath: hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 1d429f1093f3d8b40b7e2fa82a8f6d7d, type: 3}
-    - target: {fileID: 336113329956784091, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
-      propertyPath: isInvisible
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4246397111066840863, guid: ae058fe076218ef448c5265ca8246d76, type: 3}
       propertyPath: m_Name
       value: MK01

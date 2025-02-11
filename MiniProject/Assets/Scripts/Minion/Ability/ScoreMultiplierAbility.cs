@@ -11,9 +11,10 @@ public class ScoreMultiplierAbility : Ability
     {
         var findUi = GameObject.FindWithTag(GMCT.UI);
         um = findUi.GetComponent<UIManager>();
+        Rairity = minion.Rairity;
     }
 
-    public override void Activate(int rarity)
+    public override void Activate()
     {
         OnScoreMuliplier();
         Debug.Log($"Score Add: {score}");
@@ -24,17 +25,17 @@ public class ScoreMultiplierAbility : Ability
         um.AddScore(score);
     }
 
-    public override void ApplyRarityScaling(int rarity)
+    public override void ApplyRarityScaling()
     {
-        if(rarity == 1 || rarity == 2)
+        if(Rairity == 1 || Rairity == 2)
         {
             score = 5000;
         }
-        else if(rarity == 3)
+        else if(Rairity == 3)
         {
             score = 10000;
         }
-        else if(rarity == 4)
+        else if(Rairity == 4)
         {
             score = 50000;
         }
