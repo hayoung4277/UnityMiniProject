@@ -28,8 +28,8 @@ public class Minion : MonoBehaviour
     private Player player;
     private float followSpeed = 5f; // 이동 속도
 
-    private float offsetX = 1f;
-    private float offsetY = 0.5f;// 플레이어 기준으로 떨어질 거리
+    public float offsetX = 0.7f;
+    public float offsetY = 0.3f;// 플레이어 기준으로 떨어질 거리
     private bool isRightSide = true;
     private bool isUpSide = true;
 
