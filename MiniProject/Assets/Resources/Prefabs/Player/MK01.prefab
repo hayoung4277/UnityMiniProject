@@ -632,7 +632,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2597f1cc08142e2489a212bb0346adab, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -735,7 +735,7 @@ MonoBehaviour:
   shieldCount: 0
   isInvisible: 0
   spanwer: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 5dfe8da4267d6b24ea82b878d2f18024, type: 3}
 --- !u!68 &5169715329367222028
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -190,7 +190,7 @@ MonoBehaviour:
   dataId: 050001
   warningPrefab: {fileID: 4648240482446310900, guid: 2c143402e81f23e409a43a827352c2ec, type: 3}
   linePrefab: {fileID: 4251356255392475652, guid: f4bc099f0f329a14cacf587e05177816, type: 3}
-  warningClip: {fileID: 8300000, guid: eb33ef341cce0414a9a6ad5c17492fcf, type: 3}
+  warningClip: {fileID: 8300000, guid: 52a06d8d793bdde4e8071f40e27251b1, type: 3}
 --- !u!50 &8901196743006616403
 Rigidbody2D:
   serializedVersion: 4
