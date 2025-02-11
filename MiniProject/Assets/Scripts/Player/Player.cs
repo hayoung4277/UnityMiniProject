@@ -19,7 +19,7 @@ public class Player : LivingEntity
     public float SurviveTime => surviveTime;
 
     public PlayerData Data { get; private set; }
-    public AudioSource DeathSound { get; private set; }
+    public AudioSource AudioSource { get; private set; }
     public GameManager Gm { get; private set; }
     public UIManager UIManager { get; private set; }
 
@@ -38,10 +38,12 @@ public class Player : LivingEntity
 
     public GameObject spanwer;
 
+    public AudioClip hitSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        DeathSound = GetComponent<AudioSource>();
+        AudioSource = GetComponent<AudioSource>();
 
         var findGm = GameObject.FindWithTag(GMCT.GM);
         Gm = findGm.GetComponent<GameManager>();
@@ -109,8 +111,8 @@ public class Player : LivingEntity
     {
         base.Die();
         HP = 0;
-        DeathSound.Play();
         Gm.StopGame();
+        Gm.StopPlayAudio();
         UIManager.GameOver();
         Destroy(gameObject);
     }
@@ -130,6 +132,7 @@ public class Player : LivingEntity
             if (isInvisible == false && isShield == false)
             {
                 OnPlayerDamage();
+                AudioSource.PlayOneShot(hitSound);
                 isShield = true;
                 isHit = true;
                 Debug.Log("Shield CoolTime!");

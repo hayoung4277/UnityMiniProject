@@ -28,8 +28,10 @@ public class Minion : MonoBehaviour
     private Player player;
     private float followSpeed = 5f; // 이동 속도
 
-    private float offsetX = 1.2f;  // 플레이어 기준으로 떨어질 거리
+    private float offsetX = 1f;
+    private float offsetY = 0.5f;// 플레이어 기준으로 떨어질 거리
     private bool isRightSide = true;
+    private bool isUpSide = true;
 
     private Coroutine fireCoroutine;
 
@@ -60,9 +62,8 @@ public class Minion : MonoBehaviour
     {
         foreach (var ab in Abilities)
         {
-            ab.Activate(Rairity);
+            ab.Activate();
         }
-        Debug.Log($"Rairity: {Rairity}");
 
         //fireCoroutine = StartCoroutine(FireRoutine());
     }
@@ -83,7 +84,7 @@ public class Minion : MonoBehaviour
             Ability ability = AbilityFactory.CreateAbility(abilityId, this);
             if (ability != null)
             {
-                ability.ApplyRarityScaling(Rairity); //레어리티에 따른 능력 강화 적용
+                ability.ApplyRarityScaling(); //레어리티에 따른 능력 강화 적용
                 Abilities.Add(ability);
             }
             else
@@ -131,20 +132,16 @@ public class Minion : MonoBehaviour
             return;
 
         // 플레이어의 이동 방향 확인
-        float direction = player.transform.position.x - transform.position.x;
+        float directionX = player.transform.position.x - transform.position.x;
+        float directionY = player.transform.position.y - transform.position.y;
 
-        if (direction > 0)
-        {
-            isRightSide = false;
-        }
-        else
-        {
-            isRightSide = true;
-        }
+        isRightSide = directionX <= 0; // 왼쪽이면 true, 오른쪽이면 false
+        isUpSide = directionY <= 0;    // 아래쪽이면 true, 위쪽이면 false
 
         // 목표 위치 설정 (플레이어 기준으로 일정 거리 유지)
-        Vector3 targetPos = player.transform.position + new Vector3(isRightSide ? offsetX : -offsetX, 0, 0);
+        Vector3 targetPos = player.transform.position + new Vector3(isRightSide ? offsetX : -offsetX, isUpSide ? offsetY : -offsetY, 0);
 
+        // 부드러운 이동 처리
         transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
     }
 

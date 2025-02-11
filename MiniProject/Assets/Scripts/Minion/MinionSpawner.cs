@@ -128,6 +128,8 @@ public class MinionSpawner : MonoBehaviour
 
         usedIndices.Add(availableIndex);
         activeMinions[availableIndex] = minion;
+
+        Debug.Log($"Minion Spawned at index {availableIndex}, Position: {spawnPositions[availableIndex].position}");
     }
 
     private void SpawnLegendMinion(GameObject[] prefab)

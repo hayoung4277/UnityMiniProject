@@ -25,7 +25,42 @@ Transform:
   m_GameObject: {fileID: 1493157341583584329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0.5, y: 0.4, z: 0}
+=======
+  m_LocalPosition: {x: 0.7, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8868690836839079034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3894391827988025402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192364465828673753}
+  m_Layer: 0
+  m_Name: MinionPos4
+  m_TagString: SpawnPos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192364465828673753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894391827988025402}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: -0.3, z: 0}
+>>>>>>> origin/feature/baseFunction
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,8 +190,13 @@ Transform:
   - {fileID: 979769295460597580}
   - {fileID: 1277914708777296950}
   - {fileID: 1987029626423268602}
+<<<<<<< HEAD
   - {fileID: 1083169027595176186}
   - {fileID: 76262057640339402}
+=======
+  - {fileID: 525946251559790573}
+  - {fileID: 1192364465828673753}
+>>>>>>> origin/feature/baseFunction
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2555345960098775130
@@ -396,8 +436,13 @@ MonoBehaviour:
   dataId: 01001
   isShield: 0
   shieldCount: 0
+<<<<<<< HEAD
   isInvisible: 0
+=======
+  isInvisible: 1
+>>>>>>> origin/feature/baseFunction
   spanwer: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 1d429f1093f3d8b40b7e2fa82a8f6d7d, type: 3}
 --- !u!68 &5169715329367222028
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -674,7 +719,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!1 &7635726877253860130
+=======
+--- !u!1 &8403925973668319577
+>>>>>>> origin/feature/baseFunction
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -682,21 +731,33 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 8789362726378267595}
   - component: {fileID: 3935851436842344093}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
+=======
+  - component: {fileID: 525946251559790573}
+  m_Layer: 0
+  m_Name: MinionPos3
+  m_TagString: SpawnPos
+>>>>>>> origin/feature/baseFunction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &8789362726378267595
+=======
+--- !u!4 &525946251559790573
+>>>>>>> origin/feature/baseFunction
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 7635726877253860130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -842,6 +903,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+  m_GameObject: {fileID: 8403925973668319577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8868690836839079034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> origin/feature/baseFunction
 --- !u!1 &9216845831143262495
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +939,11 @@ Transform:
   m_GameObject: {fileID: 9216845831143262495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -0.5, y: 0.4, z: 0}
+=======
+  m_LocalPosition: {x: -0.7, y: 0.3, z: 0}
+>>>>>>> origin/feature/baseFunction
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

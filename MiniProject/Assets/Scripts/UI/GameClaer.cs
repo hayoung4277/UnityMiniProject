@@ -10,13 +10,24 @@ public class GameClaer : GenericUI
     public TextMeshProUGUI timeText;
     public Button reStartButton;
 
+    private AudioSource audioSource;
+    public AudioClip clearSound;
+
+    protected override void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public override void Open()
     {
         base.Open();
+        audioSource.PlayOneShot(clearSound);
+        //audioSource.Play();
     }
 
     public override void Close()
     {
         base.Close();
+        //audioSource.Stop();
     }
 }

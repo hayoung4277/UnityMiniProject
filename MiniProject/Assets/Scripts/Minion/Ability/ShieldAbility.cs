@@ -10,9 +10,10 @@ public class ShieldAbility : Ability
     {
         var findGo = GameObject.FindWithTag("Player");
         player = findGo.GetComponent<Player>();
+        Rairity = minion.Rairity;
     }
 
-    public override void Activate(int rarity)
+    public override void Activate()
     {
         if(player != null && player.shieldCount == 0)
         {

@@ -14,6 +14,7 @@ public class Boss : LivingEntity
     public float DeathSoundPlayTime { get; protected set; }
 
     public PlayerBullet PlayerBullet { get; protected set; }
+    public AudioSource AudioSource { get; protected set; }
 
     public BossData Data { get; protected set; }
 
@@ -43,6 +44,5 @@ public class Boss : LivingEntity
         DeathEffectPlayTime = data.DeathEffectPlayTime;
         DeathSoundName = data.DeathSoundName;
         DeathSoundPlayTime = data.DeathSoundPlayTime;
-
     }
 }
