@@ -35,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
     private float unBSpawnTime = 0f;
 
     private GameManager gm;
+    private UIManager ui;
 
     public static event System.Action<Enemy> OnEnemySpawned;
 
@@ -45,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
         unBSpawnTime += Time.deltaTime;
 
         gm = GameObject.FindWithTag(GMCT.GM).GetComponent<GameManager>();
+        ui = GameObject.FindWithTag(GMCT.UI).GetComponent<UIManager>();
 
         if (bossSpawnTime >= bossSpawnInterval && index < bossPrefabs.Length)
         {
@@ -52,6 +54,8 @@ public class EnemySpawner : MonoBehaviour
 
             bossSpawnTime = 0f;
             index++;
+            Debug.Log($"Boss Length: {bossPrefabs.Length}");
+            Debug.Log($"Index: {index}");
         }
 
         if(normalSpawnTime >= normalSpawnInterval && bossInstance == null)
@@ -71,13 +75,14 @@ public class EnemySpawner : MonoBehaviour
         if (index >= bossPrefabs.Length)
         {
             gm.StopGame();
+            ui.GameClear();
         }
     }
 
     private void SpawnBoss()
     {
         bossInstance = Instantiate(bossPrefabs[index], parent.position, parent.rotation);
-        Debug.Log($"Boss Length: {bossPrefabs.Length}");
+        
     }
 
     private void SpawnSixRandomMonsters()

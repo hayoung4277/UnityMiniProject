@@ -157,7 +157,7 @@ public class Boss : LivingEntity
         ui.AddScore(OfferedScore);
         Destroy(gameObject);
         //gm.StopGame();
-        ui.GameClear();
+        //ui.GameClear();
     }
 
     public void MoveBoss(Rigidbody2D rb)

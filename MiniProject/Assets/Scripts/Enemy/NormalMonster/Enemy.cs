@@ -61,6 +61,7 @@ public class Enemy : NomalMonster
 
     public override void OnDamage(float damage)
     {
+        if(HP>0)
         base.OnDamage(damage);
     }
 
@@ -68,6 +69,7 @@ public class Enemy : NomalMonster
     {
         base.Die();
         audioSource.PlayOneShot(deathSound);
+        Debug.Log("²è");
         ui.AddScore(OfferedScore);
 
         float randomValue = Random.Range(0f, 0.5f);
