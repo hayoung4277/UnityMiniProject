@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4690749610073464141}
   - component: {fileID: 4690749610073464178}
   - component: {fileID: 4690749610073464179}
-  - component: {fileID: 5429759932414520774}
   - component: {fileID: 7810147811587310864}
   - component: {fileID: 4762582637512610159}
+  - component: {fileID: 2665404788488324941}
+  - component: {fileID: 8609589047031224788}
   m_Layer: 0
   m_Name: BaseBoomBullet
-  m_TagString: BoomBullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4903,19 +4904,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &5429759932414520774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4690749610073464176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c786f3a0eb9c443b66084b7c8e94ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataId: 110004
 --- !u!50 &7810147811587310864
 Rigidbody2D:
   serializedVersion: 4
@@ -4988,3 +4976,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.23069292, y: 0.7263763}
   m_EdgeRadius: 0
+--- !u!114 &2665404788488324941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4690749610073464176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c786f3a0eb9c443b66084b7c8e94ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataId: 110004
+--- !u!114 &8609589047031224788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4690749610073464176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c786f3a0eb9c443b66084b7c8e94ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataId: 110004

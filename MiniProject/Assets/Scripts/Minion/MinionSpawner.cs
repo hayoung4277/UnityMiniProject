@@ -10,6 +10,7 @@ public class MinionSpawner : MonoBehaviour
     public GameObject[] shieldPrefabs;
     public GameObject[] multiplePrefabs;
     public GameObject[] singleShieldPrefabs;
+    public GameObject[] boomPrefabs;
 
     private List<Transform> spawnPositions = new List<Transform>();
 

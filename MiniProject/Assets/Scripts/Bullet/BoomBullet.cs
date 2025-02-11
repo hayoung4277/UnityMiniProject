@@ -7,7 +7,7 @@ public class BoomBullet : Bullet
     private Rigidbody2D rb;
     public string dataId = "";
     private Minion ownerMinion;
-    private BoomShotAbility ability;
+    private GameObject boomPrefab;
 
     private void Awake()
     {
@@ -27,17 +27,11 @@ public class BoomBullet : Bullet
     private void Start()
     {
         Fire(rb);
-        Destroy(gameObject, 5f);
     }
 
     public override void Initialize(BulletData data)
     {
         base.Initialize(data);
-    }
-
-    public void AbilityInitialize(BoomShotAbility boomShotAbility)
-    {
-        ability = boomShotAbility;
     }
 
     public override void Fire(Rigidbody2D rb)
@@ -47,16 +41,23 @@ public class BoomBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "NormalMonster")
+        if(collision.gameObject.tag == "NormalMonster" || collision.gameObject.tag == "Boss")
         {
-            ability.Boom(transform.position);
-            Destroy(gameObject);
+            var targetPos = collision.transform.position;
+            Boom(targetPos);
+            Destroy(gameObject, 1f);
+        }
+    }
+
+    private void Boom(Vector3 explosionPosition)
+    {
+        boomPrefab = Resources.Load<GameObject>($"Prefabs/Effect/ExplosionBlue");
+
+        if (boomPrefab != null)
+        {
+            GameObject.Instantiate(boomPrefab, explosionPosition, Quaternion.identity);
         }
 
-        if (collision.gameObject.tag == "Boss")
-        {
-            ability.Boom(transform.position);
-            Destroy(gameObject);
-        }
+        Debug.Log("BOOM!!");
     }
 }

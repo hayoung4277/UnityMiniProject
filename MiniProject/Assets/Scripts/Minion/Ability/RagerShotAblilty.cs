@@ -18,7 +18,7 @@ public class RagerShotAblilty : Ability
 
     public override void Activate()
     {
-        base.Activate();
+        Fire(minion);
     }
 
     public override void Fire(MonoBehaviour callar)
@@ -30,13 +30,15 @@ public class RagerShotAblilty : Ability
     {
         while(true)
         {
+            Vector3 Pos = new Vector3(tf.position.x, tf.position.y + 4.5f, tf.position.z);
+
             var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
             if (bulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
             }
 
-            var bullet = GameObject.Instantiate(bulletPrefab, tf.position, tf.rotation);
+            var bullet = GameObject.Instantiate(bulletPrefab, Pos, tf.rotation);
 
             yield return new WaitForSeconds(FireRate);
         }
