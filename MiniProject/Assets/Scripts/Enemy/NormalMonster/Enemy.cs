@@ -7,7 +7,7 @@ public class Enemy : NomalMonster
     public string dataId = "040001";
     private Rigidbody2D rb;
     private AudioSource audioSource;
-    private AudioClip deathSound;
+    public AudioClip deathSound;
 
     private bool isInvisible;
 
@@ -21,7 +21,6 @@ public class Enemy : NomalMonster
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.NormalMonsterTable.Get(dataId);
         audioSource = GetComponent<AudioSource>();
-        deathSound = Resources.Load<AudioClip>("Sound/mon_die");
 
         var findUI = GameObject.FindWithTag(GMCT.UI);
         ui = findUI.GetComponent<UIManager>();
@@ -68,7 +67,7 @@ public class Enemy : NomalMonster
     public override void Die()
     {
         base.Die();
-        //audioSource.PlayOneShot(deathSound);
+        audioSource.PlayOneShot(deathSound);
         ui.AddScore(OfferedScore);
 
         float randomValue = Random.Range(0f, 0.5f);

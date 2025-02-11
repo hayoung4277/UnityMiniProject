@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BossData
 {
@@ -13,6 +15,30 @@ public class BossData
     public float DeathEffectPlayTime { get; set; }
     public string DeathSoundName { get; set; }
     public float DeathSoundPlayTime { get; set; }
+    public string PatternIdsRaw { get; set; }
+
+    public List<int> PatternIds { get; private set; } = new List<int>();
+
+    public void ParsePatternIds()
+    {
+        if (string.IsNullOrEmpty(PatternIdsRaw))
+        {
+            Debug.LogWarning($"AbilityIds is empty for Minion {Id}");
+            return;
+        }
+
+        try
+        {
+            PatternIds = PatternIdsRaw.Split(',')
+                                      .Select(id => int.Parse(id.Trim()))
+                                      .ToList();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error parsing AbilityIds for Minion {Id}: {e.Message}");
+            PatternIds.Clear();
+        }
+    }
 
     public override string ToString()
     {
