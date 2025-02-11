@@ -6,6 +6,7 @@ public class HomingShotAbility : Ability
 {
     private Transform tf;
     private Minion minion;
+    private float damage = 100f;
 
     public HomingShotAbility(Minion minion) : base(minion)
     {
@@ -39,8 +40,16 @@ public class HomingShotAbility : Ability
 
             Vector3 endPos = new Vector3(tf.position.x, tf.position.y + 10f, tf.position.z);
 
-            Collider[] colliders = Physics.OverlapSphere(tf.position, 1f);
-            //Collider[] colliders1 = Physics.OverlapCapsule(tf.position, endPos);
+            Collider[] colliders = Physics.OverlapCapsule(tf.position, endPos, 1.5f);
+
+            foreach(Collider hit in colliders)
+            {
+                IDamageable damageable = hit.GetComponent<IDamageable>();
+                if(damageable != null)
+                {
+                    damageable.OnDamage(damage);
+                }
+            }
 
             yield return new WaitForSeconds(FireRate);
         }
