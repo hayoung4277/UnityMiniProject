@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 06002
   isMove: 1
+  isDead: 0
   deathSound: {fileID: 8300000, guid: 24b958686c2ee3c4fb34e311c36ef7cc, type: 3}
 --- !u!82 &5000166663428486227
 AudioSource:

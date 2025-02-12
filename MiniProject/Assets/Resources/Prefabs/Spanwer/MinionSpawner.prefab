@@ -63,3 +63,10 @@ MonoBehaviour:
   - {fileID: 339220035790562603, guid: fb28cf9ea78597244b9a4036477cd23f, type: 3}
   razerPrefabs:
   - {fileID: 339220035790562603, guid: 5cdf2a08830b65a4580d7f95bc0e5a6d, type: 3}
+  FormationPrefabs:
+  - {fileID: 339220035790562603, guid: 2c4e716b9263fe54c9c66aa47b36627b, type: 3}
+  piercePrefabs:
+  - {fileID: 339220035790562603, guid: cdbe8fe339d7a3a469ec7d6a52f93ad3, type: 3}
+  agroPrefabs:
+  - {fileID: 339220035790562603, guid: e656712a45c8f2c43a089ef57aa84723, type: 3}
+  spawnEffect: {fileID: 8733514384126542107, guid: bb2f07fe0fb8baf44a34e5a3e6bf5304, type: 3}

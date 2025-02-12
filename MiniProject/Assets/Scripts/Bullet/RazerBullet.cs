@@ -8,7 +8,7 @@ public class RazerBullet : Bullet
 
     private void Awake()
     {
-        Data = DataTableManager.BulletTable.Get(dataId);
+        Data = DataTableManager.Instance.BulletTable.Get(dataId);
 
         if (Data != null)
         {
@@ -18,6 +18,11 @@ public class RazerBullet : Bullet
         {
             Debug.LogError($"Bullet data with ID '{dataId}' not found.");
         }
+    }
+
+    private void Start()
+    {
+        Destroy(gameObject, 0.5f);
     }
 
     public override void Initialize(BulletData data)

@@ -25,6 +25,8 @@ TagManager:
   - BoomBullet
   - RazerBullet
   - BoomEffect
+  - HomingBullet
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

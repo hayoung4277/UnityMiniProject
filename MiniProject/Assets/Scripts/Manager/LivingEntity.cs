@@ -8,6 +8,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public event Action onDeath;
     public bool IsDead { get; protected set; }
 
+    public float Damage { get; protected set; }
+
     public virtual void OnDamage(float damage)
     {
     }

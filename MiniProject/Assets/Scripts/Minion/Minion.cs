@@ -37,7 +37,7 @@ public class Minion : MonoBehaviour
 
     private void Awake()
     {
-        Data = DataTableManager.MinionTable.Get(dataId);
+        Data = DataTableManager.Instance.MinionTable.Get(dataId);
         if (Data == null)
         {
             Debug.LogError($"Minion data with ID '{dataId}' not found.");
@@ -60,9 +60,9 @@ public class Minion : MonoBehaviour
 
     private void Start()
     {
-        foreach (var ab in Abilities)
+        for(int i = 0; i < Abilities.Count; i++)
         {
-            ab.Activate();
+            Abilities[i].Activate();
         }
 
         //fireCoroutine = StartCoroutine(FireRoutine());

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public event System.Action onSpeedUp;
     public event System.Action onStopGame;
 
+    private Player player;
+
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -55,7 +57,14 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        var findPlayer = GameObject.FindWithTag("Player");
+        player = findPlayer.GetComponent<Player>();
+
+        if (player == null)
+            return;
+
         Time.timeScale = 1f;
+
     }
 
     public void ReStartGame()

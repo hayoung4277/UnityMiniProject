@@ -14,6 +14,7 @@ public class HomingShotAbility : Ability
         tf = minion.transform;
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
     }
 
     public override void Activate()
@@ -30,26 +31,12 @@ public class HomingShotAbility : Ability
     {
         while(true)
         {
-            var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bulletPrefab == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
             }
 
-            GameObject bullet = GameObject.Instantiate(bulletPrefab, tf.position, tf.rotation);
-
-            Vector3 endPos = new Vector3(tf.position.x, tf.position.y + 10f, tf.position.z);
-
-            Collider[] colliders = Physics.OverlapCapsule(tf.position, endPos, 1.5f);
-
-            foreach(Collider hit in colliders)
-            {
-                IDamageable damageable = hit.GetComponent<IDamageable>();
-                if(damageable != null)
-                {
-                    damageable.OnDamage(damage);
-                }
-            }
+            GameObject bullet = GameObject.Instantiate(BulletPrefab, tf.position, tf.rotation);
 
             yield return new WaitForSeconds(FireRate);
         }

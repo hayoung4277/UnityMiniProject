@@ -17,6 +17,7 @@ public class FormationShotAbility : Ability
         BulletName = minion.BulletName;
         Rairity = minion.Rairity;
         FireRate = minion.FireRate;
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
     }
 
     public override void Activate()
@@ -36,8 +37,7 @@ public class FormationShotAbility : Ability
             // 보조기체 앞쪽에서 탄환 발사 (앞쪽 0.5 위치)
             startPos = tf.position + tf.forward * 0.8f;
 
-            var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bulletPrefab == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
                 yield break;
@@ -49,7 +49,7 @@ public class FormationShotAbility : Ability
 
             for (int i = 0; i < bulletCount; i++)
             {
-                GameObject bullet = GameObject.Instantiate(bulletPrefab, firstBulletPos, tf.rotation);
+                GameObject bullet = GameObject.Instantiate(BulletPrefab, firstBulletPos, tf.rotation);
 
                 // 다음 탄환 위치를 오른쪽으로 이동
                 firstBulletPos += tf.right * bulletOffsetX;

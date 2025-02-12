@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6684184347472167011}
   - component: {fileID: 716338786742545378}
   - component: {fileID: 101198537470431967}
-  - component: {fileID: -527962189508378852}
   - component: {fileID: -7905632570880291189}
   - component: {fileID: 607064072223924021}
   - component: {fileID: -7268085410091869047}
@@ -116,51 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-527962189508378852
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233614484521026796}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
-  m_EdgeRadius: 0
 --- !u!82 &-7905632570880291189
 AudioSource:
   m_ObjectHideFlags: 0
@@ -271,7 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 040002
   deathSound: {fileID: 8300000, guid: 2597f1cc08142e2489a212bb0346adab, type: 3}
-  healthBarPrefab: {fileID: 1771179830782634705, guid: e2914d05bb14d0449b5e3619e5c7ca88, type: 3}
 --- !u!60 &-7268085410091869047
 PolygonCollider2D:
   m_ObjectHideFlags: 0

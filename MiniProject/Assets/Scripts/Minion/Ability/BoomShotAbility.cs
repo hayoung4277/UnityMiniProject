@@ -6,12 +6,7 @@ using UnityEngine;
 public class BoomShotAbility : Ability
 {
     private Transform tf;
-    private GameObject boomPrefab;
-    private BoomBullet boomBullet;
     private Minion minion;
-
-    private float explosionRadius =3f; // Æø¹ß ¹Ý°æ
-    private float damage;
 
     public BoomShotAbility(Minion minion) : base(minion)
     {
@@ -20,7 +15,7 @@ public class BoomShotAbility : Ability
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
         Rairity = minion.Rairity;
-        boomPrefab = Resources.Load<GameObject>($"Prefabs/Effect/ExplosionBlue");
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
     }
 
     public override void Activate()
@@ -37,40 +32,14 @@ public class BoomShotAbility : Ability
     {
         while (true)
         {
-            var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bulletPrefab == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
             }
 
-            GameObject bullet = GameObject.Instantiate(bulletPrefab, tf.position, tf.rotation);
+            GameObject bullet = GameObject.Instantiate(BulletPrefab, tf.position, tf.rotation);
 
             yield return new WaitForSeconds(FireRate);
-        }
-    }
-
-    public override void UpdateAbility()
-    {
-        base.UpdateAbility();
-    }
-
-    public override void ApplyRarityScaling()
-    {
-        if(Rairity == 1)
-        {
-            damage = 100f;
-        }
-        else if(Rairity == 2)
-        {
-            damage = 200f;
-        }
-        else if(Rairity == 3)
-        {
-            damage = 300f;
-        }
-        else if(Rairity == 4)
-        {
-            damage = 500f;
         }
     }
 }

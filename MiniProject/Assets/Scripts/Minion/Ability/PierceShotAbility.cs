@@ -14,6 +14,7 @@ public class PierceShotAbility : Ability
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
         Rairity = minion.Rairity;
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
     }
 
     public override void Activate()
@@ -30,20 +31,14 @@ public class PierceShotAbility : Ability
     {
         while(true)
         {
-            var bullet = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bullet == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
             }
 
-            GameObject.Instantiate(bullet, tf.position, tf.rotation);
+            GameObject.Instantiate(BulletPrefab, tf.position, tf.rotation);
 
             yield return new WaitForSeconds(FireRate);
         }
-    }
-
-    public override void ApplyRarityScaling()
-    {
-        base.ApplyRarityScaling();
     }
 }

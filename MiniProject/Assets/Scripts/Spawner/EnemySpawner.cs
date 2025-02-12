@@ -10,6 +10,10 @@ public class EnemySpawner : MonoBehaviour
     private GameObject bossInstance;
     public Transform parent;
     private int index = 0;
+    private int deathCount = 0;
+    private bool bossDeathCounted = false;
+
+    private Boss bossComponent;
 
     public float bossSpawnInterval = 60f;
     private float bossSpawnTime = 0f;
@@ -37,6 +41,8 @@ public class EnemySpawner : MonoBehaviour
     private GameManager gm;
     private UIManager ui;
 
+    private bool isEnd = false;
+
     public static event System.Action<Enemy> OnEnemySpawned;
 
     private void Update()
@@ -51,28 +57,36 @@ public class EnemySpawner : MonoBehaviour
         if (bossSpawnTime >= bossSpawnInterval && index < bossPrefabs.Length)
         {
             SpawnBoss();
+            index++;
 
             bossSpawnTime = 0f;
-            index++;
+            
             Debug.Log($"Boss Length: {bossPrefabs.Length}");
             Debug.Log($"Index: {index}");
         }
 
-        if(normalSpawnTime >= normalSpawnInterval && bossInstance == null)
+        if (normalSpawnTime >= normalSpawnInterval && bossInstance == null)
         {
             SpawnSixRandomMonsters();
 
             normalSpawnTime = 0f;
         }
 
-        if(unBSpawnTime >= unBSpawnInterval && bossInstance == null)
+        if (unBSpawnTime >= unBSpawnInterval && bossInstance == null)
         {
             SpawnUnBreakable();
 
             unBSpawnTime = 0f;
         }
 
-        if (index >= bossPrefabs.Length)
+        if (bossInstance != null && bossComponent.IsDead && !bossDeathCounted)
+        {
+            bossDeathCounted = true; // 중복 카운트 방지
+            deathCount++;
+            Debug.Log($"DeathCount: {deathCount}");
+        }
+
+        if (deathCount >= bossPrefabs.Length)
         {
             gm.StopGame();
             ui.GameClear();
@@ -82,10 +96,11 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnBoss()
     {
         bossInstance = Instantiate(bossPrefabs[index], parent.position, parent.rotation);
-        
+        bossComponent = bossInstance.GetComponent<Boss>();
+        bossDeathCounted = false;
     }
 
-    private void SpawnSixRandomMonsters()
+    public void SpawnSixRandomMonsters()
     {
         Vector3 currentSpawnPos = spawnPos;
         currentSpawnPos.z = 0f;

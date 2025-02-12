@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public GameOver gameOverUI;
     public GameClaer gameClearUI;
 
-    public Player player;
+    private Player player;
     private GameManager gm;
 
     private void Awake()
@@ -33,13 +33,22 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        if (player == null)
+        {
+            return;
+        }
+
         gameStartUI.Close();
         gameProgressUI.Open();
         gameProgressUI.PlaySound();
+
     }
 
     public void GameOver()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
         gameProgressUI.StopSound();
         gameProgressUI.Close();
         gameOverUI.Open();
@@ -50,6 +59,8 @@ public class UIManager : MonoBehaviour
 
     public void GameClear()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
         gameProgressUI.Close();
         gameClearUI.Open();
 
@@ -72,6 +83,31 @@ public class UIManager : MonoBehaviour
     public void PauseGame()
     {
         gameProgressUI.PauseGame();
+    }
+
+    public void OpenPlayerSelect()
+    {
+        gameStartUI.OpenPlayerSelect();
+    }
+
+    public void SpawnPlayer1()
+    {
+        gameStartUI.SpawnPlayer1();
+    }
+
+    public void SpawnPlayer2()
+    {
+        gameStartUI.SpawnPlayer2();
+    }
+
+    public void SpawnPlayer3()
+    {
+        gameStartUI.SpawnPlayer3();
+    }
+
+    public void ClosePlayerSelect()
+    {
+        gameStartUI.ClosePlayerSelect();
     }
 
     public void AddScore(float amount)

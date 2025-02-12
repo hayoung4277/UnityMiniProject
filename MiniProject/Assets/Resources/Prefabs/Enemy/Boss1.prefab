@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 6297419714822327034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.09, z: 0}
+  m_LocalPosition: {x: -4.5, y: 3.6, z: 0}
   m_LocalScale: {x: 4.836018, y: 4.836018, z: 4.836018}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 06001
   isMove: 0
+  isDead: 0
   deathSound: {fileID: 8300000, guid: 24b958686c2ee3c4fb34e311c36ef7cc, type: 3}
 --- !u!82 &-1669311611922824994
 AudioSource:

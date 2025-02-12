@@ -20,7 +20,7 @@ public class Enemy : NomalMonster
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.NormalMonsterTable.Get(dataId);
+        Data = DataTableManager.Instance.NormalMonsterTable.Get(dataId);
         audioSource = GetComponent<AudioSource>();
 
         var findUI = GameObject.FindWithTag(GMCT.UI);
@@ -95,70 +95,24 @@ public class Enemy : NomalMonster
         GetComponent<SpriteRenderer>().enabled = false;
 
         // 콜라이더 비활성화
-        if (TryGetComponent<Collider2D>(out var collider))
-        {
-            collider.enabled = false;
-        }
+        GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerBullet" && isInvisible == false)
-        {
-            var playerBullet = collision.gameObject.GetComponent<PlayerBullet>();
+        if (isInvisible) return;
 
-            if (playerBullet != null)
+        IBullet bullet = collision.GetComponent<IBullet>(); // 한 번만 호출!
+        if (bullet != null)
+        {
+            float bulletDamage = DataTableManager.Instance.BulletTable.GetBulletDamage(bullet.BulletID);
+            if (bulletDamage > 0)
             {
-                OnDamage(playerBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("PlayerBullet component not found on the collided object.");
+                OnDamage(bulletDamage);
             }
         }
 
-        if (collision.gameObject.tag == "MinionBullet" && isInvisible == false)
-        {
-            var minionBullet = collision.gameObject.GetComponent<MinionBullet>();
-
-            if (minionBullet != null)
-            {
-                OnDamage(minionBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "RazerBullet" && isInvisible == false)
-        {
-            var minionBullet = collision.gameObject.GetComponent<RazerBullet>();
-
-            if (minionBullet != null)
-            {
-                OnDamage(minionBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "BoomEffect" && isInvisible == false)
-        {
-            var boomEffect = collision.gameObject.GetComponent<BoomEffect>();
-            if (boomEffect != null)
-            {
-                OnDamage(boomEffect.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "DestroyBox")
+        if (collision.gameObject.CompareTag("DestroyBox"))
         {
             Destroy(gameObject);
         }
