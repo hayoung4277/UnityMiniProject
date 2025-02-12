@@ -186,9 +186,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6297419714822327034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885adb1e542e1b840b14e88968a5d1e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f80c815e9ddf803418aed371e34fd47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataId: 06001
+  isMove: 0
+  isDead: 0
   deathSound: {fileID: 8300000, guid: 00ee4fe5ce8875d4fb9c3e5d383e4396, type: 3}
 --- !u!61 &5058985779716892816
 BoxCollider2D:

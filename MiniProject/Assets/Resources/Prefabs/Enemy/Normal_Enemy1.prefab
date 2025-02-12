@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 040001
+  deathSound: {fileID: 8300000, guid: 56c3ba18c62b5184291de4cc5c290c24, type: 3}
 --- !u!50 &8023329409406917307
 Rigidbody2D:
   serializedVersion: 4
@@ -184,7 +185,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 56c3ba18c62b5184291de4cc5c290c24, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

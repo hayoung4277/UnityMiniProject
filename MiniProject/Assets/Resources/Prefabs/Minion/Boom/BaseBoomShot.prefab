@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3271907022514575905}
   - component: {fileID: 2191590912059504003}
   m_Layer: 0
-  m_Name: Minion_13
+  m_Name: BaseBoomShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f7728c583516a4c8d5708f592b4848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataId: 10013
+  dataId: 10012

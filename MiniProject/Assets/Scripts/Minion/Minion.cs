@@ -144,10 +144,4 @@ public class Minion : MonoBehaviour
         // 부드러운 이동 처리
         transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
     }
-
-    //private float ApplyRarityBonus(float baseValue, int rarity)
-    //{
-    //    float multiplier = 1f + (rarity * 0.1f); // 레어리티가 높을수록 증가 (예: 레어리티 3이면 1.3배)
-    //    return baseValue * multiplier;
-    //}
 }
