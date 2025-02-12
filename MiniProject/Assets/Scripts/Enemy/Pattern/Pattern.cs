@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class Pattern
 {
+    public float FireRate { get; set; } //발사 간격
+    public float TimeBetweenShots { get; set; } //탄환 간 간격
+    public float BulletSpeed { get; set; }
+    public float PatternStartTime { get; set; }
+
     protected Boss owner;
 
     public Pattern(Boss boss)

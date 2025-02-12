@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 040001
   deathSound: {fileID: 8300000, guid: 2597f1cc08142e2489a212bb0346adab, type: 3}
+  healthBarPrefab: {fileID: 0}
 --- !u!50 &8023329409406917307
 Rigidbody2D:
   serializedVersion: 4

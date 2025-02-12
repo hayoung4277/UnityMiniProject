@@ -155,9 +155,22 @@ public class Boss : LivingEntity
         AudioSource.PlayOneShot(deathSound);
         HP = 0f;
         ui.AddScore(OfferedScore);
-        Destroy(gameObject);
-        //gm.StopGame();
-        //ui.GameClear();
+
+        DisableSprite();
+
+        Destroy(gameObject, deathSound.length);
+    }
+
+    private void DisableSprite()
+    {
+        // 스프라이트 렌더러 비활성화
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        // 콜라이더 비활성화
+        if (TryGetComponent<Collider2D>(out var collider))
+        {
+            collider.enabled = false;
+        }
     }
 
     public void MoveBoss(Rigidbody2D rb)

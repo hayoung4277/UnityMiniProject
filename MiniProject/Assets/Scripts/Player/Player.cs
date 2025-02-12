@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : LivingEntity
 {
@@ -76,6 +77,7 @@ public class Player : LivingEntity
         shieldCount = 0;
         shieldCoolTime = 0f;
     }
+
     private void Initialized(PlayerData data)
     {
         NameId = data.NameId;

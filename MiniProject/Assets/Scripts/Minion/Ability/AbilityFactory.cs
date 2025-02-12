@@ -15,7 +15,7 @@ public static class AbilityFactory
             case 6: return new HomingShotAbility(minion); //유도형(구현 중)
             case 7: return new BoomShotAbility(minion); //폭발형(구현 완)
             case 8: return new RagerShotAblilty(minion); //레이저형(구현 완)
-            case 9: return new PierceShotAbility(minion); //관통형(구현 전)
+            case 9: return new PierceShotAbility(minion); //관통형(구현 완)
             case 10: return new AgroAblility(minion); //적부르기형(구현 전)
             default:
                 Debug.LogWarning($"알 수 없는 Ability ID: {abilityId}");

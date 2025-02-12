@@ -270,6 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 040010
+  deathSound: {fileID: 8300000, guid: 2597f1cc08142e2489a212bb0346adab, type: 3}
+  healthBarPrefab: {fileID: 1771179830782634705, guid: e2914d05bb14d0449b5e3619e5c7ca88, type: 3}
 --- !u!60 &5398455782268835838
 PolygonCollider2D:
   m_ObjectHideFlags: 0

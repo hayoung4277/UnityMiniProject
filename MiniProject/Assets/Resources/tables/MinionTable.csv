@@ -10,5 +10,6 @@ Id,NameId,Rairity,Duration,FireRate,AbilityIdsRaw,SpriteId,BulletName
 10009,0110009,2,30,0.0,4,Minion_Sprite_9,null
 10010,0110010,1,30,0.4,1,Minion_Sprite_10,MinionbulletRepeater1
 10011,0110011,1,30,0.4,5,Minion_Sprite_11,MinionbulletRepeater1
-10012,0110012,1,30,1,"1,7",Minion_Sprite_12,BaseBoomBullet
-10013,0110013,1,30,5,8,Minion_Sprite_13,BaseRazerBullet
+10012,0110012,1,30,1.0,"1,7",Minion_Sprite_12,BaseBoomBullet
+10013,0110013,1,30,5.0,8,Minion_Sprite_13,BaseRazerBullet
+10014,0110014,1,30,0.5,9,Minion_Sprite_14,BasePierceBullet
