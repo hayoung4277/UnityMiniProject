@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : NomalMonster
 {
@@ -43,7 +44,7 @@ public class Enemy : NomalMonster
     {
         MonsterDown(rb);
 
-        if(transform.position.y <= 4.4f)
+        if (transform.position.y <= 4.4f)
         {
             isInvisible = false;
         }
@@ -61,7 +62,10 @@ public class Enemy : NomalMonster
 
     public override void OnDamage(float damage)
     {
-        base.OnDamage(damage);
+        if (HP > 0)
+        {
+            base.OnDamage(damage);
+        }
     }
 
     public override void Die()
@@ -80,7 +84,21 @@ public class Enemy : NomalMonster
             OnSpawnItem = null;
         }
 
-        Destroy(gameObject);
+        DisableSprite();
+
+        Destroy(gameObject, deathSound.length);
+    }
+
+    private void DisableSprite()
+    {
+        // 스프라이트 렌더러 비활성화
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        // 콜라이더 비활성화
+        if (TryGetComponent<Collider2D>(out var collider))
+        {
+            collider.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -99,7 +117,7 @@ public class Enemy : NomalMonster
             }
         }
 
-        if(collision.gameObject.tag == "MinionBullet" && isInvisible == false)
+        if (collision.gameObject.tag == "MinionBullet" && isInvisible == false)
         {
             var minionBullet = collision.gameObject.GetComponent<MinionBullet>();
 
@@ -127,10 +145,10 @@ public class Enemy : NomalMonster
             }
         }
 
-        if(collision.gameObject.tag == "BoomEffect" && isInvisible == false)
+        if (collision.gameObject.tag == "BoomEffect" && isInvisible == false)
         {
             var boomEffect = collision.gameObject.GetComponent<BoomEffect>();
-            if(boomEffect != null)
+            if (boomEffect != null)
             {
                 OnDamage(boomEffect.Damage);
             }

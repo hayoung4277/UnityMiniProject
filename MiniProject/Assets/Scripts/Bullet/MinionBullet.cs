@@ -12,7 +12,7 @@ public class MinionBullet : Bullet
         rb = GetComponent<Rigidbody2D>();
         Data = DataTableManager.BulletTable.Get(dataId);
 
-        if(Data != null)
+        if (Data != null)
         {
             Initialize(Data);
         }
@@ -41,14 +41,27 @@ public class MinionBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "NormalMonster")
+        if(CanGuided && PierceCount > 0)
         {
-            Destroy(gameObject);
+            PierceCount--;
+            if(PierceCount == 0)
+            {
+                CanGuided = false;
+            }
         }
 
-        if (collision.gameObject.tag == "Boss")
+        if (!CanGuided)
         {
-            Destroy(gameObject);
+            if (collision.gameObject.tag == "NormalMonster")
+            {
+                Destroy(gameObject);
+            }
+
+            if (collision.gameObject.tag == "Boss")
+            {
+                Destroy(gameObject);
+            }
         }
+
     }
 }

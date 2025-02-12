@@ -8,3 +8,4 @@ Id,Damage,BulletSpeed,BulletEffectName,CanDestroyed,CanGuided,CanPierce,PierceCo
 110004,250,7,null,FALSE,FALSE,FALSE,0
 110005,500,0,null,FALSE,FALSE,TRUE,0
 110006,200,0,null,FALSE,FALSE,FALSE,0
+110007,50,7,null,FALSE,FALSE,TRUE,1
