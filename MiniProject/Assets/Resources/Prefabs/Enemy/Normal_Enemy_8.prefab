@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 040008
   deathSound: {fileID: 8300000, guid: 56c3ba18c62b5184291de4cc5c290c24, type: 3}
-  deathEffect: {fileID: 3121847219011696124, guid: 15e0be8ec5bd0e04db50ee1daf97b4f0, type: 3}
+  deathEffect: {fileID: 4829419654416629318, guid: 95abac88a6472cd4caabc1d80f771d38, type: 3}
 --- !u!50 &7759488294831393280
 Rigidbody2D:
   serializedVersion: 4
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 4043355294945016598}
   m_Layer: 0
   m_Name: Turret04
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 1359035626024722169}
   m_Layer: 0
   m_Name: Turret03
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 2306830877327391939}
   m_Layer: 0
   m_Name: Normal_Enemy_8
-  m_TagString: NormalMonster
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

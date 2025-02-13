@@ -18,6 +18,8 @@ public class Enemy : NomalMonster
 
     public event System.Action<Enemy> OnSpawnItem;
 
+    private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +38,19 @@ public class Enemy : NomalMonster
         else
         {
             Debug.LogError($"Enemy1 data with ID '{dataId}' not found.");
+        }
+
+        // 부모-자식 관계 내의 모든 SpriteRenderer 추가
+        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>(true));
+
+        // 독립적인 오브젝트들도 필요하면 추가 가능
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("EnemyPart"))
+        {
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+            if (sr != null && !spriteRenderers.Contains(sr))
+            {
+                spriteRenderers.Add(sr);
+            }
         }
 
         isInvisible = true;
@@ -72,7 +87,8 @@ public class Enemy : NomalMonster
     public override void Die()
     {
         base.Die();
-        Instantiate(deathEffect, gameObject.transform);
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(deathEffect, 0.5f);
         audioSource.PlayOneShot(deathSound);
         ui.AddScore(OfferedScore);
 
@@ -94,16 +110,10 @@ public class Enemy : NomalMonster
     
     private void DisableSprite()
     {
-        // 스프라이트 렌더러 비활성화
-        GetComponent<SpriteRenderer>().enabled = false;
-
-        // 현재 오브젝트 및 모든 자식들의 SpriteRenderer 가져오기
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-
-        // 모든 SpriteRenderer 끄기
-        foreach (SpriteRenderer sr in spriteRenderers)
+        foreach (var sr in spriteRenderers)
         {
-            sr.enabled = false;
+            if (sr != null)
+                sr.enabled = false;
         }
 
         // 콜라이더 비활성화

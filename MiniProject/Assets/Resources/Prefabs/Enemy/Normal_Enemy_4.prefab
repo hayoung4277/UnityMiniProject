@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 040004
   deathSound: {fileID: 8300000, guid: 56c3ba18c62b5184291de4cc5c290c24, type: 3}
-  deathEffect: {fileID: 3121847219011696124, guid: 15e0be8ec5bd0e04db50ee1daf97b4f0, type: 3}
+  deathEffect: {fileID: 4829419654416629318, guid: 95abac88a6472cd4caabc1d80f771d38, type: 3}
 --- !u!50 &5208566636953303443
 Rigidbody2D:
   serializedVersion: 4

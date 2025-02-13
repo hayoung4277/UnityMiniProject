@@ -18,7 +18,7 @@ public class FanShotAbility : Ability
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
         Rairity = minion.Rairity;
-        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
+        
 
         if (Rairity == 1)
         {
@@ -48,6 +48,8 @@ public class FanShotAbility : Ability
     {
         while(true)
         {
+            BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
+
             if (BulletPrefab == null)
             {
                 Debug.LogError($"Bullet Prefab '{BulletName}' not found!");

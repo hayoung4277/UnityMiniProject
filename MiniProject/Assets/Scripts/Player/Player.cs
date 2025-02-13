@@ -48,12 +48,12 @@ public class Player : LivingEntity
 
     public AudioClip hitSound;
 
-    //public List<GameObject> heartIcons = new List<GameObject>();
-    [SerializeField] private GameObject[] heartIcons;
-    public GameObject heartIcon;
-    private int heartIconIndex = 0;
-    private Vector3 startPos = new Vector3(-2f, -4.75f, 0f);
-    private GameObject heartIconInstance;
+    ////public List<GameObject> heartIcons = new List<GameObject>();
+    //[SerializeField] private GameObject[] heartIcons;
+    //public GameObject heartIcon;
+    //private int heartIconIndex = 0;
+    //private Vector3 startPos = new Vector3(-2f, -4.75f, 0f);
+    //private GameObject heartIconInstance;
 
     private void Awake()
     {
@@ -91,13 +91,6 @@ public class Player : LivingEntity
         if (bulletSpawner == null)
         {
             bulletSpawner = GetComponentInChildren<BulletSpawner>(); // 자식에서 찾기
-        }
-
-        for(int i = 0; i < heartIcons.Length; i++)
-        {
-            heartIcons[i].gameObject.SetActive(true);
-            heartIcons[i].gameObject.transform.position = startPos;
-            startPos += new Vector3(1f, 0f, 0f);
         }
 
         isShield = true;
@@ -207,22 +200,19 @@ public class Player : LivingEntity
             shieldEffectInstance = Instantiate(shieldEffect, transform.position, Quaternion.identity);
             shieldEffectInstance.transform.SetParent(transform);
             shieldEffectInstance.transform.localPosition = Vector3.zero;
-
-            HeartIconActive();
-            heartIconIndex++;
         }
     }
 
-    private void HeartIconActive()
-    {
-        heartIcons[heartIconIndex].gameObject.SetActive(true);
-    }
+    //private void HeartIconActive()
+    //{
+    //    heartIcons[heartIconIndex].gameObject.SetActive(true);
+    //}
 
-    private void HeartIconDeActive()
-    {
-        heartIconIndex--;
-        heartIcons[heartIconIndex].gameObject.SetActive(false);
-    }
+    //private void HeartIconDeActive()
+    //{
+    //    heartIconIndex--;
+    //    heartIcons[heartIconIndex].gameObject.SetActive(false);
+    //}
 
     public void ReduceShield()
     {
@@ -233,7 +223,6 @@ public class Player : LivingEntity
         if (shieldCount <= 0)
         {
             RemoveShieldEffect();
-            HeartIconDeActive();
         }
     }
 

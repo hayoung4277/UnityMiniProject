@@ -28,6 +28,7 @@ TagManager:
   - HomingBullet
   - EnemySpawner
   - BulletSpawner
+  - EnemyPart
   layers:
   - Default
   - TransparentFX

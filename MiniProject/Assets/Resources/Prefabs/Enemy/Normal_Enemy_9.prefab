@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1755044485645586638}
   m_Layer: 0
   m_Name: Turret03
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 247458060449519074}
   m_Layer: 0
   m_Name: Turret03 (2)
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5872865403671550697}
   m_Layer: 0
   m_Name: Turret03 (1)
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataId: 040009
   deathSound: {fileID: 8300000, guid: 56c3ba18c62b5184291de4cc5c290c24, type: 3}
-  deathEffect: {fileID: 3121847219011696124, guid: 15e0be8ec5bd0e04db50ee1daf97b4f0, type: 3}
+  deathEffect: {fileID: 4829419654416629318, guid: 95abac88a6472cd4caabc1d80f771d38, type: 3}
 --- !u!50 &6626262384915924873
 Rigidbody2D:
   serializedVersion: 4
