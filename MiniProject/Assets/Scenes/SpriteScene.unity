@@ -3727,11 +3727,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossPrefabs:
-  - {fileID: 3128761004161086570, guid: dd5755fa9c3aa9646946109e7e167fb7, type: 3}
-  - {fileID: 3128761004161086570, guid: dd5755fa9c3aa9646946109e7e167fb7, type: 3}
   - {fileID: 1587767058995630005, guid: cb15bc16b493eb348859a4f9532967bd, type: 3}
   - {fileID: 3128761004161086570, guid: dd5755fa9c3aa9646946109e7e167fb7, type: 3}
   - {fileID: 1587767058995630005, guid: cb15bc16b493eb348859a4f9532967bd, type: 3}
+  - {fileID: 8073536924911853795, guid: d1273397ae07e0f45876ec9354f443b5, type: 3}
+  - {fileID: 2419597315223570444, guid: c47e651fef3b1694f9c8b1d0bf983e24, type: 3}
+  - {fileID: 3128761004161086570, guid: dd5755fa9c3aa9646946109e7e167fb7, type: 3}
+  - {fileID: 3756696809327070738, guid: 6207bd122acd43343aa186c7c073f958, type: 3}
+  - {fileID: 8073536924911853795, guid: d1273397ae07e0f45876ec9354f443b5, type: 3}
+  - {fileID: 1587767058995630005, guid: cb15bc16b493eb348859a4f9532967bd, type: 3}
+  - {fileID: 2419597315223570444, guid: c47e651fef3b1694f9c8b1d0bf983e24, type: 3}
   parent: {fileID: 407569603}
   bossSpawnInterval: 60
   monsterPrefabs:
