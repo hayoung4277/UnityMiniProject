@@ -18,8 +18,8 @@ public class RazerPattern : Pattern
         FireRate = 10f;
         TimeBetweenShots = 2f;
         PatternStartTime = 5f;
-        BulletPrefabs = Resources.Load<GameObject>("Prefabs/Bullet/BaseBossRazer");
-        effectPrefab = Resources.Load<GameObject>("Prefabs/Effect/MagicSphere");
+        BulletPrefabs = Resources.Load<GameObject>("Prefabs/Bullet/BossRazer1");
+        effectPrefab = Resources.Load<GameObject>("Prefabs/Effect/ready_attack");
     }
 
     public override void Activate()
