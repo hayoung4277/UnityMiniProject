@@ -14,6 +14,8 @@ public class Enemy : NomalMonster
 
     private UIManager ui;
 
+    public GameObject deathEffect;
+
     public event System.Action<Enemy> OnSpawnItem;
 
     private void Awake()
@@ -70,6 +72,7 @@ public class Enemy : NomalMonster
     public override void Die()
     {
         base.Die();
+        Instantiate(deathEffect, gameObject.transform);
         audioSource.PlayOneShot(deathSound);
         ui.AddScore(OfferedScore);
 
@@ -85,6 +88,7 @@ public class Enemy : NomalMonster
 
         DisableSprite();
 
+        //Destroy(deathEffect, deathSound.length);
         Destroy(gameObject, deathSound.length);
     }
     
@@ -92,6 +96,15 @@ public class Enemy : NomalMonster
     {
         // 스프라이트 렌더러 비활성화
         GetComponent<SpriteRenderer>().enabled = false;
+
+        // 현재 오브젝트 및 모든 자식들의 SpriteRenderer 가져오기
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // 모든 SpriteRenderer 끄기
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            sr.enabled = false;
+        }
 
         // 콜라이더 비활성화
         GetComponent<PolygonCollider2D>().enabled = false;

@@ -46,7 +46,7 @@ public class RazerPattern : Pattern
             yield return new WaitForSeconds(TimeBetweenShots);
 
             GameObject.Instantiate(BulletPrefabs, Pos, tf.rotation);
-            GameObject.Destroy(effectInstance, 1f);
+            GameObject.Destroy(effectInstance);
 
             yield return new WaitForSeconds(FireRate);
         }

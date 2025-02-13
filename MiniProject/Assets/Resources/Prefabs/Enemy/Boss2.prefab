@@ -33,8 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 6.97, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8050364852455817904}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &5977744976495391906
@@ -214,6 +213,7 @@ MonoBehaviour:
   dataId: 06002
   isMove: 1
   isDead: 0
+  deathEffect: {fileID: 930131930442724809, guid: 72e6a52f1b605394ebee9451e2dab234, type: 3}
   deathSound: {fileID: 8300000, guid: 24b958686c2ee3c4fb34e311c36ef7cc, type: 3}
 --- !u!82 &5000166663428486227
 AudioSource:
@@ -311,63 +311,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8846227550898250507
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8050364852455817904}
-  - component: {fileID: 7250167400451242869}
-  m_Layer: 0
-  m_Name: BulletSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8050364852455817904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846227550898250507}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5010774927512179827}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7250167400451242869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846227550898250507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 140a6998e0e35dd45b46c9b4bb50d0d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossBullet: {fileID: 707678628247996397, guid: 9beffe718477b7d4fa3603f1dbaff5a9, type: 3}
-  bossTransform: {fileID: 5010774927512179827}
-  sectorBulletCount: 5
-  sectorSpreadAngle: 30
-  sectorBulletSpeed: 3
-  sectorFireInterval: 3
-  sectorFireRate: 1
-  TSBulletSpeed: 3
-  TSBulletCount: 3
-  TSFireInterval: 3
-  TSFireRate: 0.5
-  HCBulletCount: 10
-  HCBulletSpeed: 3
-  HCSpreadAngle: 180
-  HCFireInterval: 6
-  HCFireRate: 0.5

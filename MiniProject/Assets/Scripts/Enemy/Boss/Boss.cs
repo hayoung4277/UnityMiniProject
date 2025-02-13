@@ -42,6 +42,7 @@ public class Boss : LivingEntity
 
     private UIManager ui;
 
+    public GameObject deathEffect;
     public AudioClip deathSound;
 
     public event System.Action<Boss> OnSpawnCommonItem;
@@ -187,6 +188,7 @@ public class Boss : LivingEntity
     public override void Die()
     {
         base.Die();
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         OfferScore();
         IsDead = true;
         AudioSource.PlayOneShot(deathSound);

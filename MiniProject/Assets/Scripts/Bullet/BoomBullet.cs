@@ -49,7 +49,7 @@ public class BoomBullet : Bullet
         if (collision.gameObject.CompareTag("NormalMonster") || collision.gameObject.CompareTag("Boss"))
         {
             isExploded = true;
-            Boom(collision.transform.position);
+            Boom(gameObject.transform.position);
             Destroy(gameObject); // 조금만 딜레이 후 삭제
         }
     }

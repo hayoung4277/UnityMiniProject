@@ -4,19 +4,36 @@ using UnityEngine;
 
 public class AgroPattern : Pattern
 {
+    private Boss boss;
+    private EnemySpawner spawner;
+
     public AgroPattern(Boss boss) : base(boss)
     {
+        this.boss = boss;
+        spawner = GameObject.FindWithTag("EnemySpanwer").GetComponent<EnemySpawner>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void Activate()
     {
-        
+        Fire(boss);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Fire(MonoBehaviour callar)
     {
-        
+        callar.StartCoroutine(FireCoroutine());
+    }
+
+    private IEnumerator FireCoroutine()
+    {
+        yield return new WaitForSeconds(PatternStartTime);
+
+        while(true)
+        {
+            FireRate = Random.Range(2f, 7f);
+
+            spawner.SpawnSixRandomMonsters();
+
+            yield return new WaitForSeconds(FireRate);
+        }
     }
 }

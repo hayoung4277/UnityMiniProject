@@ -347,6 +347,11 @@ MonoBehaviour:
   isInvisible: 1
   bulletSpawner: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 1d429f1093f3d8b40b7e2fa82a8f6d7d, type: 3}
+  heartIcons:
+  - {fileID: 3204651142037912928, guid: 8eb3633708e25ba43b80056a2f8619ed, type: 3}
+  - {fileID: 3204651142037912928, guid: 8eb3633708e25ba43b80056a2f8619ed, type: 3}
+  - {fileID: 3204651142037912928, guid: 8eb3633708e25ba43b80056a2f8619ed, type: 3}
+  heartIcon: {fileID: 3204651142037912928, guid: 8eb3633708e25ba43b80056a2f8619ed, type: 3}
 --- !u!68 &5169715329367222028
 EdgeCollider2D:
   m_ObjectHideFlags: 0

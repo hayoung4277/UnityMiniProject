@@ -43,6 +43,9 @@ public class EnemySpawner : MonoBehaviour
 
     private bool isEnd = false;
 
+    private Vector3 bossSpawnPos;
+    private Quaternion bossSpawnRotation;
+
     public static event System.Action<Enemy> OnEnemySpawned;
     public static event System.Action<Boss> OnBossSpawned;
 
@@ -65,9 +68,6 @@ public class EnemySpawner : MonoBehaviour
             index++;
 
             bossSpawnTime = 0f;
-
-            Debug.Log($"Boss Length: {bossPrefabs.Length}");
-            Debug.Log($"Index: {index}");
         }
 
         if (normalSpawnTime >= normalSpawnInterval && bossInstance == null)
@@ -100,7 +100,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnBoss()
     {
-        bossInstance = Instantiate(bossPrefabs[index], parent.position, parent.rotation);
+        var tempBossInstance = Instantiate(bossPrefabs[index], bossPrefabs[index].transform.position, bossPrefabs[index].transform.rotation);
+        bossSpawnPos = tempBossInstance.transform.position;
+        bossSpawnRotation = tempBossInstance.transform.rotation;
+        Destroy(tempBossInstance);
+
+        bossInstance = Instantiate(bossPrefabs[index], bossSpawnPos, bossSpawnRotation);
         bossComponent = bossInstance.GetComponent<Boss>();
         bossDeathCounted = false;
 
@@ -167,7 +172,7 @@ public class EnemySpawner : MonoBehaviour
         return selected;
     }
 
-    private void SpawnUnBreakable()
+    public void SpawnUnBreakable()
     {
         Instantiate(unBreakablePrefab, unBSpawnPos.position, unBSpawnPos.rotation);
 
