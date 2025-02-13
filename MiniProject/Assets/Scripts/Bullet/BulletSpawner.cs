@@ -18,8 +18,8 @@ public class BulletSpawner : MonoBehaviour
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();
 
-        var findPos = GameObject.FindWithTag("BulletPos");
-        tf = findPos.transform;
+        var bulletPos = player.transform.Find("BulletPos");
+        tf = bulletPos.transform;
 
         playerCurrentFireTime = 0f;
     }
@@ -45,11 +45,14 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnPlayerBullet()
     {
+        if (player == null)
+            Debug.Log("Player null");
+
         var bulletprefab = Resources.Load<GameObject>($"Prefabs/Bullet/{bulletName}");
 
         if (bulletprefab == null)
         {
-            Debug.LogError("Bullet Prefab not Found");
+            //Debug.LogError("Bullet Prefab not Found");
             return;
         }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3271907022514575905}
   - component: {fileID: 2191590912059504003}
   m_Layer: 0
-  m_Name: Minion_15
+  m_Name: BaseHoming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
