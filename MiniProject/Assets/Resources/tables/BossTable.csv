@@ -1,4 +1,4 @@
 Id,HP,MoveSpeed,OfferedScore,BossSpriteName,DeathEffectName,DeathEffectPlayTime,DeathSoundName,DeathSoundPlayTime,PatternIdsRaw,IsMoveDown
-06001,30000,2,10000,a,a,2.5,a,2.5,"1,2",true
-06002,25000,2,10000,a,a,2.5,a,2.5,1,false
+06001,30000,2,10000,a,a,2.5,a,2.5,"1,2",false
+06002,25000,2,10000,a,a,2.5,a,2.5,1,true
 06003,3000,3,10000,a,a,2.5,a,2.5,"1,2",true

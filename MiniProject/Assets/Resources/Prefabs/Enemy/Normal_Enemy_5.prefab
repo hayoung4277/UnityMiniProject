@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7200184088430642144}
   m_Layer: 0
   m_Name: Turret01
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 3570367223450845866}
   m_Layer: 0
   m_Name: B24
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 1365153830795958839}
   m_Layer: 0
   m_Name: Plazma_Sphere
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8c27b8306b55c04a923d3a879ccc215, type: 3}
   m_Color: {r: 1, g: 0.92013717, b: 0, a: 1}
   m_FlipX: 0

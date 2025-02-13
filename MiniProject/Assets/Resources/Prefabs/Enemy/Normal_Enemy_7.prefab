@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 701215972476888894}
   m_Layer: 0
   m_Name: Plazma_Sphere
-  m_TagString: Untagged
+  m_TagString: EnemyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8c27b8306b55c04a923d3a879ccc215, type: 3}
   m_Color: {r: 1, g: 0.92013717, b: 0, a: 1}
   m_FlipX: 0

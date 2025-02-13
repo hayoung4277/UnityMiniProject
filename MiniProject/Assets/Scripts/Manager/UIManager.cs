@@ -148,6 +148,21 @@ public class UIManager : MonoBehaviour
     {
         SpawnPlayer(2, gameStartUI.playerSpawnPoint); // playerPrefabs[2]이 세 번째 플레이어
     }
+
+    public void OnRankText()
+    {
+        StartCoroutine(OnRankTextCoroutine());
+    }
+
+    private IEnumerator OnRankTextCoroutine()
+    {
+        gameProgressUI.OnRankText();
+
+        yield return new WaitForSeconds(2f);
+
+        gameProgressUI.DisAbleRankText();
+    }
+
     //public void ToggleFPS()
     //{
     //    if (gameProgressUI.fpsText.enabled == false)

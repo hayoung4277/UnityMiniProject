@@ -34,7 +34,6 @@ public class Minion : MonoBehaviour
     private bool isUpSide = true;
 
     private SpriteRenderer spriteRenderer;
-    private bool isBlinking = false;
 
     private void Awake()
     {

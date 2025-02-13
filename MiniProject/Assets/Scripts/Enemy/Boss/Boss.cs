@@ -22,6 +22,8 @@ public class Boss : LivingEntity
     public BossData Data { get; set; }
 
     public bool IsInVisible { get; set; }
+    public string Rank { get; set; }
+    public float Slaytime { get; set; }
 
     public string dataId = "06002";
     private Rigidbody2D rb;
@@ -29,7 +31,7 @@ public class Boss : LivingEntity
     private float maxHP;
     private float nextTriggerHP;
 
-    private Vector2 stopPos = new Vector2(0f, 3.6f);
+    private Vector2 stopPos = new Vector2(0.35f, 3.6f);
     private bool isStop;
     public bool isMove;
     public bool isDead;
@@ -41,7 +43,6 @@ public class Boss : LivingEntity
     private float spriteHalfWidth;
 
     private UIManager ui;
-    private GameManager gm;
 
     public GameObject deathEffect;
     public AudioClip deathSound;
@@ -62,8 +63,6 @@ public class Boss : LivingEntity
         var findUI = GameObject.FindWithTag(GMCT.UI);
         ui = findUI.GetComponent<UIManager>();
 
-        gm = GameObject.FindWithTag(GMCT.GM).GetComponent<GameManager>();
-
         IsInVisible = true;
 
         if (Data != null)
@@ -77,7 +76,7 @@ public class Boss : LivingEntity
 
         isStop = false;
         isDead = false;
-        slayTime = 0f;
+        Slaytime = 0f;
     }
 
     private void Start()
@@ -197,6 +196,7 @@ public class Boss : LivingEntity
         AudioSource.PlayOneShot(deathSound);
         HP = 0f;
         ui.AddScore(OfferedScore);
+        ui.OnRankText();
 
         DisableSprite();
 
@@ -204,7 +204,6 @@ public class Boss : LivingEntity
         OnSpawnLegendaryItem = null;
         OnSpawnCommonItem = null;
 
-        
 
         Destroy(gameObject, deathSound.length);
     }
@@ -240,21 +239,25 @@ public class Boss : LivingEntity
 
     private void OfferScore()
     {
-        if (slayTime <= 5f)
+        if (Slaytime <= 5f)
         {
             OfferedScore *= 5f;
+            Rank = "S";
         }
-        else if (slayTime > 5f && slayTime <= 12.5f)
+        else if (Slaytime > 5f && Slaytime <= 12.5f)
         {
             OfferedScore *= 3.5f;
+            Rank = "A";
         }
-        else if (slayTime > 12.5f && slayTime <= 30f)
+        else if (Slaytime > 12.5f && Slaytime <= 30f)
         {
             OfferedScore *= 1.5f;
+            Rank = "B";
         }
-        else if (slayTime > 30.1f)
+        else if (Slaytime > 30.1f)
         {
             OfferedScore *= 1f;
+            Rank = "C";
         }
 
         Debug.Log($"SlayScore: {OfferedScore}!");

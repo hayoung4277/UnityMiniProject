@@ -49,10 +49,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (bossInstance == null)
-        {
-            bossSpawnTime += Time.deltaTime;
-        }
+        //if (bossInstance == null)
+        //{
+        //    bossSpawnTime += Time.deltaTime;
+        //}
+
+        bossSpawnTime += Time.deltaTime;
 
         normalSpawnTime += Time.deltaTime;
         unBSpawnTime += Time.deltaTime;
@@ -105,6 +107,7 @@ public class EnemySpawner : MonoBehaviour
 
         bossInstance = Instantiate(bossPrefabs[index], bossSpawnPos, bossSpawnRotation);
         bossComponent = bossInstance.GetComponent<Boss>();
+        bossComponent.isDead = false;
         bossDeathCounted = false;
 
         if (bossComponent != null)

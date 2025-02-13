@@ -10,11 +10,15 @@ public class GameProgress : GenericUI
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI fpsText;
 
+    public TextMeshProUGUI rankText;
+    public TextMeshProUGUI bonusScoreText;
+
     private AudioSource audioSource;
 
     private static Transform canvasTransform;
 
     private Transform child2;
+    private Transform child4;
 
     private float fps;
     private Player player;
@@ -36,10 +40,11 @@ public class GameProgress : GenericUI
         {
             canvasTransform = canvasObj.transform;
             child2 = canvasTransform.GetChild(1);
-
+            child4 = canvasTransform.GetChild(3);
 
             // 처음에는 두 번째 자식(메뉴 UI 등)을 비활성화
             child2.gameObject.SetActive(false);
+            child4.gameObject.SetActive(false);
         }
         else
         {
@@ -70,7 +75,7 @@ public class GameProgress : GenericUI
         fps = 1.0f / Time.deltaTime; // FPS 계산
         if (fpsText != null)
         {
-            fpsText.text = $"FPS: {fps.ToString("F2")}";
+            fpsText.text = $"FPS: {Mathf.Round(fps)}";
         }
     }
 
@@ -115,5 +120,20 @@ public class GameProgress : GenericUI
         isPause = false;
         Time.timeScale = 1;
         child2.gameObject.SetActive(false);
+    }
+
+    public void DisAbleRankText()
+    {
+        child4.gameObject.SetActive(false);
+    }
+
+    public void OnRankText()
+    {
+        Boss boss = GameObject.FindWithTag("Boss").GetComponent<Boss>();
+
+        child4.gameObject.SetActive(true);
+
+        rankText.text = $"{boss.Rank} Rank";
+        bonusScoreText.text = $"Points + {boss.OfferedScore}";
     }
 }
