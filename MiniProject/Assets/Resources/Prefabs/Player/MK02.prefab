@@ -514,18 +514,6 @@ PrefabInstance:
       value: BulletSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 7168050018499596159, guid: 09f08abb4fa1b2143891d8302d6bb14e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8304141
-      objectReference: {fileID: 0}
-    - target: {fileID: 7168050018499596159, guid: 09f08abb4fa1b2143891d8302d6bb14e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8304141
-      objectReference: {fileID: 0}
-    - target: {fileID: 7168050018499596159, guid: 09f08abb4fa1b2143891d8302d6bb14e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8304207
-      objectReference: {fileID: 0}
-    - target: {fileID: 7168050018499596159, guid: 09f08abb4fa1b2143891d8302d6bb14e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.024588702
       objectReference: {fileID: 0}
@@ -586,18 +574,6 @@ PrefabInstance:
     - target: {fileID: 3702027297106334426, guid: d3172497012bf39488277df5b9d09a29, type: 3}
       propertyPath: m_Name
       value: MinionSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.2892892
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.2892892
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.3025029
       objectReference: {fileID: 0}
     - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
       propertyPath: m_LocalPosition.x

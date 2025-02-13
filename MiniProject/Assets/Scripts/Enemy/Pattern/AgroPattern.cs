@@ -23,11 +23,16 @@ public class AgroPattern : Pattern
         callar.StartCoroutine(FireCoroutine());
     }
 
+    public override void StopFire(MonoBehaviour callar)
+    {
+        callar.StopCoroutine(FireCoroutine());
+    }
+
     private IEnumerator FireCoroutine()
     {
         yield return new WaitForSeconds(PatternStartTime);
 
-        while(true)
+        while (true)
         {
             FireRate = Random.Range(2f, 7f);
 

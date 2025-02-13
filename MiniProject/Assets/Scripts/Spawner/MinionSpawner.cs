@@ -16,12 +16,12 @@ public class MinionSpawner : MonoBehaviour
     public GameObject[] FormationPrefabs;
     //public GameObject[] homingPrefabs;
     //public GameObject[] piercePrefabs;
-    //public GameObject[] agroPrefabs;
+    public GameObject[] agroPrefabs;
 
     public GameObject spawnEffect;
     private GameObject effectInstance;
 
-    private int prefabCount = 8;
+    private int prefabCount = 9;
 
     private List<Transform> spawnPositions = new List<Transform>();
 
@@ -64,9 +64,9 @@ public class MinionSpawner : MonoBehaviour
                 case 6: SpawnCommonMinion(boomPrefabs); break;
                 case 7: SpawnCommonMinion(razerPrefabs); break;
                 case 8: SpawnCommonMinion(FormationPrefabs); break;
+                case 9: SpawnCommonMinion(agroPrefabs); break;
                 //case 9: SpawnCommonMinion(homingPrefabs); break;
                 //case 9: SpawnCommonMinion(piercePrefabs); break;
-                //case 10: SpawnCommonMinion(agroPrefabs); break;
                 default: Debug.LogWarning("알 수 없는 Common 프리팹"); break;
             }
         }
@@ -83,9 +83,9 @@ public class MinionSpawner : MonoBehaviour
                 case 6: SpawnLegendMinion(boomPrefabs); break;
                 case 7: SpawnLegendMinion(razerPrefabs); break;
                 case 8: SpawnLegendMinion(FormationPrefabs); break;
+                case 9: SpawnLegendMinion(agroPrefabs); break;
                 //case 9: SpawnLegendMinion(homingPrefabs); break;
                 //case 9: SpawnLegendMinion(piercePrefabs); break;
-                //case 10: SpawnLegendMinion(agroPrefabs); break;
                 default: Debug.LogWarning("알 수 없는 Legendary 프리팹"); break;
             }
         }

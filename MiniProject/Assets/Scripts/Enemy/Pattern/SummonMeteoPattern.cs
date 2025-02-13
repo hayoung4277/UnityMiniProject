@@ -24,13 +24,17 @@ public class SummonMeteoPattern : Pattern
         callar.StartCoroutine(FireCoroutine());
     }
 
+    public override void StopFire(MonoBehaviour callar)
+    {
+        callar.StopCoroutine(FireCoroutine());
+    }
     private IEnumerator FireCoroutine()
     {
         yield return new WaitForSeconds(PatternStartTime);
 
         while (true)
         {
-            FireRate = Random.Range(5f, 15f);
+            FireRate = Random.Range(5f, 12f);
             int randomValue = Random.Range(1, 6);
 
             for (int i = 0; i < randomValue; i++)

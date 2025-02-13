@@ -131,6 +131,11 @@ public class Enemy : NomalMonster
         GetComponent<EdgeCollider2D>().enabled = false;
     }
 
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isInvisible) return;

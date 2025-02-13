@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: startDelay.scalar
@@ -196,7 +196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: startDelay.scalar
@@ -242,7 +242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6744752361442629274, guid: 6a6c484cdbea5fa48bf2ed768795a077, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744752361442629274, guid: 6a6c484cdbea5fa48bf2ed768795a077, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: startDelay.scalar
@@ -486,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3123562649251334627, guid: 7053bb7afc4c44f4f8311063ba578364, type: 3}
       propertyPath: startDelay.scalar

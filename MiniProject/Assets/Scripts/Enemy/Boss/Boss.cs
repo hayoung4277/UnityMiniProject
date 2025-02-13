@@ -23,7 +23,7 @@ public class Boss : LivingEntity
 
     public bool IsInVisible { get; set; }
     public string Rank { get; set; }
-    public float Slaytime { get; set; }
+    public float SlayTime { get; set; }
 
     public string dataId = "06002";
     private Rigidbody2D rb;
@@ -35,6 +35,8 @@ public class Boss : LivingEntity
     private bool isStop;
     public bool isMove;
     public bool isDead;
+
+    private int stopCount = 0;
 
     private Camera mainCamera;
     private Vector2 minBounds;
@@ -77,16 +79,15 @@ public class Boss : LivingEntity
 
         isStop = false;
         isDead = false;
-        Slaytime = 0f;
+        SlayTime = 0f;
     }
 
     private void Start()
     {
-        for (int i = 0; i < Patterns.Count; i++)
-        {
-            Debug.Log($"패턴 {i} 활성화 시도: {Patterns[i].GetType().Name}");
-            Patterns[i].Activate();
-        }
+        //for (int i = 0; i < Patterns.Count; i++)
+        //{
+        //    Patterns[i].Activate();
+        //}
 
         minBounds = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0));  // 왼쪽 아래
         maxBounds = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));  // 오른쪽 위
@@ -132,7 +133,7 @@ public class Boss : LivingEntity
 
     private void Update()
     {
-        slayTime += Time.deltaTime;
+        SlayTime += Time.deltaTime;
 
         foreach (var pattern in Patterns)
         {
@@ -172,6 +173,11 @@ public class Boss : LivingEntity
             StopMove(rb);
         }
 
+        if(isStop)
+        {
+            PatternStart();
+        }
+
         if (isStop && isMove)
         {
             SideMovement(rb);
@@ -191,7 +197,14 @@ public class Boss : LivingEntity
     public override void Die()
     {
         base.Die();
+        IsInVisible = true;
         deathEffectInstnace = Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        foreach (var pattern in Patterns)
+        {
+            pattern.StopFire(this);
+        }
+
         OfferScore();
         IsDead = true;
         AudioSource.PlayOneShot(deathSound);
@@ -205,8 +218,8 @@ public class Boss : LivingEntity
         OnSpawnLegendaryItem = null;
         OnSpawnCommonItem = null;
 
-        Destroy(deathEffectInstnace, 1.5f);
-        Destroy(gameObject, deathSound.length);
+        Destroy(deathEffectInstnace, 3.1f);
+        Destroy(gameObject, 3.2f);
     }
 
     private void DisableSprite()
@@ -238,30 +251,45 @@ public class Boss : LivingEntity
         isStop = true;
     }
 
+    private void PatternStart()
+    {
+        if(stopCount == 1)
+        {
+            return;
+        }
+
+        for (int i = 0; i < Patterns.Count; i++)
+        {
+            Patterns[i].Activate();
+        }
+
+        stopCount = 1;
+    }
+
     private void OfferScore()
     {
-        if (Slaytime <= 5f)
+        if (SlayTime <= 5f)
         {
             OfferedScore *= 5f;
             Rank = "S";
         }
-        else if (Slaytime > 5f && Slaytime <= 12.5f)
+        else if (SlayTime > 5f && SlayTime <= 12.5f)
         {
             OfferedScore *= 3.5f;
             Rank = "A";
         }
-        else if (Slaytime > 12.5f && Slaytime <= 30f)
+        else if (SlayTime > 12.5f && SlayTime <= 30f)
         {
             OfferedScore *= 1.5f;
             Rank = "B";
         }
-        else if (Slaytime > 30.1f)
+        else if (SlayTime > 30.1f)
         {
             OfferedScore *= 1f;
             Rank = "C";
         }
 
-        Debug.Log($"SlayScore: {OfferedScore}!");
+        Debug.Log($"SlayScore: {OfferedScore} / {Rank}!");
     }
 
     private void SideMovement(Rigidbody2D rb)

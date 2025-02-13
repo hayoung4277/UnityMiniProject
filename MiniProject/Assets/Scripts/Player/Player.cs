@@ -47,13 +47,6 @@ public class Player : LivingEntity
 
     public AudioClip hitSound;
 
-    ////public List<GameObject> heartIcons = new List<GameObject>();
-    //[SerializeField] private GameObject[] heartIcons;
-    //public GameObject heartIcon;
-    //private int heartIconIndex = 0;
-    //private Vector3 startPos = new Vector3(-2f, -4.75f, 0f);
-    //private GameObject heartIconInstance;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -146,6 +139,16 @@ public class Player : LivingEntity
             if (isShieldActive)
             {
                 ReduceShield();
+                if (collision.gameObject.tag == "NormalMonster")
+                {
+                    var component = collision.gameObject.GetComponent<Enemy>();
+                    component.DestroyObject();
+                }
+                else if(collision.gameObject.tag == "UnBreakable")
+                {
+                    var component = collision.gameObject.GetComponent<Meteor>();
+                    component.DestroyObject();
+                }
             }
             else if (!isInvisible)
             {
@@ -200,17 +203,6 @@ public class Player : LivingEntity
             shieldEffectInstance.transform.localPosition = Vector3.zero;
         }
     }
-
-    //private void HeartIconActive()
-    //{
-    //    heartIcons[heartIconIndex].gameObject.SetActive(true);
-    //}
-
-    //private void HeartIconDeActive()
-    //{
-    //    heartIconIndex--;
-    //    heartIcons[heartIconIndex].gameObject.SetActive(false);
-    //}
 
     public void ReduceShield()
     {

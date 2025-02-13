@@ -277,7 +277,7 @@ MonoBehaviour:
   dataId: 01001
   shieldEffect: {fileID: 349825798349027162, guid: cf7bb9954f9d8594eaae6d2de6f9820e, type: 3}
   isShield: 0
-  isInvisible: 1
+  isInvisible: 0
   bulletSpawner: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 5dfe8da4267d6b24ea82b878d2f18024, type: 3}
 --- !u!68 &5169715329367222028
@@ -512,18 +512,6 @@ PrefabInstance:
     - target: {fileID: 3702027297106334426, guid: d3172497012bf39488277df5b9d09a29, type: 3}
       propertyPath: m_Name
       value: MinionSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.960991
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.960991
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.7726934
       objectReference: {fileID: 0}
     - target: {fileID: 5396404075232437407, guid: d3172497012bf39488277df5b9d09a29, type: 3}
       propertyPath: m_LocalPosition.x

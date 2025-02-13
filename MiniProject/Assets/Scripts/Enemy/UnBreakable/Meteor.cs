@@ -113,6 +113,11 @@ public class Meteor : UnBreakable
         MoveUnBreakable(rb);  // 이동 시작
     }
 
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+
     public override void MoveUnBreakable(Rigidbody2D rb)
     {
         base.MoveUnBreakable(rb);

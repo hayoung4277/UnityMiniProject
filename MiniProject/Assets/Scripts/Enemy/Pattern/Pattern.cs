@@ -19,5 +19,6 @@ public abstract class Pattern
 
     public virtual void Activate() { }
     public virtual void Fire(MonoBehaviour callar) { }
+    public virtual void StopFire(MonoBehaviour callar) { }
     public virtual void UpdatePattern() { }
 }

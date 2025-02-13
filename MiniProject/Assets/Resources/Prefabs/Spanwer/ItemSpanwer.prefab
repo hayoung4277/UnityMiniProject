@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91416b0c61bdf4446b4524a0fb1bcebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonDrop: {fileID: 6791869052237276237, guid: e39c64318e7bdc5459ed85c6bc66cb57, type: 3}
-  legendaryDrop: {fileID: 1699128792324509992, guid: cb5060a4367a00f48bc763912d5af809, type: 3}
+  commonDrop: {fileID: 6558141234752518251, guid: 73d9915e9e8bc9c41afee16319bb22c7, type: 3}
+  legendaryDrop: {fileID: 6558141234752518251, guid: 6c9b551b73647a24a991e172c1c1fe34, type: 3}

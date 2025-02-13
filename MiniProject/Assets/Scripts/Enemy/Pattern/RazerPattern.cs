@@ -24,12 +24,18 @@ public class RazerPattern : Pattern
 
     public override void Activate()
     {
+
         Fire(boss);
     }
 
     public override void Fire(MonoBehaviour callar)
     {
         callar.StartCoroutine(FireCoroutine());
+    }
+
+    public override void StopFire(MonoBehaviour callar)
+    {
+        callar.StopCoroutine(FireCoroutine());
     }
 
     private IEnumerator FireCoroutine()

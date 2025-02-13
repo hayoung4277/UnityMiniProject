@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.6924253, y: 2.6924253, z: 1.8846976}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -152,4 +152,10 @@ MonoBehaviour:
   - {fileID: 339220035790562603, guid: a7aa2e411a124d640850699d48ec2d0a, type: 3}
   - {fileID: 339220035790562603, guid: a7aa2e411a124d640850699d48ec2d0a, type: 3}
   - {fileID: 339220035790562603, guid: 96d68faa71511b1439628cab2eeab4cf, type: 3}
+  agroPrefabs:
+  - {fileID: 339220035790562603, guid: de17a1e382709ac40afade1d2f34263a, type: 3}
+  - {fileID: 339220035790562603, guid: af746cc1d98186c469e3c85e76c47e1e, type: 3}
+  - {fileID: 339220035790562603, guid: bdf0a972a8c44c8469a21939bd7f192a, type: 3}
+  - {fileID: 339220035790562603, guid: c02b8a442a19843429bc46f8af3c0228, type: 3}
+  - {fileID: 339220035790562603, guid: ea9b2581a893b4e43b818b8b93a92cd8, type: 3}
   spawnEffect: {fileID: 8733514384126542107, guid: bb2f07fe0fb8baf44a34e5a3e6bf5304, type: 3}

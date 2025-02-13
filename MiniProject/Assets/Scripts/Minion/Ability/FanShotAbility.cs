@@ -41,7 +41,7 @@ public class FanShotAbility : Ability
 
     public override void Fire(MonoBehaviour callar)
     {
-        callar.StartCoroutine(FireCoroutine());  
+        callar.StartCoroutine(FireCoroutine());
     }
 
     private IEnumerator FireCoroutine()

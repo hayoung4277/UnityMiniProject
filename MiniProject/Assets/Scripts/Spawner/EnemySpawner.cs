@@ -15,8 +15,8 @@ public class EnemySpawner : MonoBehaviour
 
     private Boss bossComponent;
 
-    public float bossSpawnInterval = 60f;
-    private float bossSpawnTime = 0f;
+    public float bossSpawnInterval = 40f;
+    public float bossSpawnTime = 0f;
 
     //일반 적 스폰
     [Header("Normal Enemy")]
@@ -49,12 +49,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        //if (bossInstance == null)
-        //{
-        //    bossSpawnTime += Time.deltaTime;
-        //}
-
-        bossSpawnTime += Time.deltaTime;
+        if (bossInstance == null)
+        {
+            bossSpawnTime += Time.deltaTime;
+        }
 
         normalSpawnTime += Time.deltaTime;
         unBSpawnTime += Time.deltaTime;
@@ -64,7 +62,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (bossSpawnTime >= bossSpawnInterval && index < bossPrefabs.Length)
         {
-            SpawnBoss();
+            StartCoroutine(SpawnBossCoroutine());
+            Debug.Log($"{index}");
             index++;
 
             bossSpawnTime = 0f;
@@ -88,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
         {
             bossDeathCounted = true; // 중복 카운트 방지
             deathCount++;
+            bossInstance = null;
             Debug.Log($"DeathCount: {deathCount}");
         }
 
@@ -114,6 +114,15 @@ public class EnemySpawner : MonoBehaviour
         {
             OnBossSpawned?.Invoke(bossComponent); // 이벤트 호출
         }
+    }
+
+    private IEnumerator SpawnBossCoroutine()
+    {
+        ui.OnWarningPopUp();
+
+        yield return new WaitForSeconds(2f);
+
+        SpawnBoss();
     }
 
     public void SpawnSixRandomMonsters()

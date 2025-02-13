@@ -58,9 +58,9 @@ public class UIManager : MonoBehaviour
         gameOverUI.Open();
 
         gameOverUI.scoreText.text = $"{gameProgressUI.Score}";
-        gameOverUI.timeText.text = $"{player.SurviveTime.ToString("F2")}";
+        gameOverUI.timeText.text = $"{gameProgressUI.CurrentTime.ToString("F2")}";
 
-        var totalScore = gameProgressUI.Score + player.SurviveTime;
+        var totalScore = gameProgressUI.Score + gameProgressUI.CurrentTime;
 
         gameOverUI.totalScoreText.text = $"{totalScore.ToString("F2")}";
     }
@@ -73,9 +73,9 @@ public class UIManager : MonoBehaviour
         gameClearUI.Open();
 
         gameClearUI.scoreText.text = $"{gameProgressUI.Score}";
-        gameClearUI.timeText.text = $"{player.SurviveTime.ToString("F2")}";
+        gameClearUI.timeText.text = $"{gameProgressUI.CurrentTime.ToString("F2")}";
 
-        var totalScore = gameProgressUI.Score + player.SurviveTime;
+        var totalScore = gameProgressUI.Score + gameProgressUI.CurrentTime;
 
         gameClearUI.totalScoreText.text = $"{totalScore.ToString("F2")}";
     }
@@ -156,11 +156,27 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator OnRankTextCoroutine()
     {
+        Debug.Log("ÆË¾÷ ¿ÀÇÂ!!");
         gameProgressUI.OnRankText();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
+        Debug.Log("ÆË¾÷ ´Ý´Â´Ù!!");
         gameProgressUI.DisAbleRankText();
+    }
+
+    public void OnWarningPopUp()
+    {
+        StartCoroutine(OnWarningCoroutine());
+    }
+
+    private IEnumerator OnWarningCoroutine()
+    {
+        gameProgressUI.OnWarningPopUp();
+
+        yield return new WaitForSeconds(2.1f);
+
+        gameProgressUI.DisAbleWarningPopUp();
     }
 
     //public void ToggleFPS()

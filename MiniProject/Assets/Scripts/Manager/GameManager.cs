@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     public Slider volumeSlider;
 
+    public TextMeshProUGUI volumeValueText;
+
     public AudioClip buttonSound;
 
     public event System.Action onSpeedUp;
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
+        volumeValueText.text = $"{(int)(volume * 100)}%";
     }
 
     public void ButtonClickSound()
@@ -100,4 +103,19 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    // 외부에서 볼륨을 설정하는 함수 (예: 다른 스크립트나 UI 버튼 등)
+    //public void SetAudioVolumeExternally(float volume)
+    //{
+    //    if (audioSource != null)
+    //    {
+    //        audioSource.volume = volume;
+    //        // 슬라이더가 있을 경우 값도 동기화
+    //        if (volumeSlider != null)
+    //        {
+    //            volumeSlider.value = volume;
+    //            volumeValueText.text = $"{volume}%";
+    //        }
+    //    }
+    //}
 }

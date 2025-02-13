@@ -32,6 +32,11 @@ public class HalfCirclePattern : Pattern
         callar.StartCoroutine(FireCoroutine());
     }
 
+    public override void StopFire(MonoBehaviour callar)
+    {
+        callar.StopCoroutine(FireCoroutine());
+    }
+
     private IEnumerator FireCoroutine()
     {
         yield return new WaitForSeconds(PatternStartTime);

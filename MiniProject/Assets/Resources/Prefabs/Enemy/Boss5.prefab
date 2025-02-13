@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1966249178719787181}
   m_Layer: 0
   m_Name: Boss5
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2419597315223570444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.999012, y: -3.411831, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 24bcc3d6eb9e11847bc9a92d83fc3ff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   dataId: 06005
   isMove: 1
   isDead: 0
+  deathEffect: {fileID: 4174269485938699656, guid: 23a948114256b1f4db05a29e9cc516ef, type: 3}
   deathSound: {fileID: 8300000, guid: 00ee4fe5ce8875d4fb9c3e5d383e4396, type: 3}
 --- !u!82 &3496203476952979103
 AudioSource:
