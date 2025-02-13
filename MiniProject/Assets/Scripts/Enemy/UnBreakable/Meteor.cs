@@ -23,7 +23,7 @@ public class Meteor : UnBreakable
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.UnBreakableTable.Get(dataId);
+        Data = DataTableManager.Instance.UnBreakableTable.Get(dataId);
         audioSource = GetComponent<AudioSource>();
 
         var findPlayer = GameObject.FindWithTag("Player");

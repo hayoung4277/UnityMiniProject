@@ -18,6 +18,7 @@ public class FanShotAbility : Ability
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
         Rairity = minion.Rairity;
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
 
         if (Rairity == 1)
         {
@@ -47,8 +48,7 @@ public class FanShotAbility : Ability
     {
         while(true)
         {
-            var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bulletPrefab == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError($"Bullet Prefab '{BulletName}' not found!");
             }
@@ -64,20 +64,11 @@ public class FanShotAbility : Ability
                 Quaternion rotation = Quaternion.Euler(0, 0, angle) * tf.rotation;
                 Vector3 bulletDirection = rotation * Vector3.right; // 현재 회전 방향으로 이동
 
-                GameObject bullet = GameObject.Instantiate(bulletPrefab, tf.position, rotation);
+                GameObject bullet = GameObject.Instantiate(BulletPrefab, tf.position, rotation);
                 bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * fanSpeed;
             }
 
             yield return new WaitForSeconds(FireRate);
         }
-    }
-
-    public override void UpdateAbility()
-    {
-        base.UpdateAbility();
-    }
-
-    public override void ApplyRarityScaling()
-    {
     }
 }

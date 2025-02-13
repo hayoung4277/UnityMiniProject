@@ -6,13 +6,15 @@ public class BoomBullet : Bullet
 {
     private Rigidbody2D rb;
     public string dataId = "";
-    private Minion ownerMinion;
     private GameObject boomPrefab;
+
+    private bool isExploded = false; // 폭발 체크 변수
+    private bool hasExploded = false; // 중복 방지 변수
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.BulletTable.Get(dataId);
+        Data = DataTableManager.Instance.BulletTable.Get(dataId);
 
         if (Data != null)
         {
@@ -27,6 +29,7 @@ public class BoomBullet : Bullet
     private void Start()
     {
         Fire(rb);
+        boomPrefab = Resources.Load<GameObject>($"Prefabs/Effect/ExplosionBlue");
     }
 
     public override void Initialize(BulletData data)
@@ -41,23 +44,24 @@ public class BoomBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "NormalMonster" || collision.gameObject.tag == "Boss")
+        if (isExploded) return; // 중복 실행 방지!
+
+        if (collision.gameObject.CompareTag("NormalMonster") || collision.gameObject.CompareTag("Boss"))
         {
-            var targetPos = collision.transform.position;
-            Boom(targetPos);
-            Destroy(gameObject, 1f);
+            isExploded = true;
+            Boom(collision.transform.position);
+            Destroy(gameObject); // 조금만 딜레이 후 삭제
         }
     }
 
     private void Boom(Vector3 explosionPosition)
     {
-        boomPrefab = Resources.Load<GameObject>($"Prefabs/Effect/ExplosionBlue");
+        if (hasExploded) return; // 중복 실행 방지
+        hasExploded = true;
 
         if (boomPrefab != null)
         {
             GameObject.Instantiate(boomPrefab, explosionPosition, Quaternion.identity);
         }
-
-        Debug.Log("BOOM!!");
     }
 }

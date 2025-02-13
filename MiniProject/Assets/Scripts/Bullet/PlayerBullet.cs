@@ -16,7 +16,7 @@ public class PlayerBullet : Bullet
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();
 
-        Data = DataTableManager.BulletTable.Get(dataId);
+        Data = DataTableManager.Instance.BulletTable.Get(dataId);
         if (Data != null)
         {
             Initialize(Data);

@@ -12,10 +12,15 @@ public class MinionSpawner : MonoBehaviour
     public GameObject[] singleShieldPrefabs;
     public GameObject[] boomPrefabs;
     public GameObject[] razerPrefabs;
+    public GameObject[] FormationPrefabs;
+    //public GameObject[] homingPrefabs;
+    public GameObject[] piercePrefabs;
+    public GameObject[] agroPrefabs;
 
     public GameObject spawnEffect;
+    private GameObject effectInstance;
 
-    private int prefabCount = 7;
+    private int prefabCount = 10;
 
     private List<Transform> spawnPositions = new List<Transform>();
 
@@ -48,52 +53,39 @@ public class MinionSpawner : MonoBehaviour
 
         if (itemType == ItemType.Common)
         {
-
             switch (randomValue)
             {
-                case 1:
-                    SpawnCommonMinion(singleShotPrefabs);
-                    break;
-                case 2:
-                    SpawnCommonMinion(fanShotPrefabs);
-                    break;
-                case 3:
-                    SpawnCommonMinion(shieldPrefabs);
-                    break;
-                case 4:
-                    SpawnCommonMinion(multiplePrefabs);
-                    break;
-                case 5:
-                    SpawnCommonMinion(singleShieldPrefabs);
-                    break;
-                default:
-                    Debug.LogWarning($"알 수 없는 프리팹");
-                    break;
+                case 1: SpawnCommonMinion(singleShotPrefabs); break;
+                case 2: SpawnCommonMinion(fanShotPrefabs); break;
+                case 3: SpawnCommonMinion(shieldPrefabs); break;
+                case 4: SpawnCommonMinion(multiplePrefabs); break;
+                case 5: SpawnCommonMinion(singleShieldPrefabs); break;
+                case 6: SpawnCommonMinion(boomPrefabs); break;
+                case 7: SpawnCommonMinion(razerPrefabs); break;
+                case 8: SpawnCommonMinion(FormationPrefabs); break;
+                //case 9: SpawnCommonMinion(homingPrefabs); break;
+                case 9: SpawnCommonMinion(piercePrefabs); break;
+                case 10: SpawnCommonMinion(agroPrefabs); break;
+                default: Debug.LogWarning("알 수 없는 Common 프리팹"); break;
             }
         }
-        
+
         if (itemType == ItemType.Legendary)
         {
             switch (randomValue)
             {
-                case 1:
-                    SpawnLegendMinion(singleShotPrefabs);
-                    break;
-                case 2:
-                    SpawnLegendMinion(fanShotPrefabs);
-                    break;
-                case 3:
-                    SpawnLegendMinion(shieldPrefabs);
-                    break;
-                case 4:
-                    SpawnLegendMinion(multiplePrefabs);
-                    break;
-                case 5:
-                    SpawnLegendMinion(singleShieldPrefabs);
-                    break;
-                default:
-                    Debug.LogWarning($"알 수 없는 프리팹");
-                    break;
+                case 1: SpawnLegendMinion(singleShotPrefabs); break;
+                case 2: SpawnLegendMinion(fanShotPrefabs); break;
+                case 3: SpawnLegendMinion(shieldPrefabs); break;
+                case 4: SpawnLegendMinion(multiplePrefabs); break;
+                case 5: SpawnLegendMinion(singleShieldPrefabs); break;
+                case 6: SpawnLegendMinion(boomPrefabs); break;
+                case 7: SpawnLegendMinion(razerPrefabs); break;
+                case 8: SpawnLegendMinion(FormationPrefabs); break;
+                //case 9: SpawnLegendMinion(homingPrefabs); break;
+                case 9: SpawnLegendMinion(piercePrefabs); break;
+                case 10: SpawnLegendMinion(agroPrefabs); break;
+                default: Debug.LogWarning("알 수 없는 Legendary 프리팹"); break;
             }
         }
     }
@@ -148,6 +140,8 @@ public class MinionSpawner : MonoBehaviour
         {
             GameObject prefabInstance = Instantiate(prefab[randomPrefabIndex], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
             Minion minion = prefabInstance.GetComponent<Minion>();
+            effectInstance = GameObject.Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+            Destroy(effectInstance, 0.2f);
             minion.SpawnIndex = availableIndex;
             minion.OnMinionDestroyed += HandleMinionDestroyed;
 
@@ -187,6 +181,8 @@ public class MinionSpawner : MonoBehaviour
         {
             GameObject prefabInstance = Instantiate(prefab[prefab.Length - 1], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
             Minion minion = prefabInstance.GetComponent<Minion>();
+            effectInstance = GameObject.Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+            Destroy(effectInstance, 0.2f);
             minion.SpawnIndex = availableIndex;
             minion.OnMinionDestroyed += HandleMinionDestroyed;
 
@@ -203,4 +199,3 @@ public class MinionSpawner : MonoBehaviour
         }
     }
 }
-

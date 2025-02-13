@@ -12,6 +12,7 @@ public class Boss : LivingEntity
     public float DeathEffectPlayTime { get; set; }
     public string DeathSoundName { get; set; }
     public float DeathSoundPlayTime { get; set; }
+    public bool IsMoveDown { get; set; }
 
     public List<Pattern> Patterns { get; private set; } = new List<Pattern>();
 
@@ -35,9 +36,7 @@ public class Boss : LivingEntity
     private Vector2 maxBounds;
 
     private float spriteHalfWidth;
-    private float spriteHalfHeight;
 
-    private GameManager gm;
     private UIManager ui;
 
     public AudioClip deathSound;
@@ -45,12 +44,10 @@ public class Boss : LivingEntity
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.BossTable.Get(dataId);
+        Data = DataTableManager.Instance.BossTable.Get(dataId);
         mainCamera = Camera.main;
         AudioSource = GetComponent<AudioSource>();
 
-        var findGm = GameObject.FindWithTag(GMCT.GM);
-        gm = findGm.GetComponent<GameManager>();
 
         var findUI = GameObject.FindWithTag(GMCT.UI);
         ui = findUI.GetComponent<UIManager>();
@@ -72,9 +69,10 @@ public class Boss : LivingEntity
 
     private void Start()
     {
-        foreach (var pattern in Patterns)
+        for(int i = 0; i < Patterns.Count; i++)
         {
-            pattern.Activate();
+            Debug.Log($"패턴 {i} 활성화 시도: {Patterns[i].GetType().Name}");
+            Patterns[i].Activate();
         }
 
         minBounds = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0));  // 왼쪽 아래
@@ -85,7 +83,6 @@ public class Boss : LivingEntity
         if (spriteRenderer != null)
         {
             spriteHalfWidth = spriteRenderer.bounds.extents.x;  // 가로 절반 크기
-            spriteHalfHeight = spriteRenderer.bounds.extents.y; // 세로 절반 크기
         }
     }
 
@@ -99,12 +96,13 @@ public class Boss : LivingEntity
         DeathEffectPlayTime = data.DeathEffectPlayTime;
         DeathSoundName = data.DeathSoundName;
         DeathSoundPlayTime = data.DeathSoundPlayTime;
+        IsMoveDown = data.IsMoveDown;
 
         Patterns.Clear();
 
         foreach (var patternId in data.PatternIds)
         {
-            Pattern pattern = PatternFactory.CreateAbility(patternId, this);
+            Pattern pattern = PatternFactory.CreatePattern(patternId, this);
             if (pattern != null)
             {
                 Patterns.Add(pattern);
@@ -118,17 +116,27 @@ public class Boss : LivingEntity
 
     private void Update()
     {
-        foreach (var pattern in Patterns)
+        foreach(var pattern in Patterns)
         {
             pattern.UpdatePattern();
         }
 
-        if (IsInVisible)
+        if (IsInVisible && IsMoveDown)
         {
-            MoveBoss(rb);
+            MoveDownBoss(rb);
         }
 
-        if (transform.position.y <= stopPos.y)
+        if(IsInVisible && !IsMoveDown)
+        {
+            MoveRightBoss(rb);
+        }
+
+        if (transform.position.y <= stopPos.y && IsMoveDown)
+        {
+            StopMove(rb);
+        }
+
+        if(transform.position.x >= stopPos.x && !IsMoveDown)
         {
             StopMove(rb);
         }
@@ -152,6 +160,7 @@ public class Boss : LivingEntity
     public override void Die()
     {
         base.Die();
+        IsDead = true;
         AudioSource.PlayOneShot(deathSound);
         HP = 0f;
         ui.AddScore(OfferedScore);
@@ -160,9 +169,14 @@ public class Boss : LivingEntity
         //ui.GameClear();
     }
 
-    public void MoveBoss(Rigidbody2D rb)
+    public void MoveDownBoss(Rigidbody2D rb)
     {
         rb.velocity = Vector3.down * MoveSpeed;
+    }
+
+    private void MoveRightBoss(Rigidbody2D rb)
+    {
+        rb.velocity = transform.right * MoveSpeed;
     }
 
     private void StopMove(Rigidbody2D rb)
@@ -202,58 +216,15 @@ public class Boss : LivingEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerBullet" && !IsInVisible)
+        if (IsInVisible) return;
+
+        IBullet bullet = collision.GetComponent<IBullet>(); // 한 번만 호출!
+        if (bullet != null)
         {
-            var playerBullet = collision.gameObject.GetComponent<PlayerBullet>();
-
-            if (playerBullet != null)
+            float bulletDamage = DataTableManager.Instance.BulletTable.GetBulletDamage(bullet.BulletID);
+            if (bulletDamage > 0)
             {
-                OnDamage(playerBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("PlayerBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "MinionBullet" && !IsInVisible)
-        {
-            var minionBullet = collision.gameObject.GetComponent<MinionBullet>();
-
-            if (minionBullet != null)
-            {
-                OnDamage(minionBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "RazerBullet" && !IsInVisible)
-        {
-            var minionBullet = collision.gameObject.GetComponent<RazerBullet>();
-
-            if (minionBullet != null)
-            {
-                OnDamage(minionBullet.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
-            }
-        }
-
-        if (collision.gameObject.tag == "BoomEffect" && !IsInVisible)
-        {
-            var boomEffect = collision.gameObject.GetComponent<BoomEffect>();
-            if (boomEffect != null)
-            {
-                OnDamage(boomEffect.Damage);
-            }
-            else
-            {
-                Debug.LogError("MinionBullet component not found on the collided object.");
+                OnDamage(bulletDamage);
             }
         }
     }

@@ -4,7 +4,7 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IBullet
 {
     public float Damage { get; protected set; } //피해량
     public float BulletSpeed { get; protected set; } //탄속
@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
     public int PierceCount { get; protected set; } //최대 관통횟수 여부
     public BulletData Data { get; protected set; }
     public AudioSource Sound { get; protected set; }
+
+    public string BulletID { get; protected set; }
 
     public virtual void Fire(Rigidbody2D rb)
     {
@@ -30,5 +32,6 @@ public class Bullet : MonoBehaviour
         CanGuided = data.CanGuided;
         CanPierce = data.CanPierce;
         PierceCount = data.PierceCount;
+        BulletID = data.Id;
     }
 }

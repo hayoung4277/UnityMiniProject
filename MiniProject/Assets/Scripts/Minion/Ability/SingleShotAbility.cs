@@ -16,6 +16,7 @@ public class SingleShotAbility : Ability
         BulletName = minion.BulletName;
         FireRate = minion.FireRate;
         Rairity = minion.Rairity;
+        BulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
     }
 
     public override void Activate()
@@ -39,21 +40,15 @@ public class SingleShotAbility : Ability
     {
         while(true)
         {
-            var bulletPrefab = Resources.Load<GameObject>($"Prefabs/Bullet/{BulletName}");
-            if (bulletPrefab == null)
+            if (BulletPrefab == null)
             {
                 Debug.LogError("Bullet Prefab not Found.");
             }
 
-            GameObject bullet = GameObject.Instantiate(bulletPrefab, tf.position, tf.rotation);
+            GameObject bullet = GameObject.Instantiate(BulletPrefab, tf.position, tf.rotation);
 
             yield return new WaitForSeconds(FireRate);
         }
-    }
-
-    public override void UpdateAbility()
-    {
-        base.UpdateAbility();
     }
 
     public void BurstFire(MonoBehaviour caller)
@@ -83,10 +78,5 @@ public class SingleShotAbility : Ability
 
             yield return new WaitForSeconds(FireRate);
         }
-    }
-
-    public override void ApplyRarityScaling()
-    {
-
     }
 }

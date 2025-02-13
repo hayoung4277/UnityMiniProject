@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +38,7 @@ public class Player : LivingEntity
     private float shieldCoolTime;
     private float shieldCoolInterval = 30f;
 
-    public GameObject spanwer;
+    private GameObject spawner;
 
     public AudioClip hitSound;
 
@@ -51,10 +52,12 @@ public class Player : LivingEntity
 
         var findUI = GameObject.FindWithTag(GMCT.UI);
         UIManager = findUI.GetComponent<UIManager>();
+
+        spawner = gameObject.transform.Find("MinionSpawner").gameObject;
         surviveTime = 0f;
 
         // PlayerData 가져오기
-        Data = DataTableManager.PlayerTable.Get(dataId);
+        Data = DataTableManager.Instance.PlayerTable.Get(dataId);
         if (Data == null)
         {
             Debug.LogError($"Player data with ID '{dataId}' not found.");
@@ -150,7 +153,7 @@ public class Player : LivingEntity
         if (collision.gameObject.tag == "Item")
         {
             var item = collision.GetComponent<IItem>();
-            item?.UseItem(spanwer);
+            item?.UseItem(spawner);
         }
     }
 

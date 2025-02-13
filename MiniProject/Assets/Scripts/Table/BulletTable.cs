@@ -18,22 +18,6 @@ public class BulletData
         return $"{Id} / {Damage} / {BulletSpeed} / {BulletEffectName} / {CanDestroyed} / " +
             $"{CanDestroyed} / {CanGuided} / {CanPierce} / {PierceCount}";
     }
-
-    //public string StringName
-    //{
-    //    get
-    //    {
-    //        return DataTableManager.StringTable.Get(Name);
-    //    }
-    //}
-
-    //public string StringDesc
-    //{
-    //    get
-    //    {
-    //        return DataTableManager.StringTable.Get(Desc);
-    //    }
-    //}
 }
 
 public class BulletTable : DataTable
@@ -67,6 +51,17 @@ public class BulletTable : DataTable
 
         Debug.Log($"Loaded BulletTable with {table.Count} entries from {filename}.");
 
+    }
+
+    public float GetBulletDamage(string id)
+    {
+        if (table.TryGetValue(id, out BulletData bulletData))
+        {
+            return bulletData.Damage;
+        }
+
+        Debug.LogWarning($"BulletData with ID '{id}' not found in BulletTable. Returning default damage (0).");
+        return 0f; // 기본값 반환
     }
 
     public BulletData Get(string id)

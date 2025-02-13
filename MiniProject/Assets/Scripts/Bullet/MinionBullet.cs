@@ -10,7 +10,7 @@ public class MinionBullet : Bullet
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Data = DataTableManager.BulletTable.Get(dataId);
+        Data = DataTableManager.Instance.BulletTable.Get(dataId);
 
         if (Data != null)
         {
@@ -41,27 +41,28 @@ public class MinionBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(CanGuided && PierceCount > 0)
+        if (CanPierce)
         {
-            PierceCount--;
-            if(PierceCount == 0)
+            if (collision.gameObject.CompareTag("NormalMonster") || collision.gameObject.CompareTag("Boss"))
             {
-                CanGuided = false;
+                if (PierceCount > 0)
+                {
+                    PierceCount--;
+                    if (PierceCount == 0)
+                    {
+                        CanPierce = false;
+                    }
+                    return; // Destroy ¹æÁö
+                }
             }
         }
 
-        if (!CanGuided)
+        if (!CanPierce)
         {
-            if (collision.gameObject.tag == "NormalMonster")
-            {
-                Destroy(gameObject);
-            }
-
-            if (collision.gameObject.tag == "Boss")
+            if (collision.gameObject.CompareTag("NormalMonster") || collision.gameObject.CompareTag("Boss"))
             {
                 Destroy(gameObject);
             }
         }
-
     }
 }

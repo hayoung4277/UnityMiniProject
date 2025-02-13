@@ -8,6 +8,7 @@ public abstract class Ability
     public float FireRate { get; set; }
     public float Damage { get; set; }
     public int Rairity { get; set; }
+    public GameObject BulletPrefab { get; set; }
 
     protected Minion owner;
     protected float fireRate;       // 발사 속도 (초당 발사 횟수)

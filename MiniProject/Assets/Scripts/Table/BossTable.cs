@@ -15,7 +15,8 @@ public class BossData
     public float DeathEffectPlayTime { get; set; }
     public string DeathSoundName { get; set; }
     public float DeathSoundPlayTime { get; set; }
-    public string PatternIdsRaw { get; set; }
+    public string PatternIdsRaw { get; set; } //원본 문자열
+    public bool IsMoveDown  { get; set; }
 
     public List<int> PatternIds { get; private set; } = new List<int>();
 
@@ -35,7 +36,7 @@ public class BossData
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error parsing AbilityIds for Minion {Id}: {e.Message}");
+            Debug.LogError($"Error parsing PatternIds for Minion {Id}: {e.Message}");
             PatternIds.Clear();
         }
     }
@@ -43,7 +44,7 @@ public class BossData
     public override string ToString()
     {
         return $"{Id} / {HP} / {MoveSpeed} / {OfferedScore} / {BossSpriteName} / {DeathEffectName} / " +
-            $"{DeathEffectPlayTime} / {DeathSoundName} / {DeathSoundPlayTime}";
+            $"{DeathEffectPlayTime} / {DeathSoundName} / {DeathSoundPlayTime} / {PatternIdsRaw} / {IsMoveDown}";
     }
 }
 
@@ -73,6 +74,7 @@ public class BossTable : DataTable
                 continue;
             }
 
+            item.ParsePatternIds();
             table.Add(item.Id, item);
         }
 

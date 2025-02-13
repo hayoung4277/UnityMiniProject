@@ -8,6 +8,7 @@ public abstract class Pattern
     public float TimeBetweenShots { get; set; } //ÅºÈ¯ °£ °£°Ý
     public float BulletSpeed { get; set; }
     public float PatternStartTime { get; set; }
+    public GameObject BulletPrefabs { get; set; }
 
     protected Boss owner;
 

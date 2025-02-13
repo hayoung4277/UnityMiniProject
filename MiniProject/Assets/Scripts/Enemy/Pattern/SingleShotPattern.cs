@@ -14,6 +14,7 @@ public class SingleShotPattern : Pattern
         tf = boss.transform;
         FireRate = 3f;
         TimeBetweenShots = 0.3f;
+        BulletPrefabs = Resources.Load<GameObject>("Prefabs/Bullet/BossBullet");
     }
 
     public override void Activate()
@@ -30,11 +31,9 @@ public class SingleShotPattern : Pattern
     {
         while (true)
         {
-            var bullet = Resources.Load<GameObject>("Prefabs/Bullet/BossBullet");
-
             for (int i = 0; i < 3; i++)
             {
-                GameObject.Instantiate(bullet, tf.position, tf.rotation);
+                GameObject.Instantiate(BulletPrefabs, tf.position, tf.rotation);
                 yield return new WaitForSeconds(TimeBetweenShots);
             }
 

@@ -18,6 +18,7 @@ public class FanShotPattern : Pattern
         TimeBetweenShots = 0.5f;
         BulletSpeed = 3f;
         PatternStartTime = 5f;
+        BulletPrefabs = Resources.Load<GameObject>($"Prefabs/Bullet/BossBullet");
     }
     public override void Activate()
     {
@@ -35,8 +36,6 @@ public class FanShotPattern : Pattern
 
         while (true)
         {
-            var bullet = Resources.Load<GameObject>("Prefabs/Bullet/BossBullet");
-
             for (int i = 0; i < 3; i++) // 3번 발사
             {
                 float startAngle = -sectorSpreadAngle - 75f;
@@ -49,18 +48,13 @@ public class FanShotPattern : Pattern
                     float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
-                    GameObject.Instantiate(bullet, tf.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
+                    GameObject.Instantiate(BulletPrefabs, tf.position, Quaternion.identity);
+                    BulletPrefabs.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
 
                     angle += angleStep;
                 }
                 yield return new WaitForSeconds(FireRate); // 발사 간격
             }
         }
-    }
-
-    public override void UpdatePattern()
-    {
-        base.UpdatePattern();
     }
 }

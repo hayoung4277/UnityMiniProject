@@ -13,16 +13,13 @@ public class EnemyBullet : MonoBehaviour
 
     public string dataId = "70001";
 
-    [Header("HitEffectPrefab")]
-    public GameObject hitEffectPrefab;
-
-    [Header("Movement Effect")]
-    public ParticleSystem movementEffect;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
-        Data = DataTableManager.EnemyBulletTable.Get(dataId);
-        if(Data == null )
+        rb = GetComponent<Rigidbody2D>();
+        Data = DataTableManager.Instance.EnemyBulletTable.Get(dataId);
+        if (Data == null )
         {
             Debug.LogError($"EnemyBullet data with ID '{dataId}' not found.");
             return;
@@ -39,6 +36,11 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Move();
+    }
+
     private void Initialized(EnemyBulletData data)
     {
         Damage = data.Damage;
@@ -47,26 +49,21 @@ public class EnemyBullet : MonoBehaviour
         CanGuided = data.CanGuided;
     }
 
+    private void Move()
+    {
+        rb.velocity = Vector3.down * Speed;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "DestroyBox")
         {
-            SpawnHitEffect();
             Destroy(gameObject);
         }
 
         if(collision.gameObject.tag == "Player")
         {
-            SpawnHitEffect();
             Destroy(gameObject);
-        }
-    }
-
-    private void SpawnHitEffect()
-    {
-        if (hitEffectPrefab != null)
-        {
-            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         }
     }
 }
