@@ -98,3 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 10004
+  offsetX: 0.7
+  offsetY: 0.3
