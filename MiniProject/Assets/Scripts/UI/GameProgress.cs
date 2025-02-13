@@ -72,7 +72,7 @@ public class GameProgress : GenericUI
         fps = 1.0f / Time.deltaTime; // FPS °è»ê
         if (fpsText != null)
         {
-            fpsText.text = $"FPS: {Mathf.Round(fps)}";
+            fpsText.text = $"FPS: {fps.ToString("F2")}";
         }
     }
 

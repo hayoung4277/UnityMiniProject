@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
         gm = GameObject.FindWithTag(GMCT.GM).GetComponent<GameManager>();
 
         // BulletSpawner 참조
-        bulletSpawner = GameObject.FindWithTag("BulletSpawner").GetComponent<BulletSpawner>();
+        //bulletSpawner = GameObject.FindWithTag("BulletSpawner").GetComponent<BulletSpawner>();
     }
 
     private void Start()
@@ -148,17 +148,17 @@ public class UIManager : MonoBehaviour
     {
         SpawnPlayer(2, gameStartUI.playerSpawnPoint); // playerPrefabs[2]이 세 번째 플레이어
     }
-    public void ToggleFPS()
-    {
-        if (gameProgressUI.fpsText.enabled == false)
-        {
-            gameProgressUI.fpsText.enabled = true;
-        }
-        else
-        {
-            gameProgressUI.fpsText.enabled = false;
-        }
-    }
+    //public void ToggleFPS()
+    //{
+    //    if (gameProgressUI.fpsText.enabled == false)
+    //    {
+    //        gameProgressUI.fpsText.enabled = true;
+    //    }
+    //    else
+    //    {
+    //        gameProgressUI.fpsText.enabled = false;
+    //    }
+    //}
 }
 
 

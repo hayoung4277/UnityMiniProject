@@ -107,7 +107,7 @@ public class Enemy : NomalMonster
         }
 
         // 콜라이더 비활성화
-        GetComponent<PolygonCollider2D>().enabled = false;
+        GetComponent<EdgeCollider2D>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
