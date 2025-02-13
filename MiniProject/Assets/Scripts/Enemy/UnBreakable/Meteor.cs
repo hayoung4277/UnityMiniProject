@@ -20,6 +20,8 @@ public class Meteor : UnBreakable
     private AudioSource audioSource;
     public AudioClip warningClip;
 
+    private float fallRotationSpeed = 100f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,6 +57,8 @@ public class Meteor : UnBreakable
         {
             FollowPlayer();  // 등장 전 플레이어 위치 따라감
         }
+
+        transform.Rotate(Vector3.forward * fallRotationSpeed * Time.deltaTime);
     }
 
     // 플레이어의 x 좌표를 따라다니는 함수 (스폰 전)

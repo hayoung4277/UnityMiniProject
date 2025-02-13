@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +12,7 @@ public class GameStart : GenericUI
     private Transform child3;
     private Transform child4;
 
-    private GameObject playerPrefab;
-    private GameObject playerInstance;
+    public Transform playerSpawnPoint;  // 추가: 플레이어 스폰 포인트
 
     protected override void Awake()
     {
@@ -44,6 +41,7 @@ public class GameStart : GenericUI
         audioSource.Play();
     }
 
+    // 플레이어 선택 화면 열기
     public void OpenPlayerSelect()
     {
         child2.gameObject.SetActive(false);
@@ -51,50 +49,7 @@ public class GameStart : GenericUI
         child4.gameObject.SetActive(true);
     }
 
-    public void SpawnPlayer1()
-    {
-        playerPrefab = Resources.Load<GameObject>("Prefabs/Player/MK01");
-        if (playerInstance == null)
-        {
-            playerInstance = Instantiate(playerPrefab);
-        }
-        else if (playerInstance != null)
-        {
-            Destroy(playerInstance);
-            playerInstance = Instantiate(playerPrefab);
-        }
-    }
-
-    public void SpawnPlayer2()
-    {
-        playerPrefab = Resources.Load<GameObject>("Prefabs/Player/MK02");
-        if (playerInstance == null)
-        {
-            playerInstance = Instantiate(playerPrefab);
-        }
-        else if (playerInstance != null)
-        {
-            Destroy(playerInstance);
-            playerInstance = Instantiate(playerPrefab);
-        }
-
-
-    }
-
-    public void SpawnPlayer3()
-    {
-        playerPrefab = Resources.Load<GameObject>("Prefabs/Player/MK03");
-        if (playerInstance == null)
-        {
-            playerInstance = Instantiate(playerPrefab);
-        }
-        else if (playerInstance != null)
-        {
-            Destroy(playerInstance);
-            playerInstance = Instantiate(playerPrefab);
-        }
-    }
-
+    // 플레이어 선택 화면 닫기
     public void ClosePlayerSelect()
     {
         child2.gameObject.SetActive(true);
@@ -106,5 +61,24 @@ public class GameStart : GenericUI
     {
         base.Close();
         audioSource.Stop();
+    }
+
+    // OnPlayerSelected와 같은 메서드를 직접 호출하지 않고, UIManager에서 처리하도록 할 수 있습니다.
+    public void OnPlayer1Selected()
+    {
+        // UIManager의 SpawnPlayer를 호출하여 플레이어 선택
+        FindObjectOfType<UIManager>().OnPlayer1Selected();
+    }
+
+    public void OnPlayer2Selected()
+    {
+        // UIManager의 SpawnPlayer를 호출하여 플레이어 선택
+        FindObjectOfType<UIManager>().OnPlayer2Selected();
+    }
+
+    public void OnPlayer3Selected()
+    {
+        // UIManager의 SpawnPlayer를 호출하여 플레이어 선택
+        FindObjectOfType<UIManager>().OnPlayer3Selected();
     }
 }

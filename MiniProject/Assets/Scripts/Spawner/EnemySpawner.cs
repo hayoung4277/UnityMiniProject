@@ -44,10 +44,15 @@ public class EnemySpawner : MonoBehaviour
     private bool isEnd = false;
 
     public static event System.Action<Enemy> OnEnemySpawned;
+    public static event System.Action<Boss> OnBossSpawned;
 
     private void Update()
     {
-        bossSpawnTime += Time.deltaTime;
+        if (bossInstance == null)
+        {
+            bossSpawnTime += Time.deltaTime;
+        }
+
         normalSpawnTime += Time.deltaTime;
         unBSpawnTime += Time.deltaTime;
 
@@ -60,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
             index++;
 
             bossSpawnTime = 0f;
-            
+
             Debug.Log($"Boss Length: {bossPrefabs.Length}");
             Debug.Log($"Index: {index}");
         }
@@ -98,6 +103,11 @@ public class EnemySpawner : MonoBehaviour
         bossInstance = Instantiate(bossPrefabs[index], parent.position, parent.rotation);
         bossComponent = bossInstance.GetComponent<Boss>();
         bossDeathCounted = false;
+
+        if (bossComponent != null)
+        {
+            OnBossSpawned?.Invoke(bossComponent); // 이벤트 호출
+        }
     }
 
     public void SpawnSixRandomMonsters()

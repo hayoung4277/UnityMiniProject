@@ -29,16 +29,22 @@ public class Player : LivingEntity
     public string dataId = "01001";
     private float surviveTime;
 
+    [Header("ShieldEffect")]
+    public GameObject shieldEffect;
+    private GameObject shieldEffectInstance;
     public bool isShield;
+    public int shieldCount {  get; set; }
+    private int shieldMaxCount = 5;
+    private float shieldCoolTime;
+    private float shieldCoolInterval = 30f;
+    private bool isShieldActive => shieldCount > 0;
+
     private bool isHit;
-    public int shieldCount;
 
     public bool isInvisible = false;
 
-    private float shieldCoolTime;
-    private float shieldCoolInterval = 30f;
-
     private GameObject spawner;
+    public BulletSpawner bulletSpawner;
 
     public AudioClip hitSound;
 
@@ -73,6 +79,11 @@ public class Player : LivingEntity
         {
             Debug.LogError($"Player data with ID '{dataId}' not found.");
             return;
+        }
+
+        if (bulletSpawner == null)
+        {
+            bulletSpawner = GetComponentInChildren<BulletSpawner>(); // 자식에서 찾기
         }
 
         isShield = true;
@@ -118,6 +129,8 @@ public class Player : LivingEntity
         HP = 0;
         Gm.StopGame();
         UIManager.GameOver();
+
+        RemoveShieldEffect();
         Destroy(gameObject);
     }
 
@@ -125,7 +138,11 @@ public class Player : LivingEntity
     {
         if (collision.gameObject.tag == "NormalMonster" || collision.gameObject.tag == "UnBreakable")
         {
-            if (isInvisible == false)
+            if (isShieldActive)
+            {
+                ReduceShield();
+            }
+            else if (!isInvisible)
             {
                 Die();
             }
@@ -133,20 +150,14 @@ public class Player : LivingEntity
 
         if (collision.gameObject.tag == "BossBullet")
         {
-            if (isInvisible == false && isShield == false)
+            if (isShieldActive)
+            {
+                ReduceShield();
+            }
+            else if (!isInvisible)
             {
                 OnPlayerDamage();
                 AudioSource.PlayOneShot(hitSound);
-                isShield = true;
-                isHit = true;
-                Debug.Log("Shield CoolTime!");
-            }
-
-            if (isHit == true && isShield == true)
-            {
-                isShield = false;
-                isHit = false;
-                shieldCount = 0;
             }
         }
 
@@ -160,6 +171,7 @@ public class Player : LivingEntity
     public void OnPlayerDamage()
     {
         HP--;
+        Destroy(shieldEffectInstance);
         if (HP <= 0)
         {
             HP = 0;
@@ -169,7 +181,39 @@ public class Player : LivingEntity
 
     public void IsShieldSetting()
     {
+        if (shieldCount >= shieldMaxCount)
+        {
+            return;
+        }
+
         shieldCount++;
-        Debug.Log("OnShield!");
+
+        if (shieldEffectInstance == null)
+        {
+            shieldEffectInstance = Instantiate(shieldEffect, transform.position, Quaternion.identity);
+            shieldEffectInstance.transform.SetParent(transform);
+            shieldEffectInstance.transform.localPosition = Vector3.zero;
+        }
+    }
+
+    public void ReduceShield()
+    {
+        if (shieldCount <= 0) return;
+
+        shieldCount--;
+
+        if (shieldCount <= 0)
+        {
+            RemoveShieldEffect();
+        }
+    }
+
+    private void RemoveShieldEffect()
+    {
+        if (shieldEffectInstance != null)
+        {
+            Destroy(shieldEffectInstance);
+            shieldEffectInstance = null;
+        }
     }
 }

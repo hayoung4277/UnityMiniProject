@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -92,17 +93,15 @@ public class MinionSpawner : MonoBehaviour
 
     private int GetAvailableIndex()
     {
-        //사용되지 않은 자리 찾기
+        // 사용되지 않은 자리 찾기
         for (int i = 0; i < spawnPositions.Count; i++)
         {
             if (!usedIndices.Contains(i))
             {
-                Debug.Log($"Available spawn index found: {i}");
                 return i; // 빈자리 반환
             }
         }
 
-        Debug.Log("No available index found. Will replace oldest minion.");
         return -1; // 모든 위치가 사용 중
     }
 
@@ -112,6 +111,7 @@ public class MinionSpawner : MonoBehaviour
         {
             usedIndices.Remove(minion.SpawnIndex);
             activeMinions.Remove(minion.SpawnIndex);
+            minionQueue = new Queue<int>(minionQueue.Where(index => index != minion.SpawnIndex)); // 큐에서도 제거
         }
         Debug.Log($"Minion Destroyed! Index {minion.SpawnIndex} is now free.");
     }
@@ -135,27 +135,25 @@ public class MinionSpawner : MonoBehaviour
             availableIndex = oldestIndex; // 제거한 자리 재사용
         }
 
-        // 새로운 미니언이 즉시 소환되도록 보장
-        if (availableIndex >= 0 && availableIndex < spawnPositions.Count)
-        {
-            GameObject prefabInstance = Instantiate(prefab[randomPrefabIndex], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
-            Minion minion = prefabInstance.GetComponent<Minion>();
-            effectInstance = GameObject.Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
-            Destroy(effectInstance, 0.2f);
-            minion.SpawnIndex = availableIndex;
-            minion.OnMinionDestroyed += HandleMinionDestroyed;
+        // 새로운 미니언 소환
+        GameObject prefabInstance = Instantiate(prefab[randomPrefabIndex], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Minion minion = prefabInstance.GetComponent<Minion>();
+        effectInstance = Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Destroy(effectInstance, 0.2f);
 
-            // minionQueue에 즉시 갱신
-            usedIndices.Add(availableIndex);
-            activeMinions[availableIndex] = minion;
-            minionQueue.Enqueue(availableIndex); // FIFO 방식 적용
+        minion.SpawnIndex = availableIndex;
+        minion.OnMinionDestroyed += HandleMinionDestroyed;
 
-            Debug.Log($"Common Minion Spawned at index {availableIndex}, Position: {spawnPositions[availableIndex].position}");
-        }
-        else
+        usedIndices.Add(availableIndex);
+        activeMinions[availableIndex] = minion;
+
+        // 새로 소환된 경우에만 큐에 추가
+        if (!minionQueue.Contains(availableIndex))
         {
-            Debug.LogError("Error: Invalid spawn index. Minion not spawned.");
+            minionQueue.Enqueue(availableIndex);
         }
+
+        Debug.Log($"Common Minion Spawned at index {availableIndex}, Position: {spawnPositions[availableIndex].position}");
     }
 
     private void SpawnLegendMinion(GameObject[] prefab)
@@ -164,7 +162,6 @@ public class MinionSpawner : MonoBehaviour
 
         if (availableIndex == -1)
         {
-            // 빈자리가 없으면 FIFO 방식으로 가장 오래된 미니언 제거
             int oldestIndex = minionQueue.Dequeue();
             if (activeMinions.ContainsKey(oldestIndex))
             {
@@ -173,29 +170,25 @@ public class MinionSpawner : MonoBehaviour
                 usedIndices.Remove(oldestIndex);
                 Debug.Log($"Legendary Minion at index {oldestIndex} removed.");
             }
-            availableIndex = oldestIndex; // 제거한 자리 재사용
+            availableIndex = oldestIndex;
         }
 
-        // 새로운 미니언이 즉시 소환되도록 보장
-        if (availableIndex >= 0 && availableIndex < spawnPositions.Count)
+        GameObject prefabInstance = Instantiate(prefab[prefab.Length - 1], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Minion minion = prefabInstance.GetComponent<Minion>();
+        effectInstance = Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
+        Destroy(effectInstance, 0.2f);
+
+        minion.SpawnIndex = availableIndex;
+        minion.OnMinionDestroyed += HandleMinionDestroyed;
+
+        usedIndices.Add(availableIndex);
+        activeMinions[availableIndex] = minion;
+
+        if (!minionQueue.Contains(availableIndex))
         {
-            GameObject prefabInstance = Instantiate(prefab[prefab.Length - 1], spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
-            Minion minion = prefabInstance.GetComponent<Minion>();
-            effectInstance = GameObject.Instantiate(spawnEffect, spawnPositions[availableIndex].position, spawnPositions[availableIndex].rotation);
-            Destroy(effectInstance, 0.2f);
-            minion.SpawnIndex = availableIndex;
-            minion.OnMinionDestroyed += HandleMinionDestroyed;
-
-            // minionQueue에 즉시 갱신
-            usedIndices.Add(availableIndex);
-            activeMinions[availableIndex] = minion;
-            minionQueue.Enqueue(availableIndex); // FIFO 방식 적용
-
-            Debug.Log($"Legendary Minion Spawned at index {availableIndex}, Position: {spawnPositions[availableIndex].position}");
+            minionQueue.Enqueue(availableIndex);
         }
-        else
-        {
-            Debug.LogError("Error: Invalid spawn index. Minion not spawned.");
-        }
+
+        Debug.Log($"Legendary Minion Spawned at index {availableIndex}, Position: {spawnPositions[availableIndex].position}");
     }
 }

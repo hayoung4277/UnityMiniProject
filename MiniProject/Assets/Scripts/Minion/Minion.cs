@@ -56,6 +56,10 @@ public class Minion : MonoBehaviour
 
         var findPlayer = GameObject.FindWithTag("Player");
         player = findPlayer.GetComponent<Player>();
+
+        Vector3 playerPos = player.transform.position;
+        isRightSide = transform.position.x > playerPos.x;
+        isUpSide = transform.position.y > playerPos.y;
     }
 
     private void Start()
@@ -130,13 +134,6 @@ public class Minion : MonoBehaviour
     {
         if (player == null)
             return;
-
-        // 플레이어의 이동 방향 확인
-        float directionX = player.transform.position.x - transform.position.x;
-        float directionY = player.transform.position.y - transform.position.y;
-
-        isRightSide = directionX <= 0; // 왼쪽이면 true, 오른쪽이면 false
-        isUpSide = directionY <= 0;    // 아래쪽이면 true, 위쪽이면 false
 
         // 목표 위치 설정 (플레이어 기준으로 일정 거리 유지)
         Vector3 targetPos = player.transform.position + new Vector3(isRightSide ? offsetX : -offsetX, isUpSide ? offsetY : -offsetY, 0);

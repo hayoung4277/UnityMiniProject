@@ -8,7 +8,7 @@ public class GameProgress : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
-    //public TextMeshProUGUI fpsText;
+    public TextMeshProUGUI fpsText;
 
     private AudioSource audioSource;
 
@@ -60,7 +60,7 @@ public class GameProgress : GenericUI
             fps = 1.0f / Time.deltaTime;
         }
 
-        //fpsText.enabled = false;
+        fpsText.enabled = false;
     }
 
     private void Update()
@@ -69,15 +69,11 @@ public class GameProgress : GenericUI
 
         timeText.text = $"Time: {CurrentTime.ToString("F2")}";
 
-        //deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-        //fps = 1.0f / deltaTime;
-
-        fps = 1.0f / Time.deltaTime;
-
-        //if (fpsText.enabled)
-        //{
-        //    fpsText.text = $"FPS: {fps.ToString("F2")}";
-        //}
+        fps = 1.0f / Time.deltaTime; // FPS °è»ê
+        if (fpsText != null)
+        {
+            fpsText.text = $"FPS: {Mathf.Round(fps)}";
+        }
     }
 
     public override void Open()
@@ -85,7 +81,6 @@ public class GameProgress : GenericUI
         base.Open();
 
         scoreText.text = $"Points: {Score}";
-        //timeText.text = $"Time: {CurrentTime.ToString("F2")}";
         timeText.text = $"Distance: {player.SurviveTime.ToString("F2")}";
     }
 
@@ -123,16 +118,4 @@ public class GameProgress : GenericUI
         Time.timeScale = 1;
         child2.gameObject.SetActive(false);
     }
-
-    //public void ShowFPS()
-    //{
-    //    if (fpsText.enabled == false)
-    //    {
-    //        fpsText.enabled = true;
-    //    }
-    //    else
-    //    {
-    //        fpsText.enabled = false;
-    //    }
-    //}
 }

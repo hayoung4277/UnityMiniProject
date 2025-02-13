@@ -26,6 +26,9 @@ public class Boss : LivingEntity
     public string dataId = "06002";
     private Rigidbody2D rb;
 
+    private float maxHP;
+    private float nextTriggerHP;
+
     private Vector2 stopPos = new Vector2(0f, 3.6f);
     private bool isStop;
     public bool isMove;
@@ -40,6 +43,11 @@ public class Boss : LivingEntity
     private UIManager ui;
 
     public AudioClip deathSound;
+
+    public event System.Action<Boss> OnSpawnCommonItem;
+    public event System.Action<Boss> OnSpawnLegendaryItem;
+
+    private float slayTime = 0f;
 
     private void Awake()
     {
@@ -65,11 +73,12 @@ public class Boss : LivingEntity
 
         isStop = false;
         isDead = false;
+        slayTime = 0f;
     }
 
     private void Start()
     {
-        for(int i = 0; i < Patterns.Count; i++)
+        for (int i = 0; i < Patterns.Count; i++)
         {
             Debug.Log($"패턴 {i} 활성화 시도: {Patterns[i].GetType().Name}");
             Patterns[i].Activate();
@@ -84,6 +93,9 @@ public class Boss : LivingEntity
         {
             spriteHalfWidth = spriteRenderer.bounds.extents.x;  // 가로 절반 크기
         }
+
+        maxHP = HP; // 게임 시작 시 최대 HP 저장
+        nextTriggerHP = maxHP * 0.7f;
     }
 
     public void Initialized(BossData data)
@@ -116,17 +128,32 @@ public class Boss : LivingEntity
 
     private void Update()
     {
-        foreach(var pattern in Patterns)
+        slayTime += Time.deltaTime;
+
+        foreach (var pattern in Patterns)
         {
             pattern.UpdatePattern();
+        }
+
+        if (HP <= nextTriggerHP)
+        {
+            OnSpawnCommonItem?.Invoke(this);
+
+            // 다음 목표 HP를 30% 더 줄여 설정
+            nextTriggerHP -= maxHP * 0.3f;
+
+            // HP가 0 이하로 내려가면 더 이상 이벤트가 발생하지 않도록 함
+            if (nextTriggerHP <= 0)
+            {
+                nextTriggerHP = 0;
+            }
         }
 
         if (IsInVisible && IsMoveDown)
         {
             MoveDownBoss(rb);
         }
-
-        if(IsInVisible && !IsMoveDown)
+        else
         {
             MoveRightBoss(rb);
         }
@@ -135,8 +162,8 @@ public class Boss : LivingEntity
         {
             StopMove(rb);
         }
-
-        if(transform.position.x >= stopPos.x && !IsMoveDown)
+        
+        if (transform.position.x >= stopPos.x && !IsMoveDown)
         {
             StopMove(rb);
         }
@@ -160,12 +187,17 @@ public class Boss : LivingEntity
     public override void Die()
     {
         base.Die();
+        OfferScore();
         IsDead = true;
         AudioSource.PlayOneShot(deathSound);
         HP = 0f;
         ui.AddScore(OfferedScore);
 
         DisableSprite();
+
+        OnSpawnLegendaryItem?.Invoke(this);
+        OnSpawnLegendaryItem = null;
+        OnSpawnCommonItem = null;
 
         Destroy(gameObject, deathSound.length);
     }
@@ -197,6 +229,28 @@ public class Boss : LivingEntity
         rb.velocity = Vector3.zero;
         IsInVisible = false;
         isStop = true;
+    }
+
+    private void OfferScore()
+    {
+        if (slayTime <= 5f)
+        {
+            OfferedScore *= 5f;
+        }
+        else if (slayTime > 5f && slayTime <= 12.5f)
+        {
+            OfferedScore *= 3.5f;
+        }
+        else if (slayTime > 12.5f && slayTime <= 30f)
+        {
+            OfferedScore *= 1.5f;
+        }
+        else if (slayTime > 30.1f)
+        {
+            OfferedScore *= 1f;
+        }
+
+        Debug.Log($"SlayScore: {OfferedScore}!");
     }
 
     private void SideMovement(Rigidbody2D rb)

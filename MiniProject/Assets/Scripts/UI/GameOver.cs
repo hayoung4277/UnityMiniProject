@@ -8,6 +8,7 @@ public class GameOver : GenericUI
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI totalScoreText;
     public Button reStartButton;
 
     private AudioSource audioSource;

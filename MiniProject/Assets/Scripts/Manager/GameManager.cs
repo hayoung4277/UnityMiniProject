@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetPlayer(Player newPlayer)
+    {
+        player = newPlayer;
+    }
+
     public void ReStartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -15,7 +15,6 @@ public class Enemy : NomalMonster
     private UIManager ui;
 
     public event System.Action<Enemy> OnSpawnItem;
-    public event System.Action<Enemy> OnScoreMultiplier;
 
     private void Awake()
     {
@@ -88,7 +87,7 @@ public class Enemy : NomalMonster
 
         Destroy(gameObject, deathSound.length);
     }
-
+    
     private void DisableSprite()
     {
         // 스프라이트 렌더러 비활성화
