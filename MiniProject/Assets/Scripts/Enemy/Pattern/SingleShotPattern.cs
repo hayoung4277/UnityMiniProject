@@ -33,7 +33,16 @@ public class SingleShotPattern : Pattern
         {
             for (int i = 0; i < 3; i++)
             {
-                GameObject.Instantiate(BulletPrefabs, tf.position, tf.rotation);
+                GameObject bullet = GameObject.Instantiate(BulletPrefabs, tf.position, tf.rotation);
+
+                // Rigidbody2D 가져오기
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                var enemyBullet = bullet.GetComponent<EnemyBullet>();
+                if (rb != null)
+                {
+                    rb.velocity = Vector3.down * enemyBullet.Speed;
+                }
+
                 yield return new WaitForSeconds(TimeBetweenShots);
             }
 

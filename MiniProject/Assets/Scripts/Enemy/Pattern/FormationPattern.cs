@@ -41,7 +41,14 @@ public class FormationPattern : Pattern
                 for (int j = 0; j < bulletCount; j++)
                 {
                     var bulletInstance = GameObject.Instantiate(BulletPrefabs, tf.position, Quaternion.identity);
-                    bulletInstance.GetComponent<Rigidbody2D>().velocity = Vector3.down * BulletSpeed;
+
+                    Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
+                    var enemyBullet = bulletInstance.GetComponent<EnemyBullet>();
+
+                    if (rb != null)
+                    {
+                        rb.velocity = Vector3.down * enemyBullet.Speed;
+                    }
 
                     bulletInstance.transform.Translate(startPosX, startPosY, 0f);
 

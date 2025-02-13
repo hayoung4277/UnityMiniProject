@@ -43,13 +43,15 @@ public class Enemy : NomalMonster
         // 부모-자식 관계 내의 모든 SpriteRenderer 추가
         spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>(true));
 
-        // 독립적인 오브젝트들도 필요하면 추가 가능
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("EnemyPart"))
+        foreach (Transform child in transform)
         {
-            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-            if (sr != null && !spriteRenderers.Contains(sr))
+            if (child.CompareTag("EnemyPart"))
             {
-                spriteRenderers.Add(sr);
+                SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    spriteRenderers.Add(sr);
+                }
             }
         }
 

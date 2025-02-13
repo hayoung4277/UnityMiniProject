@@ -40,7 +40,7 @@ public class HalfCirclePattern : Pattern
         {
             for (int i = 0; i < 4; i++) // 4번 발사
             {
-                float startAngle = -spreadAngle / 2; //-90도부터 시작
+                float startAngle = -spreadAngle / 2 - 90f; //-90도부터 시작
                 float angleStep = spreadAngle / (bulletCount - 1);
                 float angle = startAngle;
 
@@ -51,7 +51,8 @@ public class HalfCirclePattern : Pattern
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
                     GameObject bullet = GameObject.Instantiate(BulletPrefabs, tf.position, Quaternion.identity); // 방향 수정
-                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * BulletSpeed;
+                    var enemyBullet = bullet.GetComponent<EnemyBullet>();
+                    bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * enemyBullet.Speed;
 
                     angle += angleStep; // 다음 탄환 각도 설정
                 }

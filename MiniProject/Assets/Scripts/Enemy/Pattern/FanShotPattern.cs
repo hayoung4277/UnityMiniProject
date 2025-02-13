@@ -16,7 +16,6 @@ public class FanShotPattern : Pattern
         tf = boss.transform;
         FireRate = 3f;
         TimeBetweenShots = 0.5f;
-        BulletSpeed = 3f;
         PatternStartTime = 5f;
         BulletPrefabs = Resources.Load<GameObject>($"Prefabs/Bullet/BossBullet");
     }
@@ -38,7 +37,7 @@ public class FanShotPattern : Pattern
         {
             for (int i = 0; i < 3; i++) // 3번 발사
             {
-                float startAngle = -sectorSpreadAngle / 2f; // 시작 각도 중심을 기준으로 배치
+                float startAngle = -sectorSpreadAngle / 2f - 90f; // 시작 각도 중심을 기준으로 배치
                 float angleStep = sectorSpreadAngle / (sectorBulletCount - 1);
 
                 for (int j = 0; j < sectorBulletCount; j++)
@@ -49,13 +48,14 @@ public class FanShotPattern : Pattern
                     Vector3 bulletDirection = new Vector3(dirX, dirY, 0f);
 
                     // 탄환 인스턴스 생성
-                    GameObject bullet = GameObject.Instantiate(BulletPrefabs, tf.position, Quaternion.identity);
+                    GameObject bullet = GameObject.Instantiate(BulletPrefabs, tf.position, Quaternion.Euler(0, 0, angle));
 
                     // Rigidbody2D 가져오기
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    var enemyBullet = bullet.GetComponent<EnemyBullet>();
                     if (rb != null)
                     {
-                        rb.velocity = bulletDirection * BulletSpeed;
+                        rb.velocity = bulletDirection * enemyBullet.Speed;
                     }
 
                     // Debug 용 로그 (나중에 삭제 가능)

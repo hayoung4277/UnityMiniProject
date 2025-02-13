@@ -36,10 +36,10 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Move();
-    }
+    //private void Start()
+    //{
+    //    Move();
+    //}
 
     private void Initialized(EnemyBulletData data)
     {
@@ -49,10 +49,10 @@ public class EnemyBullet : MonoBehaviour
         CanGuided = data.CanGuided;
     }
 
-    private void Move()
-    {
-        rb.velocity = Vector3.down * Speed;
-    }
+    //private void Move()
+    //{
+    //    //rb.velocity = Vector3.down * Speed;
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
