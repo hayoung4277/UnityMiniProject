@@ -33,7 +33,8 @@ public class Minion : MonoBehaviour
     private bool isRightSide = true;
     private bool isUpSide = true;
 
-    private Coroutine fireCoroutine;
+    private SpriteRenderer spriteRenderer;
+    private bool isBlinking = false;
 
     private void Awake()
     {
@@ -64,10 +65,12 @@ public class Minion : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < Abilities.Count; i++)
+        for (int i = 0; i < Abilities.Count; i++)
         {
             Abilities[i].Activate();
         }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         //fireCoroutine = StartCoroutine(FireRoutine());
     }
@@ -107,6 +110,11 @@ public class Minion : MonoBehaviour
             ability.UpdateAbility();
         }
 
+        if (destroyTime >= 25f)
+        {
+            StartBlink();
+        }
+
         if (destroyTime >= Duration)
         {
             Die();
@@ -140,5 +148,29 @@ public class Minion : MonoBehaviour
 
         // 부드러운 이동 처리
         transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
+    }
+
+    private void StartBlink()
+    {
+        StartCoroutine(BlinkBeforeDisappear());
+    }
+
+    private IEnumerator BlinkBeforeDisappear()
+    {
+        float duration = 5f;  // 5초 동안 깜빡이기
+        float blinkSpeed = 0.2f; // 깜빡이는 속도
+        float time = 0f;
+
+
+        while (time < duration)
+        {
+            float alpha = (Mathf.Sin(Time.time * 10) + 1) / 2; // 0 ~ 1 사이 반복
+            Color color = spriteRenderer.color;
+            color.a = alpha;
+            spriteRenderer.color = color;
+
+            time += blinkSpeed;
+            yield return new WaitForSeconds(blinkSpeed);
+        }
     }
 }

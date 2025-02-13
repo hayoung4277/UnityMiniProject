@@ -21,7 +21,7 @@ public class MinionSpawner : MonoBehaviour
     public GameObject spawnEffect;
     private GameObject effectInstance;
 
-    private int prefabCount = 10;
+    private int prefabCount = 8;
 
     private List<Transform> spawnPositions = new List<Transform>();
 

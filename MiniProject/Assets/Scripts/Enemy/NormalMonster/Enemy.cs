@@ -87,8 +87,17 @@ public class Enemy : NomalMonster
     public override void Die()
     {
         base.Die();
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(deathEffect, 0.5f);
+
+        // **적의 위치에서 데스 이펙트 생성 (부모 영향 X)**
+        GameObject effect = Instantiate(deathEffect);
+        effect.gameObject.transform.Translate(transform.position);
+
+
+        // 이펙트를 월드 공간 기준으로 이동 (부모의 영향을 받지 않도록)
+        effect.transform.SetParent(null);
+
+        Destroy(effect, 1f);
+
         audioSource.PlayOneShot(deathSound);
         ui.AddScore(OfferedScore);
 

@@ -6,7 +6,6 @@ public class HomingShotAbility : Ability
 {
     private Transform tf;
     private Minion minion;
-    private float damage = 100f;
 
     public HomingShotAbility(Minion minion) : base(minion)
     {

@@ -41,8 +41,6 @@ public class EnemySpawner : MonoBehaviour
     private GameManager gm;
     private UIManager ui;
 
-    private bool isEnd = false;
-
     private Vector3 bossSpawnPos;
     private Quaternion bossSpawnRotation;
 

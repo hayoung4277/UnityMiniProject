@@ -25,8 +25,6 @@ public class GameProgress : GenericUI
     public float CurrentTime => currentTime;
     public bool isPause;
 
-    private float deltaTime = 0.0f;
-
     protected override void Awake()
     {
         var findPlayer = GameObject.FindWithTag("Player");

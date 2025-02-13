@@ -390,13 +390,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataId: 01003
-  shieldEffect: {fileID: 3672937312462212057, guid: bbebffc75c4992a4aac59ac4c17087db, type: 3}
+  shieldEffect: {fileID: 349825798349027162, guid: cf7bb9954f9d8594eaae6d2de6f9820e, type: 3}
   isShield: 0
   isInvisible: 0
   bulletSpawner: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 5dfe8da4267d6b24ea82b878d2f18024, type: 3}
-  heartIcons: []
-  heartIcon: {fileID: 0}
 --- !u!68 &8297608807570411920
 EdgeCollider2D:
   m_ObjectHideFlags: 0

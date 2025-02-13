@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
         //    onSpeedUp.Invoke();
         //    speedUpTime = 0f;
         //}
+
+        if (Input.GetKeyDown(KeyCode.Escape)) // 안드로이드의 뒤로 가기 버튼 감지
+        {
+            QuitGame();
+        }
     }
 
     public void StopGame()
@@ -85,5 +90,14 @@ public class GameManager : MonoBehaviour
     public void ButtonClickSound()
     {
         audioSource.PlayOneShot(buttonSound);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // 유니티 에디터에서 실행 중지
+#else
+        Application.Quit();
+#endif
     }
 }

@@ -39,8 +39,6 @@ public class Player : LivingEntity
     private float shieldCoolInterval = 30f;
     private bool isShieldActive => shieldCount > 0;
 
-    private bool isHit;
-
     public bool isInvisible = false;
 
     private GameObject spawner;
@@ -94,7 +92,6 @@ public class Player : LivingEntity
         }
 
         isShield = true;
-        isHit = false;
         shieldCount = 0;
         shieldCoolTime = 0f;
     }

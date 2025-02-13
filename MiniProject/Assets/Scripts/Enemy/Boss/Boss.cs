@@ -41,6 +41,7 @@ public class Boss : LivingEntity
     private float spriteHalfWidth;
 
     private UIManager ui;
+    private GameManager gm;
 
     public GameObject deathEffect;
     public AudioClip deathSound;
@@ -60,6 +61,8 @@ public class Boss : LivingEntity
 
         var findUI = GameObject.FindWithTag(GMCT.UI);
         ui = findUI.GetComponent<UIManager>();
+
+        gm = GameObject.FindWithTag(GMCT.GM).GetComponent<GameManager>();
 
         IsInVisible = true;
 
@@ -200,6 +203,8 @@ public class Boss : LivingEntity
         OnSpawnLegendaryItem?.Invoke(this);
         OnSpawnLegendaryItem = null;
         OnSpawnCommonItem = null;
+
+        
 
         Destroy(gameObject, deathSound.length);
     }
