@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2555345960098775130}
   - component: {fileID: 4740019672793110345}
   - component: {fileID: 5303251869475474947}
-  - component: {fileID: 4957458519836057997}
   - component: {fileID: 99708357865363712}
   - component: {fileID: 336113329956784091}
   - component: {fileID: 2611614639268262790}
@@ -33,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: -3.84, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.30401698, y: 0.30401698, z: 0.43431}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 979769295460597580}
@@ -79,8 +78,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: da0ccc7eae87ee74d809b6f3fa90a99b, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 7963825791275371049, guid: f32d96da99383db498b3d92d10c5259e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,41 +129,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4957458519836057997
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4246397111066840863}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.15
 --- !u!82 &99708357865363712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -314,11 +278,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.4558544, y: -0.37413716}
-  - {x: -0.44315302, y: 0.18748116}
-  - {x: 0.0004569292, y: 0.36536837}
-  - {x: 0.44699407, y: 0.19486094}
-  - {x: 0.46462318, y: -0.38582897}
+  - {x: -0.5616907, y: -1.2737501}
+  - {x: -0.47034222, y: 0.1147205}
+  - {x: 0.0004569292, y: 1.4724983}
+  - {x: 0.466101, y: 0.11034156}
+  - {x: 0.5947203, y: -1.2935289}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -349,7 +313,7 @@ Transform:
   m_GameObject: {fileID: 7262738971171279069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 1.506, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
